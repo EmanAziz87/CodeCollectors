@@ -68,3 +68,10 @@ in our commit message in order to increase the version number.
 
 [DEVELOPMENT STEPS (WILL ADD TO AND CHANGE MOVING FORWARD)]
 
+1. INITIALIZE PROJECT STRUCTURE
+
+    --root directory will serve as our backend while our client folder
+    will serve as our frontend. 
+    
+    --github actions folders/files will be created early on as well in 
+    order to implement the foundations of our development pipeline.
