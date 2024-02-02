@@ -1,0 +1,70 @@
+CodeCollector Development Notes
+
+
+*** Frontend Stack ***
+HTML
+CSS
+JavaScript
+React (Router, Redux, Framer Motion)
+Axios
+RTK query
+
+*** Backend Stack ***
+Express/Node
+PostgresSql (RDBMS)
+Sequelize (ORM)
+JWT (Auth)
+Bcrypt (Auth)
+Config (secrets and env management)
+
+*** Tools ***
+Jest 
+React Testing Library (Frontend Tests)
+Cypress (e2e testing)
+Render (Deployment Service)
+Github Actions (CI/CD pipeline)
+
+
+DB Relations
+
+---Tables---
+USERS
+HUBS 
+POSTS
+SNIPPETS
+
+HUBS have many POSTS
+USERS have many POSTS
+USERS have many SNIPPETS
+
+users
+| id  | username | name | password |
+| --- | -------- | ---- | -------- |
+
+hubs
+| id  | name | followers |
+| --- | ---- | --------- |
+
+posts
+| id  | title | author | content | hubId | userId |
+| --- | ----- | ------ | ------- | ----- | ------ |
+
+snippets
+| id  | title | content | userId |
+| --- | ----- | ------- | ------ |
+
+
+--Versioning (semantic): v0.0.0 (major.minor.patch)--
+Versioning will start with v0.0.0. v1.0.0 will represent our 
+deployed application with minimal yet fully functional features.
+
+Version Jumps will be implemented through our simple Deployment
+pipeline that will be created early in development. Our pipeline
+will only update versions upon an approved merge of a pull request
+to the main branch. A condition will be implemented within the 
+pipeline so that version jumps will require a '#VersionBump' tag
+in our commit message in order to increase the version number.
+
+
+[DEVELOPMENT STEPS (WILL ADD TO AND CHANGE MOVING FORWARD)]
+
