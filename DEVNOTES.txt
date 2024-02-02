@@ -75,3 +75,12 @@ in our commit message in order to increase the version number.
     
     --github actions folders/files will be created early on as well in 
     order to implement the foundations of our development pipeline.
+
+    --our routes are handled in 4 controllers (hubs, posts, snippets, users)
+
+    --Database must be connected conditionally depending on the NODE_ENV
+    value
+
+
+
+    
