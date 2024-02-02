@@ -3,7 +3,7 @@ name: Deployment pipeline
 on:
   push:
     branches:
-      - pipeline-test
+      - dev
 
 jobs:
   tag_release:
