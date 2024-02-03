@@ -41,7 +41,7 @@ users
 | --- | -------- | ---- | -------- |
 
 hubs
-| id  | name | followers | adminHub |
+| id  | name | subscribers | adminHub |
 | --- | ---- | --------- | -------- |
 
 
@@ -89,16 +89,16 @@ value.
     Users: 
         GET - /api/users - to grab all users [DONE]
         POST - /api/users - to create new user [DONE]
-        DELETE - /api/users - to delete a user [---]
+        DELETE - /api/users - to delete a user [---] 
 
     Login:
         POST - /api/login - to authenticate user and assign priviledges
-                through jwt [---]
+                through jwt [DONE]
 
     Hubs:
-        GET - /api/hubs - to grab all hubs [---]
-        POST - /api/hubs - to create a new hub [---]
-        PATCH - /api/hubs/:id - to update existing hub (follower increase) [---]
+        GET - /api/hubs - to grab all hubs [DONE]
+        POST - /api/hubs - to create a new hub [---] 
+        PATCH - /api/hubs/:id - to update existing hub (subscriber increase) [DONE]
 
     Posts (Belongs To Users):
         GET - /api/posts - to grab all posts [---]
