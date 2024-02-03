@@ -1,5 +1,16 @@
+const getToken = (req, res, next) => {
+  const authorization = req.get('Authorization');
+  if (authorization && authorization.startsWith('Bearer ')) {
+    req.token = authentication.replace('Bearer ', '');
+  } else {
+    req.token = null;
+  }
+  next();
+};
+
 const unknownEndpoint = (req, res, next) => {
   res.status(404).send('this route leads to no where...');
+  next();
 };
 
 const errorHandler = (error, req, res, next) => {
@@ -19,4 +30,4 @@ const errorHandler = (error, req, res, next) => {
   next(error);
 };
 
-module.exports = { unknownEndpoint, errorHandler };
+module.exports = { unknownEndpoint, errorHandler, getToken };

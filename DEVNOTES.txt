@@ -1,6 +1,5 @@
 CodeCollector Development Notes
 
-
 *** Frontend Stack ***
 HTML
 CSS
@@ -92,6 +91,10 @@ value.
         POST - /api/users - to create new user [DONE]
         DELETE - /api/users - to delete a user [---]
 
+    Login:
+        POST - /api/login - to authenticate user and assign priviledges
+                through jwt [---]
+
     Hubs:
         GET - /api/hubs - to grab all hubs [---]
         POST - /api/hubs - to create a new hub [---]
@@ -109,9 +112,6 @@ value.
         PUT - /api/snippets/:userId/:id - to edit a user snippet [---]
         DELETE - /api/snippets/:userId/:id - to delete a user snippet [---]
 
-    Login:
-        POST - /api/login - to authenticate user and assign priviledges
-                through jwt [---]
 
 3. TESTING ROUTES - CONDITIONS TO CHECK FOR
     
@@ -119,7 +119,7 @@ value.
         -checking if users can be added [DONE]
         -error if password or username is too short [DONE]
         -error if no password or username is provided [---]
-        -deleting user successfully [---]
+        -deleting user successfully if authenticated as that user [---]
 
     Hubs: 
         -checking if hub is created [---]
