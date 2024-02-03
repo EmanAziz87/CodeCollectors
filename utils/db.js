@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const db =
   process.env.NODE_ENV === 'test'
-    ? new Sequelize('cctestdb', 'postgres', 'mypassword', {
+    ? new Sequelize('cctestdb', 'postgres', 'myPassword', {
         dialect: 'postgres',
       })
     : new Sequelize(`${process.env.DB_EXTERNAL_URL}?ssl=true`);

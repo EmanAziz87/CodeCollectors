@@ -11,7 +11,7 @@ usersRouter.post('/', async (req, res, next) => {
   const { name, username, password } = req.body;
 
   if (!(name || username || password)) {
-    response
+    return response
       .status(400)
       .json({ error: 'Did not provide name, username, and password' });
   }
@@ -21,7 +21,7 @@ usersRouter.post('/', async (req, res, next) => {
   const newUser = {
     name,
     username,
-    passwordHash,
+    password: passwordHash,
   };
 
   try {
