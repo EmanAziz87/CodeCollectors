@@ -101,16 +101,16 @@ value.
         PATCH - /api/hubs/:id - to update existing hub (subscriber increase) [DONE]
 
     Posts (Belongs To Users):
-        GET - /api/posts - to grab all posts [---]
-        POST - /api/posts - to create a new post [---]
-        PUT - /api/posts - to update a post [---]
-        DELETE = /api/posts - to delete a post [---]
+        GET - /api/posts - to grab all posts [DONE]
+        POST - /api/posts - to create a new post [DONE]
+        PATCH - /api/posts/:id - to update content of post [DONE]
+        DELETE - /api/posts/:id - to delete a post [DONE]
 
     Snippets (Belongs To Users & Posts):
-        GET - /api/snippets/:userId - to grab all user snippets [---]
-        POST - /api/snippets/:userId - to create a user snippet [---]
-        PUT - /api/snippets/:userId/:id - to edit a user snippet [---]
-        DELETE - /api/snippets/:userId/:id - to delete a user snippet [---]
+        GET - /api/snippets/ - to grab all snippets [DONE]
+        POST - /api/snippets/ - to create a snippet [DONE]
+        PUT - /api/snippets/:id - to edit a snippet content [DONE]
+        DELETE - /api/snippets/:userId/:id - to delete a user snippet [DONE]
 
 
 3. TESTING ROUTES - CONDITIONS TO CHECK FOR
