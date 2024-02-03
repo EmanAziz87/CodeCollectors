@@ -7,7 +7,6 @@ CSS
 JavaScript
 React (Router, Redux, Framer Motion)
 Axios
-RTK query
 
 *** Backend Stack ***
 Express/Node
@@ -36,14 +35,16 @@ SNIPPETS
 HUBS have many POSTS
 USERS have many POSTS
 USERS have many SNIPPETS
+POSTS have one SNIPPETS
 
 users
 | id  | username | name | password |
 | --- | -------- | ---- | -------- |
 
 hubs
-| id  | name | followers |
-| --- | ---- | --------- |
+| id  | name | followers | adminHub |
+| --- | ---- | --------- | -------- |
+
 
 posts
 | id  | title | author | content | hubId | userId |
@@ -62,8 +63,9 @@ Version Jumps will be implemented through our simple Deployment
 pipeline that will be created early in development. Our pipeline
 will only update versions upon an approved merge of a pull request
 to the main branch. A condition will be implemented within the 
-pipeline so that version jumps will require a '#VersionBump' tag
-in our commit message in order to increase the version number.
+pipeline so that version jump wont apply if the #skip tag is
+in our commit message. By default version bumps increment the patch
+value. 
 
 
 [DEVELOPMENT STEPS (WILL ADD TO AND CHANGE MOVING FORWARD)]
@@ -75,3 +77,57 @@ in our commit message in order to increase the version number.
     
     --github actions folders/files will be created early on as well in 
     order to implement the foundations of our development pipeline.
+        -only for tagging releases in the beginning
+
+    --our routes are handled in 4 controllers (hubs, posts, snippets, users)
+
+    --Database must be connected conditionally depending on the NODE_ENV
+    value (for either development/production vs testing)
+
+2. ROUTES
+    Routes, their api endpoints, and their functionality:
+
+    Users: 
+        GET - /api/users - to grab all users [DONE]
+        POST - /api/users - to create new user [DONE]
+        DELETE - /api/users - to delete a user [---]
+
+    Hubs:
+        GET - /api/hubs - to grab all hubs [---]
+        POST - /api/hubs - to create a new hub [---]
+        PATCH - /api/hubs/:id - to update existing hub (follower increase) [---]
+
+    Posts (Belongs To Users):
+        GET - /api/posts - to grab all posts [---]
+        POST - /api/posts - to create a new post [---]
+        PUT - /api/posts - to update a post [---]
+        DELETE = /api/posts - to delete a post [---]
+
+    Snippets (Belongs To Users & Posts):
+        GET - /api/snippets/:userId - to grab all user snippets [---]
+        POST - /api/snippets/:userId - to create a user snippet [---]
+        PUT - /api/snippets/:userId/:id - to edit a user snippet [---]
+        DELETE - /api/snippets/:userId/:id - to delete a user snippet [---]
+
+    Login:
+        POST - /api/login - to authenticate user and assign priviledges
+                through jwt [---]
+
+3. TESTING ROUTES - CONDITIONS TO CHECK FOR
+    
+    Users: 
+        -checking if users can be added [DONE]
+        -error if password or username is too short [DONE]
+        -error if no password or username is provided [---]
+        -deleting user successfully [---]
+
+    Hubs: 
+        -checking if hub is created [---]
+        
+    
+
+    
+
+
+
+    
