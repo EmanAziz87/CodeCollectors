@@ -37,8 +37,8 @@ USERS have many SNIPPETS
 POSTS have one SNIPPETS
 
 users
-| id  | username | name | password |
-| --- | -------- | ---- | -------- |
+| id  | username | name | password | subscribedHubs |
+| --- | -------- | ---- | -------- | -------------- |
 
 hubs
 | id  | name | subscribers | adminHub |
@@ -102,6 +102,7 @@ value.
 
     Posts (Belongs To Users):
         GET - /api/posts - to grab all posts [DONE]
+        GET - /api/posts/:id - to grab a specific post [DONE]
         POST - /api/posts - to create a new post [DONE]
         PATCH - /api/posts/:id - to update content of post [DONE]
         DELETE - /api/posts/:id - to delete a post [DONE]
@@ -143,9 +144,10 @@ value.
 
     Hubs: 
         -getting hubs
-
+            - gets all hubs [DONE]
+            - get a specific hub [---]
         -updating Hubs
-
+            - when logged in, can subscribe to a hub [---]
                 
     
 

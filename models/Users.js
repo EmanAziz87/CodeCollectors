@@ -27,6 +27,10 @@ const Users = db.define(
         },
       },
     },
+    subscribedHubs: {
+      type: Sequelize.ARRAY(Sequelize.STRING),
+      defaultValue: [],
+    },
   },
   { timestamps: false }
 );
