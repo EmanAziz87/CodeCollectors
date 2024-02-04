@@ -1,62 +1,25 @@
 const supertest = require('supertest');
 const app = require('../app');
 const Posts = require('../models/Posts');
-const helper = require('./testHelper');
 const Users = require('../models/Users');
+const {
+  createUserAndLogin,
+  creatingPost,
+  getAllPosts,
+  getAPost,
+  posts,
+} = require('./testHelper');
 
 const api = supertest(app);
-
-const createUserAndLogin = async (name, username, password) => {
-  const newUser = {
-    name,
-    username,
-    password,
-  };
-
-  const userResponse = await api
-    .post('/api/users')
-    .send(newUser)
-    .expect('Content-Type', /application\/json/)
-    .expect(201);
-
-  const user = userResponse.body;
-
-  const loginResponse = await api
-    .post('/api/login')
-    .send({ username: newUser.username, password: newUser.password })
-    .expect('Content-Type', /application\/json/)
-    .expect(200);
-
-  const token = loginResponse.body.token;
-
-  return { user, token };
-};
-
-const creatingPost = async (token) => {
-  const newPost = {
-    title: 'testtitle',
-    author: 'testauthor',
-    content: 'testauthor',
-  };
-
-  const postResponse = await api
-    .post('/api/posts')
-    .set('Authorization', `Bearer ${token}`)
-    .send(newPost)
-    .expect('Content-Type', /application\/json/)
-    .expect(201);
-
-  return postResponse.body;
-};
 
 describe('When the database has posts', () => {
   beforeEach(async () => {
     await Posts.truncate();
-    await Posts.bulkCreate(helper.posts);
+    await Posts.bulkCreate(posts);
   });
 
   test('grabbing all posts from the database', async () => {
-    const postsAtStart = await helper.getAllPosts();
+    const postsAtStart = await getAllPosts();
 
     const response = await api
       .get('/api/posts')
@@ -69,7 +32,7 @@ describe('When the database has posts', () => {
   });
 
   test('getting a specific post from the database', async () => {
-    const posts = await helper.getAllPosts();
+    const posts = await getAllPosts();
     const response = await api.get(`/api/posts/${posts[0].id}`).expect(200);
     const postFromCall = response.body;
     expect(posts[0]).toEqual(postFromCall);
@@ -83,7 +46,7 @@ describe('creating posts in the database', () => {
   });
 
   test('authenticate as a valid user than create a post', async () => {
-    const postsAtStart = await helper.getAllPosts();
+    const postsAtStart = await getAllPosts();
 
     const { user, token } = await createUserAndLogin(
       'test',
@@ -105,7 +68,7 @@ describe('creating posts in the database', () => {
       .expect(201);
 
     const createdPost = postCall.body;
-    const postsAtEnd = await helper.getAllPosts();
+    const postsAtEnd = await getAllPosts();
 
     const findCreatedPost = postsAtEnd.find(
       (post) => post.id === createdPost.id
@@ -116,7 +79,7 @@ describe('creating posts in the database', () => {
   });
 
   test('throws error if you attempt to create a post while not logged in', async () => {
-    const postsAtStart = await helper.getAllPosts();
+    const postsAtStart = await getAllPosts();
 
     const newPost = {
       title: 'testtitle',
@@ -130,12 +93,12 @@ describe('creating posts in the database', () => {
       .expect('Content-Type', /application\/json/)
       .expect(401);
 
-    const postsAtEnd = await helper.getAllPosts();
+    const postsAtEnd = await getAllPosts();
     expect(postsAtEnd).toHaveLength(postsAtStart.length);
   });
 
   test('throws error if you attempt to create a post with missing submission info', async () => {
-    const postsAtStart = await helper.getAllPosts();
+    const postsAtStart = await getAllPosts();
     const { token } = await createUserAndLogin(
       'test',
       'testusername',
@@ -154,7 +117,7 @@ describe('creating posts in the database', () => {
       .expect('Content-Type', /application\/json/)
       .expect(400);
 
-    const postsAtEnd = await helper.getAllPosts();
+    const postsAtEnd = await getAllPosts();
     expect(postsAtEnd).toHaveLength(postsAtStart.length);
   });
 });
@@ -183,7 +146,7 @@ describe('updating posts in the database', () => {
       .send(newContent)
       .expect(204);
 
-    const updatedPost = await helper.getAPost(createdPost.id);
+    const updatedPost = await getAPost(createdPost.id);
 
     expect(updatedPost.content).not.toBe(createdPost.content);
     expect(updatedPost.content).toBe(newContent.content);
@@ -207,7 +170,7 @@ describe('updating posts in the database', () => {
       .send(newContent)
       .expect(401);
 
-    const notUpdatedPost = await helper.getAPost(createdPost.id);
+    const notUpdatedPost = await getAPost(createdPost.id);
 
     expect(notUpdatedPost.content).toBe(createdPost.content);
   });
@@ -231,7 +194,7 @@ describe('updating posts in the database', () => {
       .send(missingContent)
       .expect(400);
 
-    const notUpdatedPost = await helper.getAPost(createdPost.id);
+    const notUpdatedPost = await getAPost(createdPost.id);
 
     expect(notUpdatedPost.content).toBe(createdPost.content);
   });
@@ -261,7 +224,7 @@ describe('updating posts in the database', () => {
       .send(secondUsersContent)
       .expect(401);
 
-    const notUpdatedPost = await helper.getAPost(firstUserCreatedPost.id);
+    const notUpdatedPost = await getAPost(firstUserCreatedPost.id);
 
     expect(notUpdatedPost.content).toBe(firstUserCreatedPost.content);
   });
@@ -274,7 +237,7 @@ describe('deleting posts in the database', () => {
   });
 
   test('deleting posts when you are logged in and it is your post', async () => {
-    const postsAtStart = await helper.getAllPosts();
+    const postsAtStart = await getAllPosts();
 
     const { token } = await createUserAndLogin(
       'test',
@@ -289,12 +252,12 @@ describe('deleting posts in the database', () => {
       .set('Authorization', `Bearer ${token}`)
       .expect(204);
 
-    const postsAtEnd = await helper.getAllPosts();
+    const postsAtEnd = await getAllPosts();
     expect(postsAtEnd).toHaveLength(postsAtStart.length);
   });
 
   test('throw error when when you try to delete a post when your not logged in', async () => {
-    const postsAtStart = await helper.getAllPosts();
+    const postsAtStart = await getAllPosts();
 
     const { token } = await createUserAndLogin(
       'test',
@@ -306,12 +269,12 @@ describe('deleting posts in the database', () => {
 
     await api.delete(`/api/posts/${createdPost.id}`).expect(401);
 
-    const postsAtEnd = await helper.getAllPosts();
+    const postsAtEnd = await getAllPosts();
     expect(postsAtEnd).toHaveLength(postsAtStart.length + 1);
   });
 
   test('throw error when when you try to delete a post that is not yours', async () => {
-    const postsAtStart = await helper.getAllPosts();
+    const postsAtStart = await getAllPosts();
 
     const firstUser = await createUserAndLogin(
       'test',
@@ -332,7 +295,7 @@ describe('deleting posts in the database', () => {
       .set('Authorization', `Bearer ${secondUser.token}`)
       .expect(401);
 
-    const postsAtEnd = await helper.getAllPosts();
+    const postsAtEnd = await getAllPosts();
 
     expect(postsAtEnd).toHaveLength(postsAtStart.length + 1);
   });
