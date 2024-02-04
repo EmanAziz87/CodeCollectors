@@ -31,7 +31,7 @@ describe('when the database has one user', () => {
     expect(usersAtEnd).toHaveLength(usersAtStart.length);
   });
 
-  test.only('if inputs are valid, add user to database', async () => {
+  test('if inputs are valid, add user to database', async () => {
     const usersAtStart = await helper.getAllUsers();
 
     const newUser = {

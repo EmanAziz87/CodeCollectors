@@ -12,6 +12,7 @@ const {
   unknownEndpoint,
   errorHandler,
   getToken,
+  userExtractor,
 } = require('./utils/middleware');
 
 app.use(express.json());
@@ -19,7 +20,7 @@ app.use(getToken);
 
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
-app.use('/api/posts', postsRouter);
+app.use('/api/posts', userExtractor, postsRouter);
 app.use('/api/hubs', hubsRouter);
 app.use('/api/snippets', snippetsRouter);
 

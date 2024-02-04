@@ -121,9 +121,32 @@ value.
         -error if no password or username is provided [---]
         -deleting user successfully if authenticated as that user [---]
 
-    Hubs: 
-        -checking if hub is created [---]
+    Posts:
+        - getting posts
+            - getting all posts [DONE]
+            - getting specific post [DONE]
+        -adding posts 
+            - when logged in you can add posts [DONE]
+            - error when your not logged in and add post [DONE]
+            - error when you create post with invalid submission info [DONE]
+        -updating posts
+            - when logged in you can update a post thats yours [DONE]
+            - error when your not logged in and try to update post [DONE]
+            - error when logged in but update submission input is empty [DONE]
+            - error when you try to update someone elses post [DONE]
+        -deleteing post
+            - when logged in you can delete your own posts [DONE]
+            - error when you try to delete a post when not logged in [DONE]
+            - error when you try to delete someone elses post when logged in [DONE]
+
         
+
+    Hubs: 
+        -getting hubs
+
+        -updating Hubs
+
+                
     
 
     
