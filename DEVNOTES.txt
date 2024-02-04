@@ -1,6 +1,5 @@
 CodeCollector Development Notes
 
-
 *** Frontend Stack ***
 HTML
 CSS
@@ -42,7 +41,7 @@ users
 | --- | -------- | ---- | -------- |
 
 hubs
-| id  | name | followers | adminHub |
+| id  | name | subscribers | adminHub |
 | --- | ---- | --------- | -------- |
 
 
@@ -90,28 +89,29 @@ value.
     Users: 
         GET - /api/users - to grab all users [DONE]
         POST - /api/users - to create new user [DONE]
-        DELETE - /api/users - to delete a user [---]
-
-    Hubs:
-        GET - /api/hubs - to grab all hubs [---]
-        POST - /api/hubs - to create a new hub [---]
-        PATCH - /api/hubs/:id - to update existing hub (follower increase) [---]
-
-    Posts (Belongs To Users):
-        GET - /api/posts - to grab all posts [---]
-        POST - /api/posts - to create a new post [---]
-        PUT - /api/posts - to update a post [---]
-        DELETE = /api/posts - to delete a post [---]
-
-    Snippets (Belongs To Users & Posts):
-        GET - /api/snippets/:userId - to grab all user snippets [---]
-        POST - /api/snippets/:userId - to create a user snippet [---]
-        PUT - /api/snippets/:userId/:id - to edit a user snippet [---]
-        DELETE - /api/snippets/:userId/:id - to delete a user snippet [---]
+        DELETE - /api/users - to delete a user [---] 
 
     Login:
         POST - /api/login - to authenticate user and assign priviledges
-                through jwt [---]
+                through jwt [DONE]
+
+    Hubs:
+        GET - /api/hubs - to grab all hubs [DONE]
+        POST - /api/hubs - to create a new hub [---] 
+        PATCH - /api/hubs/:id - to update existing hub (subscriber increase) [DONE]
+
+    Posts (Belongs To Users):
+        GET - /api/posts - to grab all posts [DONE]
+        POST - /api/posts - to create a new post [DONE]
+        PATCH - /api/posts/:id - to update content of post [DONE]
+        DELETE - /api/posts/:id - to delete a post [DONE]
+
+    Snippets (Belongs To Users & Posts):
+        GET - /api/snippets/ - to grab all snippets [DONE]
+        POST - /api/snippets/ - to create a snippet [DONE]
+        PUT - /api/snippets/:id - to edit a snippet content [DONE]
+        DELETE - /api/snippets/:userId/:id - to delete a user snippet [DONE]
+
 
 3. TESTING ROUTES - CONDITIONS TO CHECK FOR
     
@@ -119,11 +119,34 @@ value.
         -checking if users can be added [DONE]
         -error if password or username is too short [DONE]
         -error if no password or username is provided [---]
-        -deleting user successfully [---]
+        -deleting user successfully if authenticated as that user [---]
+
+    Posts:
+        - getting posts
+            - getting all posts [DONE]
+            - getting specific post [DONE]
+        -adding posts 
+            - when logged in you can add posts [DONE]
+            - error when your not logged in and add post [DONE]
+            - error when you create post with invalid submission info [DONE]
+        -updating posts
+            - when logged in you can update a post thats yours [DONE]
+            - error when your not logged in and try to update post [DONE]
+            - error when logged in but update submission input is empty [DONE]
+            - error when you try to update someone elses post [DONE]
+        -deleteing post
+            - when logged in you can delete your own posts [DONE]
+            - error when you try to delete a post when not logged in [DONE]
+            - error when you try to delete someone elses post when logged in [DONE]
+
+        
 
     Hubs: 
-        -checking if hub is created [---]
-        
+        -getting hubs
+
+        -updating Hubs
+
+                
     
 
     

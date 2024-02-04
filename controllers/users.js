@@ -13,7 +13,7 @@ usersRouter.post('/', async (req, res, next) => {
   if (!(name || username || password)) {
     return response
       .status(400)
-      .json({ error: 'Did not provide name, username, and password' });
+      .json({ error: 'Did not provide name, username, or password' });
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
