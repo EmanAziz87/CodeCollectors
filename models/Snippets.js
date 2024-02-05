@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../utils/db');
+const Posts = require('./Posts');
+const Users = require('./Users');
 
 const Snippets = db.define(
   'snippets',
@@ -16,17 +18,22 @@ const Snippets = db.define(
   { timestamps: false }
 );
 
-Snippets.sync({ force: true }).then(async () => {
-  Snippets.bulkCreate([
-    {
-      title: 'snippet title one',
-      content: 'revolutionary content',
-    },
-    {
-      title: 'snippet title two',
-      content: 'even more revolutionary content',
-    },
-  ]);
-});
+Snippets.hasOne(Posts, { onDelete: 'CASCADE' });
+Posts.belongsTo(Snippets);
+Users.hasMany(Snippets, { onDelete: 'CASCADE' });
+Snippets.belongsTo(Users);
+
+// Snippets.sync({ force: true }).then(async () => {
+//   Snippets.bulkCreate([
+//     {
+//       title: 'snippet title one',
+//       content: 'revolutionary content',
+//     },
+//     {
+//       title: 'snippet title two',
+//       content: 'even more revolutionary content',
+//     },
+//   ]);
+// });
 
 module.exports = Snippets;
