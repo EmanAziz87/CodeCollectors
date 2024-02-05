@@ -22,7 +22,9 @@ loginRouter.post('/', async (req, res, next) => {
     username: userMatch.username,
   };
 
-  const token = jwt.sign(userToken, process.env.JWT_SECRET);
+  const token = jwt.sign(userToken, process.env.JWT_SECRET, {
+    expiresIn: 60 * 60,
+  });
 
   try {
     res
