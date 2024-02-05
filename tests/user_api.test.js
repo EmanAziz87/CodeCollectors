@@ -16,21 +16,6 @@ beforeEach(async () => {
 });
 
 describe('when the database has one user', () => {
-  test('if password and username are less than 4 characters throw 400 error', async () => {
-    const usersAtStart = await helper.getAllUsers();
-
-    const tooShort = {
-      name: 'jim',
-      username: 'jim',
-      password: '123',
-    };
-
-    const usersAtEnd = await helper.getAllUsers();
-
-    await api.post('/api/users').send(tooShort).expect(400);
-    expect(usersAtEnd).toHaveLength(usersAtStart.length);
-  });
-
   test('if inputs are valid, add user to database', async () => {
     const usersAtStart = await helper.getAllUsers();
 
@@ -56,5 +41,20 @@ describe('when the database has one user', () => {
 
     expect(usersAtEnd).toHaveLength(usersAtStart.length + 1);
     expect(responseBody).toEqual(createdUserInDB);
+  });
+
+  test('if password and username are less than 4 characters throw 400 error', async () => {
+    const usersAtStart = await helper.getAllUsers();
+
+    const tooShort = {
+      name: 'jim',
+      username: 'jim',
+      password: '123',
+    };
+
+    const usersAtEnd = await helper.getAllUsers();
+
+    await api.post('/api/users').send(tooShort).expect(400);
+    expect(usersAtEnd).toHaveLength(usersAtStart.length);
   });
 });

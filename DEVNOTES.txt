@@ -46,8 +46,8 @@ hubs
 
 
 posts
-| id  | title | author | content | hubId | userId |
-| --- | ----- | ------ | ------- | ----- | ------ |
+| id  | title | author | content | hubId | userId | snippetId |
+| --- | ----- | ------ | ------- | ----- | ------ | --------- |
 
 snippets
 | id  | title | content | userId |
@@ -140,14 +140,37 @@ value.
             - error when you try to delete a post when not logged in [DONE]
             - error when you try to delete someone elses post when logged in [DONE]
 
-        
-
     Hubs: 
         -getting hubs
             - gets all hubs [DONE]
-            - get a specific hub [---]
+            - get a specific hub [DONE]
         -updating Hubs
-            - when logged in, can subscribe to a hub [---]
+            - when logged in, can subscribe to a hub [DONE]
+            - error when not logged in and subscribe to a hub [DONE]
+            - error when subscribing to the same sub twice [DONE]
+    
+    Snippets:
+        getting snippets
+            - get all snippets [DONE]
+        creating snippets
+            - when logged in create snippet [DONE]
+            - error when creating empty snippet [DONE]
+            - error when creating snippet and not logged in [DONE]
+        updating snippets   
+            - when logged in can update snippet [DONE]
+            - error updating snippet when not logged in [DONE]
+            - error updating snippet with not content [DONE]
+            - error updating snippet that is not yours [DONE]
+        deleting snippets
+            - when logged in can delete snippet [DONE]
+            - error deleting snippet when not logged in [DONE]
+            - error deleting snippet that is not yours [DONE]
+    
+    Login:
+        - logging in with valid credentials and receive valid token [DONE]
+        
+
+        
                 
     
 

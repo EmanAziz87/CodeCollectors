@@ -3,10 +3,15 @@ const app = require('../app');
 const Users = require('../models/Users');
 const Posts = require('../models/Posts');
 const Hubs = require('../models/Hubs');
+const Snippets = require('../models/Snippets');
 
 const api = supertest(app);
 
-const createUserAndLogin = async (name, username, password) => {
+const createUserAndLogin = async (
+  name = 'test',
+  username = 'testusername',
+  password = 'testpassword'
+) => {
   const newUser = {
     name,
     username,
@@ -47,6 +52,21 @@ const creatingPost = async (token) => {
     .expect(201);
 
   return postResponse.body;
+};
+
+const creatingSnippet = async (token) => {
+  const newSnippet = {
+    title: 'a cool snippet',
+    content: 'this is the snippet',
+  };
+  const response = await api
+    .post('/api/snippets')
+    .set('Authorization', `Bearer ${token}`)
+    .send(newSnippet)
+    .expect('Content-Type', /application\/json/)
+    .expect(201);
+
+  return response.body;
 };
 
 const oneHub = {
@@ -101,6 +121,35 @@ const posts = [
   },
 ];
 
+const oneSnippet = {
+  title: 'a cool snippet',
+  content: 'this is the snippet',
+};
+
+const snippets = [
+  {
+    title: 'a cool snippet',
+    content: 'this is the snippet',
+  },
+  {
+    title: 'another snippet',
+    content: 'more snippet content',
+  },
+  {
+    title: 'last mock snippet title',
+    content: 'last mock snippet content',
+  },
+];
+
+const getAllSnippets = async () => {
+  const snippets = await Snippets.findAll();
+  return snippets.map((snip) => snip.toJSON());
+};
+
+const getSnippet = async (id) => {
+  return await Snippets.findByPk(id);
+};
+
 const getAllHubs = async () => {
   const hubs = await Hubs.findAll();
   return hubs.map((hub) => hub.toJSON());
@@ -131,12 +180,17 @@ const getUser = async (id) => {
 module.exports = {
   createUserAndLogin,
   creatingPost,
+  creatingSnippet,
+  getAllSnippets,
+  getSnippet,
   getAllUsers,
   getUser,
   getAllHubs,
   getHub,
   getAllPosts,
   getAPost,
+  snippets,
+  oneSnippet,
   posts,
   hubs,
   oneHub,
