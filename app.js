@@ -7,7 +7,7 @@ const postsRouter = require('./controllers/posts');
 const hubsRouter = require('./controllers/hubs');
 const snippetsRouter = require('./controllers/snippets');
 const loginRouter = require('./controllers/login');
-require('./utils/db');
+
 const {
   unknownEndpoint,
   errorHandler,
