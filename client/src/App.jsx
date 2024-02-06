@@ -6,7 +6,8 @@ import RegisterForm from './components/RegisterForm';
 import Navigation from './components/Navigation';
 import AllHubs from './components/AllHubs';
 import Posts from './components/Posts';
-import { addUser } from './reducers/userReducer';
+import Profile from './components/Profile';
+import { autoReLogin } from './reducers/userReducer';
 
 function App() {
   const loggedUser = useSelector(({ user }) => user);
@@ -20,7 +21,8 @@ function App() {
       const loggedUser = JSON.parse(
         window.localStorage.getItem('loggedCodeCollectorAppUser')
       );
-      dispatch(addUser(loggedUser));
+
+      dispatch(autoReLogin(loggedUser));
     }
   }, []);
 
@@ -29,6 +31,10 @@ function App() {
     <div>
       <Navigation />
       <Routes>
+        <Route
+          path='/profile/:username'
+          element={<Profile user={loggedUser} />}
+        />
         <Route path='/hubs' element={<AllHubs />} />
         <Route path='/posts' element={<Posts />} />
         <Route path='/login' element={<LoginForm />} />

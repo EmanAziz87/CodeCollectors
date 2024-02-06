@@ -27,9 +27,13 @@ loginRouter.post('/', async (req, res, next) => {
   });
 
   try {
-    res
-      .status(200)
-      .send({ token, username: userMatch.username, name: userMatch.name });
+    res.status(200).send({
+      token,
+      username: userMatch.username,
+      name: userMatch.name,
+      subscribedHubs: userMatch.subscribedHubs,
+      id: userMatch.id,
+    });
   } catch (error) {
     next(error);
   }

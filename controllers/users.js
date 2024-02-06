@@ -7,6 +7,20 @@ usersRouter.get('/', async (req, res) => {
   res.send(allUsers);
 });
 
+usersRouter.get('/:id', async (req, res, next) => {
+  const id = req.params.id;
+  try {
+    const user = await Users.findOne({
+      where: { id },
+      attributes: ['id', 'name', 'username', 'subscribedHubs'],
+    });
+
+    res.send(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
 usersRouter.post('/', async (req, res, next) => {
   const { name, username, password } = req.body;
 

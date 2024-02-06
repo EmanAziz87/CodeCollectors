@@ -6,4 +6,9 @@ const createUser = async (userObject) => {
   return response.data;
 };
 
-export default { createUser };
+const getUser = async (id) => {
+  const response = await axios.get(`${baseUrl}/users/${id}`);
+  return response.data;
+};
+
+export default { createUser, getUser };

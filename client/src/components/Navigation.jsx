@@ -31,7 +31,10 @@ const Navigation = () => {
       </Link>
       {loggedUser && (
         <span style={style}>
-          {loggedUser.username} <button onClick={handleLogout}>Logout</button>
+          <Link to={`/profile/${loggedUser.username}`}>
+            {loggedUser.username}
+          </Link>{' '}
+          <button onClick={handleLogout}>Logout</button>
         </span>
       )}
     </div>
