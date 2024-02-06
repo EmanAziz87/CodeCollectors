@@ -168,6 +168,36 @@ value.
     
     Login:
         - logging in with valid credentials and receive valid token [DONE]
+
+4. FRONTEND COMPONENTS 
+
+    Navigation
+        - link to login form [DONE] 
+        - link to register form [DONE] 
+        - display whos logged in after log in [DONE]
+        - logout button if logged in []
+    Login Form
+        - login form hidden when logged in [---]
+    Register Form
+        - link to register form [DONE]
+        - register form nested within login form [---]
+    Hub Component
+        - link to hubs [DONE]
+        - display all hubs [DONE]
+    Post Component
+        - link to posts [DONE]
+        - display all posts [DONE]
+    Post Form
+        - create posts [DONE]
+    User Component
+        - link to user profile [---]
+        - display user profile info [---]
+    Snippets Component
+        - link to snippets [---]
+        - display all snippets [---]
+    Snippets Form
+        -link to snippets form [---]
+        - create snippets [---]
         
 
         
