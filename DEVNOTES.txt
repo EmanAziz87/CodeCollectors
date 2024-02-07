@@ -117,34 +117,38 @@ value.
 3. TESTING ROUTES - CONDITIONS TO CHECK FOR
     
     Users: 
-        -checking if users can be added [DONE]
-        -error if password or username is too short [DONE]
-        -error if no password or username is provided [---]
-        -deleting user successfully if authenticated as that user [---]
+        getting users
+            - getting all users [---]
+            - getting a specific user [---]
+        adding users
+            -checking if users can be added [DONE]
+            -error if password or username is too short [DONE]
+            -error if no password or username is provided [---]
+            -deleting user successfully if authenticated as that user [---]
 
     Posts:
-        - getting posts
+        getting posts
             - getting all posts [DONE]
             - getting specific post [DONE]
-        -adding posts 
+        adding posts 
             - when logged in you can add posts [DONE]
             - error when your not logged in and add post [DONE]
             - error when you create post with invalid submission info [DONE]
-        -updating posts
+        updating posts
             - when logged in you can update a post thats yours [DONE]
             - error when your not logged in and try to update post [DONE]
             - error when logged in but update submission input is empty [DONE]
             - error when you try to update someone elses post [DONE]
-        -deleteing post
+        deleteing post
             - when logged in you can delete your own posts [DONE]
             - error when you try to delete a post when not logged in [DONE]
             - error when you try to delete someone elses post when logged in [DONE]
 
     Hubs: 
-        -getting hubs
+        getting hubs
             - gets all hubs [DONE]
             - get a specific hub [DONE]
-        -updating Hubs
+        updating Hubs
             - when logged in, can subscribe to a hub [DONE]
             - error when not logged in and subscribe to a hub [DONE]
             - error when subscribing to the same sub twice [DONE]
@@ -174,30 +178,35 @@ value.
     Navigation
         - link to login form [DONE] 
         - link to register form [DONE] 
+        - link to user profile [DONE]
         - display whos logged in after log in [DONE]
-        - logout button if logged in []
+        - logout button if logged in [DONE]
     Login Form
         - login form hidden when logged in [---]
     Register Form
-        - link to register form [DONE]
         - register form nested within login form [---]
     Hub Component
         - link to hubs [DONE]
         - display all hubs [DONE]
+        - subscribe button [DONE]
+        - unsubscribe button [---]
     Post Component
         - link to posts [DONE]
         - display all posts [DONE]
+        - delete post [---]
     Post Form
         - create posts [DONE]
     User Component
-        - link to user profile [---]
-        - display user profile info [---]
+        - display subscribed hubs [DONE]
+        - display snippets [---]
+        - display posts [---]
+        - delete post [---]
+        - delete snippets [---]
+        - link to snippets form [---]
     Snippets Component
         - link to snippets [---]
-        - display all snippets [---]
     Snippets Form
-        -link to snippets form [---]
-        - create snippets [---]
+        - create snippet [---]
         
 
         

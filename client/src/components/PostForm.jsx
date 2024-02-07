@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost } from '../reducers/postsReducer';
 import postService from '../services/posts';
+import CodeEditor from './CodeEditor';
 
 const PostForm = () => {
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [code, setCode] = useState('');
 
   const dispatch = useDispatch();
   const loggedUser = useSelector(({ user }) => user);
@@ -13,10 +14,12 @@ const PostForm = () => {
   const handleAddPost = (event) => {
     event.preventDefault();
     postService.setToken(loggedUser);
-    dispatch(createPost({ title, content }));
+    dispatch(createPost({ title, code }));
     setTitle('');
-    setContent('');
+    setCode('');
   };
+
+  console.log('CONTENT STATE:', code);
 
   return (
     <div>
@@ -32,15 +35,15 @@ const PostForm = () => {
         </div>
         <div>
           <label htmlFor='post-form-content'>Content: </label>
-          <input
-            type='text'
-            id='post-form-content'
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
-          />
         </div>
         <button type='submit'>Add</button>
       </form>
+      {/* <div>
+        <pre>
+          <code className='language-javascript'>{content}</code>
+        </pre>
+      </div> */}
+      <CodeEditor setCode={setCode} code={code} />
     </div>
   );
 };
