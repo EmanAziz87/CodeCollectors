@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { initializeHubs, subscribeToHub } from '../reducers/hubsReducer';
 import hubService from '../services/hubs';
 
@@ -27,7 +28,11 @@ const AllHubs = () => {
       <div>
         {hubs.map((hub) => (
           <div key={hub.id} style={style}>
-            <div>{hub.name} </div>
+            <div>
+              <Link to={`/hubs/${hub.id}`} state={{ hub }}>
+                {hub.name}
+              </Link>{' '}
+            </div>
             <div>Subscribers: {hub.subscribers}</div>
             <button onClick={() => handleSubscribe(hub)}>Subscribe</button>
           </div>

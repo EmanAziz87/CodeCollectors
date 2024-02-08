@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initializePosts } from '../reducers/postsReducer';
-import PostForm from './PostForm';
+import Snippets from './Snippets';
+import '../css/posts.css';
 
-const Posts = () => {
+const Posts = ({ hub }) => {
   const dispatch = useDispatch();
   const posts = useSelector(({ posts }) => posts);
 
@@ -13,18 +14,19 @@ const Posts = () => {
 
   return (
     <div>
-      <h2>Add Post</h2>
-      <PostForm />
       <h2>Posts</h2>
       <div>
-        {posts.map((post) => (
-          <div key={post.id}>
-            <div>Title: {post.title}</div>
-            <div> Author: {post.author}</div>
-            <div>{post.content}</div>
-            <br />
-          </div>
-        ))}
+        {posts
+          .filter((post) => post.hubId === hub.id)
+          .map((post) => (
+            <div key={post.id} className='post-container'>
+              <div>Title: {post.title}</div>
+              <div> Author: {post.author}</div>
+              <div>{post.content}</div>
+              <Snippets post={post} postsFromHub={true} />
+              <br />
+            </div>
+          ))}
       </div>
     </div>
   );

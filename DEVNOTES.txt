@@ -50,7 +50,7 @@ posts
 | --- | ----- | ------ | ------- | ----- | ------ | --------- |
 
 snippets
-| id  | title | content | userId |
+| id  | title| code | userId |
 | --- | ----- | ------- | ------ |
 
 
@@ -189,24 +189,24 @@ value.
         - link to hubs [DONE]
         - display all hubs [DONE]
         - subscribe button [DONE]
+        - display links to each hub [DONE]
         - unsubscribe button [---]
     Post Component
         - link to posts [DONE]
-        - display all posts [DONE]
-        - delete post [---]
-    Post Form
+        - display posts in appropriate hub component [DONE]
         - create posts [DONE]
+        - post form is in the hub component [DONE]
+        - post form submits a snippet and a post and associates them [DONE]
+        - delete post [---]
     User Component
         - display subscribed hubs [DONE]
-        - display snippets [---]
+        - display snippets [DONE]
         - display posts [---]
         - delete post [---]
         - delete snippets [---]
-        - link to snippets form [---]
-    Snippets Component
-        - link to snippets [---]
+        - link to snippets form [DONE]
     Snippets Form
-        - create snippet [---]
+        - create snippet [DONE]
         
 
         

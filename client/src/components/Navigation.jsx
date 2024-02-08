@@ -20,9 +20,6 @@ const Navigation = () => {
       <Link style={style} to='/hubs'>
         Hubs
       </Link>
-      <Link style={style} to='/posts'>
-        Posts
-      </Link>
       <Link style={style} to='/login'>
         Login
       </Link>
