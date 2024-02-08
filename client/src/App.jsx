@@ -5,7 +5,6 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Navigation from './components/Navigation';
 import AllHubs from './components/AllHubs';
-import Posts from './components/Posts';
 import Profile from './components/Profile';
 import Hub from './components/Hub';
 import { autoReLogin } from './reducers/userReducer';

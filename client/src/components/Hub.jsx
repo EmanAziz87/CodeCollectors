@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import PostForm from './PostForm';
 import Posts from './Posts';
+import Toggle from './Toggle';
 
 const Hub = () => {
   const { state } = useLocation();
@@ -9,7 +10,9 @@ const Hub = () => {
     <div>
       <h2>{state.hub.name}</h2>
       <h4>Subscribers: {state.hub.subscribers}</h4>
-      <PostForm hub={state.hub} />
+      <Toggle buttonLabel={'toggle'}>
+        <PostForm hub={state.hub} />
+      </Toggle>
       <Posts hub={state.hub} />
     </div>
   );

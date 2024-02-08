@@ -24,10 +24,19 @@ const userSlice = createSlice({
         };
       }
     },
+    removeFromSubs(state, action) {
+      return {
+        ...state,
+        subscribedHubs: [
+          ...state.subscribedHubs.filter((hub) => hub !== action.payload),
+        ],
+      };
+    },
   },
 });
 
-export const { addUser, removeUser, addToSubs } = userSlice.actions;
+export const { addUser, removeUser, addToSubs, removeFromSubs } =
+  userSlice.actions;
 
 export const autoReLogin = (loggedUser) => {
   return async (dispatch) => {

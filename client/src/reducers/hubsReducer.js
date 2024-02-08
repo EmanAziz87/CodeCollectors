@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import hubService from '../services/hubs';
-import { addToSubs } from './userReducer';
+import { addToSubs, removeFromSubs } from './userReducer';
 
 const hubsSlice = createSlice({
   name: 'hubs',
@@ -12,6 +12,7 @@ const hubsSlice = createSlice({
     alreadySubbed(state, action) {
       return state;
     },
+    unSub(state, action) {},
   },
 });
 
@@ -31,7 +32,22 @@ export const subscribeToHub = (passedHub) => {
     );
 
     if (alreadySubscribed) {
-      dispatch(alreadySubbed());
+      const hubs = getState().hubs;
+
+      const newHubState = hubs.map((hub) =>
+        hub.id !== passedHub.id
+          ? hub
+          : { ...hub, subscribers: passedHub.subscribers - 1 }
+      );
+
+      console.log('NEWHUBSTATE', newHubState);
+
+      dispatch(setHubs(newHubState));
+      dispatch(removeFromSubs(passedHub.name));
+
+      await hubService.subscribeToHub(passedHub.id, {
+        subscribers: passedHub.subscribers - 1,
+      });
     } else {
       const hubs = getState().hubs;
 

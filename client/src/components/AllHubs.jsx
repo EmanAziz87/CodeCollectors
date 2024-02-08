@@ -34,12 +34,30 @@ const AllHubs = () => {
               </Link>{' '}
             </div>
             <div>Subscribers: {hub.subscribers}</div>
-            <button onClick={() => handleSubscribe(hub)}>Subscribe</button>
+            <button onClick={() => handleSubscribe(hub)}>
+              {loggedUser.subscribedHubs.find((userHub) => userHub === hub.name)
+                ? 'Unsubscribe'
+                : 'Subscribe'}
+            </button>
           </div>
         ))}
       </div>
     </div>
   );
 };
+
+/* 
+1. of the user thats logged in
+
+2. look through that users list of subscribed hubs
+
+3. look for whether the a hub in that list matches the name of the hub the unsub 
+  button is linked to
+
+4. return that hub if you found it from the previos step, other wise return undefined
+
+5. evaluate the ternary condition
+
+*/
 
 export default AllHubs;

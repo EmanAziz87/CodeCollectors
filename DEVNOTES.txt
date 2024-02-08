@@ -182,21 +182,23 @@ value.
         - display whos logged in after log in [DONE]
         - logout button if logged in [DONE]
     Login Form
-        - login form hidden when logged in [---]
+        - login form hidden when logged in [DONE]
     Register Form
-        - register form nested within login form [---]
+        - register form nested within login form [DONE]
     Hub Component
         - link to hubs [DONE]
         - display all hubs [DONE]
         - subscribe button [DONE]
         - display links to each hub [DONE]
-        - unsubscribe button [---]
+        - unsubscribe button [DONE]
     Post Component
         - link to posts [DONE]
         - display posts in appropriate hub component [DONE]
         - create posts [DONE]
         - post form is in the hub component [DONE]
         - post form submits a snippet and a post and associates them [DONE]
+        - post form can be toggled on and off [DONE]
+        - on post submit, hide post form [---]
         - delete post [---]
     User Component
         - display subscribed hubs [DONE]
