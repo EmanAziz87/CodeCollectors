@@ -3,6 +3,7 @@ import userReducer from './reducers/userReducer';
 import hubsReducer from './reducers/hubsReducer';
 import postsReducer from './reducers/postsReducer';
 import snippetsReducer from './reducers/snippetsReducer';
+import parentCommentReducer from './reducers/parentCommentReducer';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     hubs: hubsReducer,
     posts: postsReducer,
     snippets: snippetsReducer,
+    parentComments: parentCommentReducer,
   },
 });
 

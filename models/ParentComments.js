@@ -5,7 +5,7 @@ const ReplyComments = require('./ReplyComments');
 const Posts = require('./Posts');
 
 const ParentComments = db.define(
-  'parent_comments',
+  'parentComments',
   {
     content: {
       type: Sequelize.STRING,

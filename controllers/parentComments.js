@@ -1,4 +1,5 @@
 const parentCommentRouter = require('express').Router();
+const Posts = require('../models/Posts');
 const ParentComments = require('../models/ParentComments');
 
 parentCommentRouter.get('/:postId', async (req, res, next) => {
@@ -27,8 +28,11 @@ parentCommentRouter.post('/:postId', async (req, res, next) => {
 
   try {
     const findPost = await Posts.findByPk(postId);
-    const createdComment = await ParentComments.create(req.body);
-    findPost.addPost(createdComment);
+    const createdComment = await ParentComments.create({ ...req.body });
+    console.log('FINDPOST: ', findPost);
+    console.log('CREATEDCOMMENT: ', createdComment);
+    await req.user.addParentComment(createdComment);
+    await findPost.addParentComment(createdComment);
     res.status(201).send(createdComment);
   } catch (error) {
     next(error);

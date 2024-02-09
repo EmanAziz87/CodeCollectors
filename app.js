@@ -24,9 +24,9 @@ app.use(getToken);
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/posts', userExtractor, postsRouter);
+app.use('/api/comments', userExtractor, parentCommentRouter);
 app.use('/api/hubs', userExtractor, hubsRouter);
 app.use('/api/snippets', userExtractor, snippetsRouter);
-app.use('/api/comments', userExtractor, parentCommentRouter);
 
 app.use(unknownEndpoint);
 app.use(errorHandler);

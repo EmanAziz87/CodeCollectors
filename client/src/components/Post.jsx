@@ -1,3 +1,5 @@
+import CommentForm from './CommentForm';
+import Comments from './Comments';
 import Snippets from './Snippets';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -5,7 +7,6 @@ const Post = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  console.log('STATE: ', state);
   return (
     <div>
       <button
@@ -19,6 +20,10 @@ const Post = () => {
       <div> Author: {state.post.author}</div>
       <div>{state.post.content}</div>
       <Snippets post={state.post} postsFromHub={true} />
+      <div>
+        <CommentForm post={state.post} />
+        <Comments />
+      </div>
     </div>
   );
 };
