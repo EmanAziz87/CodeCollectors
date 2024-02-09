@@ -50,16 +50,16 @@ posts [---] [change content to description]
 | --- | ----- | ------ | ------- | ----- | ------ | --------- |
 
 snippets [---] [add new column: description]
-| id  | title| code | userId |
+| id  | title| code | userId | 
 | --- | ---- | ---- | ------ |
 
 parent_comment [---] 
-| id  | content | username | postId | userId |
-| --- | ------- | -------- | ------ | ------ |
+| id  | content | postId | userId |
+| --- | ------- | ------ | ------ |
 
 reply_comment [---]
 | id  | content | replied_comments | parent_commentId | userId |
-| --- | ------- |        []        | ---------------- | ------ |
+| --- | ------- | ---------------- | ---------------- | ------ |
 
 
 --Versioning (semantic): v0.0.0 (major.minor.patch)--

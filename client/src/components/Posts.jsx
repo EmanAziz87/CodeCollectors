@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { initializePosts } from '../reducers/postsReducer';
-import Snippets from './Snippets';
 import '../css/posts.css';
+import Post from './Post';
 
 const Posts = ({ hub }) => {
   const dispatch = useDispatch();
@@ -20,10 +21,9 @@ const Posts = ({ hub }) => {
           .filter((post) => post.hubId === hub.id)
           .map((post) => (
             <div key={post.id} className='post-container'>
-              <div>Title: {post.title}</div>
-              <div> Author: {post.author}</div>
-              <div>{post.content}</div>
-              <Snippets post={post} postsFromHub={true} />
+              <Link to={`/posts/${post.id}`} state={{ post, hub }}>
+                {post.title} by {post.author}
+              </Link>
               <br />
             </div>
           ))}

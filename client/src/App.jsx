@@ -9,6 +9,7 @@ import Profile from './components/Profile';
 import Hub from './components/Hub';
 import { autoReLogin } from './reducers/userReducer';
 import SnippetForm from './components/SnippetForm';
+import Post from './components/Post';
 
 function App() {
   const loggedUser = useSelector(({ user }) => user);
@@ -39,6 +40,7 @@ function App() {
         />
         <Route path='/hubs' element={<AllHubs />} />
         <Route path='/hubs/:id' element={<Hub />} />
+        <Route path='/posts/:postId' element={<Post />} />
         <Route path='/login' element={<LoginForm />} />
         <Route path='/register' element={<RegisterForm />} />
       </Routes>
