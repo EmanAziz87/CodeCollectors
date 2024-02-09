@@ -30,6 +30,7 @@ USERS
 HUBS 
 POSTS
 SNIPPETS
+COMMENTS
 
 HUBS have many POSTS
 USERS have many POSTS
@@ -42,16 +43,23 @@ users
 
 hubs
 | id  | name | subscribers | adminHub |
-| --- | ---- | --------- | -------- |
+| --- | ---- | ----------- | -------- |
 
-
-posts
+posts [---] [change content to description]
 | id  | title | author | content | hubId | userId | snippetId |
 | --- | ----- | ------ | ------- | ----- | ------ | --------- |
 
-snippets
+snippets [---] [add new column: description]
 | id  | title| code | userId |
-| --- | ----- | ------- | ------ |
+| --- | ---- | ---- | ------ |
+
+parent_comment [---] 
+| id  | content | username | postId | userId |
+| --- | ------- | -------- | ------ | ------ |
+
+reply_comment [---]
+| id  | content | replied_comments | parent_commentId | userId |
+| --- | ------- |        []        | ---------------- | ------ |
 
 
 --Versioning (semantic): v0.0.0 (major.minor.patch)--
@@ -191,7 +199,7 @@ value.
         - subscribe button [DONE]
         - display links to each hub [DONE]
         - unsubscribe button [DONE]
-    Post Component
+    Posts Component
         - link to posts [DONE]
         - display posts in appropriate hub component [DONE]
         - create posts [DONE]
@@ -199,14 +207,21 @@ value.
         - post form submits a snippet and a post and associates them [DONE]
         - post form can be toggled on and off [DONE]
         - on post submit, hide post form [---]
+        - got to specific post [---]
+        - create comments for post [---]
+        - delete comments for post [---]
+        - like comments for post [---]
+        - reply to a comment through @username [---]
         - delete post [---]
     User Component
         - display subscribed hubs [DONE]
         - display snippets [DONE]
         - display posts [---]
+        - display parent hub for a post [---]
         - delete post [---]
-        - delete snippets [---]
+        - delete snippet [---]
         - link to snippets form [DONE]
+        - delete account warning: confirm [---]
     Snippets Form
         - create snippet [DONE]
         

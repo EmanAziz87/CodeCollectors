@@ -34,11 +34,15 @@ const AllHubs = () => {
               </Link>{' '}
             </div>
             <div>Subscribers: {hub.subscribers}</div>
-            <button onClick={() => handleSubscribe(hub)}>
-              {loggedUser.subscribedHubs.find((userHub) => userHub === hub.name)
-                ? 'Unsubscribe'
-                : 'Subscribe'}
-            </button>
+            {loggedUser && (
+              <button onClick={() => handleSubscribe(hub)}>
+                {loggedUser.subscribedHubs.find(
+                  (userHub) => userHub === hub.name
+                )
+                  ? 'Unsubscribe'
+                  : 'Subscribe'}
+              </button>
+            )}
           </div>
         ))}
       </div>

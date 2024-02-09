@@ -10,11 +10,6 @@ const PostForm = ({ hub }) => {
   const [content, setContent] = useState('');
   const [code, setCode] = useState('');
 
-  console.log('TITLE: ', title);
-  console.log('CONTENT: ', content);
-  console.log('SNIPPET TITLE: ', snippetTitle);
-  console.log('CODE: ', code);
-
   const dispatch = useDispatch();
   const loggedUser = useSelector(({ user }) => user);
 
