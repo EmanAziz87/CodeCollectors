@@ -16,6 +16,13 @@ const parentCommentsSlice = createSlice({
 
 export const { setComments, addComment } = parentCommentsSlice.actions;
 
+export const initializeComments = (postId) => {
+  return async (dispatch) => {
+    const allComments = await parentCommentService.getAllPostComments(postId);
+    dispatch(setComments(allComments));
+  };
+};
+
 export const createComment = (postId, comment) => {
   return async (dispatch) => {
     const createdComment = await parentCommentService.createParentComment(

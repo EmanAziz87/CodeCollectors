@@ -22,7 +22,7 @@ const Post = () => {
       <Snippets post={state.post} postsFromHub={true} />
       <div>
         <CommentForm post={state.post} />
-        <Comments />
+        <Comments post={state.post} />
       </div>
     </div>
   );

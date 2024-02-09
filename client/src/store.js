@@ -4,6 +4,7 @@ import hubsReducer from './reducers/hubsReducer';
 import postsReducer from './reducers/postsReducer';
 import snippetsReducer from './reducers/snippetsReducer';
 import parentCommentReducer from './reducers/parentCommentReducer';
+import replyCommentReducer from './reducers/replyCommentReducer';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     posts: postsReducer,
     snippets: snippetsReducer,
     parentComments: parentCommentReducer,
+    replyComments: replyCommentReducer,
   },
 });
 

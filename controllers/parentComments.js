@@ -5,7 +5,9 @@ const ParentComments = require('../models/ParentComments');
 parentCommentRouter.get('/:postId', async (req, res, next) => {
   const postId = req.params.postId;
   try {
-    const allComments = await ParentComments.findAll({ where: { postId } });
+    const allComments = await ParentComments.findAll({
+      where: { postId },
+    });
     res.send(allComments);
   } catch (error) {
     next(error);
@@ -28,7 +30,10 @@ parentCommentRouter.post('/:postId', async (req, res, next) => {
 
   try {
     const findPost = await Posts.findByPk(postId);
-    const createdComment = await ParentComments.create({ ...req.body });
+    const createdComment = await ParentComments.create({
+      ...req.body,
+      author: req.user.username,
+    });
     console.log('FINDPOST: ', findPost);
     console.log('CREATEDCOMMENT: ', createdComment);
     await req.user.addParentComment(createdComment);

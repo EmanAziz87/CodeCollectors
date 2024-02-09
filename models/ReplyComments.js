@@ -2,15 +2,24 @@ const Sequelize = require('sequelize');
 const db = require('../utils/db');
 
 const ReplyComments = db.define(
-  'reply_comments',
+  'replyComments',
   {
     content: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    replied_comments: {
+    author: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    repliedComments: {
       type: Sequelize.ARRAY(Sequelize.STRING),
       allowNull: false,
+      defaultValue: [],
+    },
+    parentCommentId: {
+      type: Sequelize.INTEGER,
+      defaultValue: null,
     },
   },
   { timestamps: false }

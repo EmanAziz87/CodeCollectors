@@ -11,6 +11,10 @@ const ParentComments = db.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    author: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
   },
   { timestamps: false }
 );
@@ -19,7 +23,7 @@ Users.hasMany(ParentComments);
 ParentComments.belongsTo(Users);
 Posts.hasMany(ParentComments);
 ParentComments.belongsTo(Posts);
-ParentComments.hasOne(ReplyComments);
+ParentComments.hasMany(ReplyComments);
 ReplyComments.belongsTo(ParentComments);
 
 // ParentComments.sync({ force: true });
