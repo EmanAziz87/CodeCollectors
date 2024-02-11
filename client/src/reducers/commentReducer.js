@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import parentCommentService from '../services/parentComments';
+import commentService from '../services/comments';
 
-const parentCommentsSlice = createSlice({
+const commentsSlice = createSlice({
   name: 'parentComments',
   initialState: [],
   reducers: {
@@ -14,21 +14,18 @@ const parentCommentsSlice = createSlice({
   },
 });
 
-export const { setComments, addComment } = parentCommentsSlice.actions;
+export const { setComments, addComment } = commentsSlice.actions;
 
 export const initializeComments = (postId) => {
   return async (dispatch) => {
-    const allComments = await parentCommentService.getAllPostComments(postId);
+    const allComments = await commentService.getComments(postId);
     dispatch(setComments(allComments));
   };
 };
 
 export const createComment = (postId, comment) => {
   return async (dispatch) => {
-    const createdComment = await parentCommentService.createParentComment(
-      postId,
-      comment
-    );
+    const createdComment = await commentService.createComment(postId, comment);
 
     const addedPostId = {
       ...createdComment,
@@ -39,4 +36,4 @@ export const createComment = (postId, comment) => {
   };
 };
 
-export default parentCommentsSlice.reducer;
+export default commentsSlice.reducer;

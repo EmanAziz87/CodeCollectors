@@ -13,12 +13,12 @@ const setToken = (user) => {
   return token;
 };
 
-const getAllPostComments = async (postId) => {
+const getComments = async (postId) => {
   const response = await axios.get(`${baseUrl}/comments/${postId}`);
   return response.data;
 };
 
-const createParentComment = async (postId, commentObject) => {
+const createComment = async (postId, commentObject) => {
   const config = {
     headers: { Authorization: token },
   };
@@ -30,4 +30,4 @@ const createParentComment = async (postId, commentObject) => {
   return response.data;
 };
 
-export default { getAllPostComments, createParentComment, setToken };
+export default { getComments, createComment, setToken };

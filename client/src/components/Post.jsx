@@ -21,7 +21,7 @@ const Post = () => {
       <div>{state.post.content}</div>
       <Snippets post={state.post} postsFromHub={true} />
       <div>
-        <CommentForm post={state.post} />
+        <CommentForm post={state.post} parentId={null} />
         <Comments post={state.post} />
       </div>
     </div>

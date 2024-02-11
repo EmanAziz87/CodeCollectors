@@ -1,18 +1,13 @@
-import Replies from './Replies';
-import ReplyForm from './ReplyForm';
-import Toggle from './Toggle';
+import '../css/comment.css';
+import CommentForm from './CommentForm';
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, post }) => {
   return (
     <div>
-      <div>
-        <strong>{comment.author}</strong>
-      </div>
+      <h3>{comment.author}</h3>
       <div>{comment.content}</div>
-      <Toggle buttonLabel='Reply'>
-        <ReplyForm parentComment={comment} />
-      </Toggle>
-      <Replies parentComment={comment} />
+
+      <CommentForm post={post} parentId={comment.id} />
     </div>
   );
 };

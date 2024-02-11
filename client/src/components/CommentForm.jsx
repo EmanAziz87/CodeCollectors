@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createComment } from '../reducers/parentCommentReducer';
-import parentCommentService from '../services/parentComments';
+import { createComment } from '../reducers/commentReducer';
+import commentService from '../services/comments';
 
-const CommentForm = ({ post }) => {
+const CommentForm = ({ post, parentId }) => {
   const [content, setContent] = useState('');
 
   const dispatch = useDispatch();
@@ -11,8 +11,9 @@ const CommentForm = ({ post }) => {
 
   const handleCreateComment = (event) => {
     event.preventDefault();
-    parentCommentService.setToken(loggedUser);
-    dispatch(createComment(post.id, { content }));
+    commentService.setToken(loggedUser);
+    console.log('POSTID IN COMMENT FORM', post);
+    dispatch(createComment(post.id, { content, parentId }));
     setContent('');
   };
 

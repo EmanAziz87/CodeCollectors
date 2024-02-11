@@ -7,11 +7,9 @@ const postsRouter = require('./controllers/posts');
 const hubsRouter = require('./controllers/hubs');
 const snippetsRouter = require('./controllers/snippets');
 const loginRouter = require('./controllers/login');
-const parentCommentRouter = require('./controllers/parentComments');
+const commentRouter = require('./controllers/comments');
 require('./utils/db');
-require('./models/ReplyComments');
-require('./models/ParentComments');
-const replyCommentRouter = require('./controllers/replyComments');
+require('./models/Comments');
 const {
   unknownEndpoint,
   errorHandler,
@@ -25,8 +23,7 @@ app.use(getToken);
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/posts', userExtractor, postsRouter);
-app.use('/api/comments', userExtractor, parentCommentRouter);
-app.use('/api/replies', userExtractor, replyCommentRouter);
+app.use('/api/comments', userExtractor, commentRouter);
 app.use('/api/hubs', userExtractor, hubsRouter);
 app.use('/api/snippets', userExtractor, snippetsRouter);
 
