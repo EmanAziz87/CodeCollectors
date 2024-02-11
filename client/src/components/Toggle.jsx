@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { forwardRef, useState, useImperativeHandle } from 'react';
 
-const Toggle = (props) => {
+const Toggle = forwardRef((props, ref) => {
   const [reveal, setReveal] = useState(false);
 
   const handleReveal = () => {
@@ -9,6 +9,12 @@ const Toggle = (props) => {
 
   const show = reveal ? { display: '' } : { display: 'none' };
   const hide = reveal ? { display: 'none' } : { display: '' };
+
+  useImperativeHandle(ref, () => {
+    return {
+      handleReveal,
+    };
+  });
 
   return (
     <div>
@@ -21,6 +27,6 @@ const Toggle = (props) => {
       </div>
     </div>
   );
-};
+});
 
 export default Toggle;

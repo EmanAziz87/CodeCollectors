@@ -4,7 +4,7 @@ import { createPost } from '../reducers/postsReducer';
 import postService from '../services/posts';
 import CodeEditor from './CodeEditor';
 
-const PostForm = ({ hub }) => {
+const PostForm = ({ hub, postFormRef }) => {
   const [title, setTitle] = useState('');
   const [snippetTitle, setSnippetTitle] = useState('');
   const [content, setContent] = useState('');
@@ -15,7 +15,7 @@ const PostForm = ({ hub }) => {
 
   const handleAddPost = (event) => {
     event.preventDefault();
-
+    postFormRef.current.handleReveal();
     postService.setToken(loggedUser);
     dispatch(
       createPost(

@@ -30,9 +30,9 @@ Comments.isHierarchy();
 //   await db.models.commentsancestor.sync({ alter: true });
 // });
 
-Users.hasMany(Comments);
+Users.hasMany(Comments, { onDelete: 'CASCADE' });
 Comments.belongsTo(Users);
-Posts.hasMany(Comments);
+Posts.hasMany(Comments, { onDelete: 'CASCADE' });
 Comments.belongsTo(Posts);
 
 module.exports = Comments;

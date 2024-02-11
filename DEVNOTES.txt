@@ -54,13 +54,8 @@ snippets [---] [add new column: description]
 | --- | ---- | ---- | ------ |
 
 comments 
-| id  | author |    content    | hierarchyLevel | parentId |
-| --- | ------ | ------------- | -------------- | -------- |
-| 1   | tim    | this is great |        1       |          |
-| 2   | jim    | a comment     |        2       |    1     |
-| 3   | eman   |    2how??     |        3       |    2     |
-| 4   | person | this is great |        1       |          |
-| 5   | dude   |    too slow   |        2       |    4     |
+| id  | author | content | likes | hierarchyLevel | parentId | postId | userId |
+| --- | ------ | ------- | ----- | -------------- | -------- | ------ | ------ |
 
 --Versioning (semantic): v0.0.0 (major.minor.patch)--
 Versioning will start with v0.0.0. v1.0.0 will represent our 
@@ -177,6 +172,23 @@ value.
             - when logged in can delete snippet [DONE]
             - error deleting snippet when not logged in [DONE]
             - error deleting snippet that is not yours [DONE]
+
+    Comments:
+        getting comments
+            - get all comments of a post [---]
+        creating comments
+            - when logged in create comment [---]
+            - error when creating empty comment [---]
+            - error when commenting but not logged in [---]
+        updating comments
+            - when logged in can update comment [---]
+            - error updating comment when not logged in [---]
+            - error updating comment with no content [---]
+            - error updating comment that is not yours [---]
+        deleting snippets
+            - when logged in can delete snippet [---]
+            - error deleting comment when not logged in [---]
+            - error deleting comment that is not yours [---]
     
     Login:
         - logging in with valid credentials and receive valid token [DONE]
@@ -206,9 +218,11 @@ value.
         - post form is in the hub component [DONE]
         - post form submits a snippet and a post and associates them [DONE]
         - post form can be toggled on and off [DONE]
-        - on post submit, hide post form [---]
-        - got to specific post [---]
-        - create comments for post [---]
+        - on post submit, hide post form [DONE]
+        - go to specific post [DONE]
+        - create comments for post [DONE]
+        - comments are nested [DONE]
+        - delete a post [DONE];
         - delete comments for post [---]
         - like comments for post [---]
         - reply to a comment through @username [---]
@@ -220,10 +234,12 @@ value.
         - display parent hub for a post [---]
         - delete post [---]
         - delete snippet [---]
+        - edit snippet [---]
         - link to snippets form [DONE]
         - delete account warning: confirm [---]
     Snippets Form
         - create snippet [DONE]
+        - pick language for snippet [---]
         
 
         

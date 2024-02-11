@@ -42,4 +42,13 @@ export const createPost = (newPost, newSnippet, hub) => {
   };
 };
 
+export const deletePost = (postId) => {
+  return async (dispatch, getState) => {
+    await postService.deletePost(postId);
+    const posts = getState().posts;
+    const removedPostList = posts.filter((post) => post.id !== postId);
+    dispatch(setPosts(removedPostList));
+  };
+};
+
 export default postsSlice.reducer;
