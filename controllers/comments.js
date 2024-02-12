@@ -61,6 +61,30 @@ commentRouter.post('/:postId', async (req, res, next) => {
   }
 });
 
+commentRouter.patch('/:commentId', async (req, res, next) => {
+  const commentId = req.params.commentId;
+  const { content } = req.body;
+
+  if (!content) {
+    return res.status(400).send({ error: 'invalid submission info' });
+  }
+
+  if (!req.user) {
+    return res.status(401).send({
+      error: 'Need to authenticate to do that...tokens probably invalid',
+    });
+  }
+
+  try {
+    const comment = await Comments.findByPk(commentId);
+    comment.content = content;
+    await comment.save();
+    res.status(204).send('edited comment');
+  } catch (error) {
+    next(error);
+  }
+});
+
 commentRouter.delete('/:commentId', async (req, res, next) => {
   const commentId = req.params.commentId;
 

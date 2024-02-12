@@ -4,6 +4,7 @@ import CommentForm from './CommentForm';
 import Toggle from './Toggle';
 import { deleteComment } from '../reducers/commentReducer';
 import commentService from '../services/comments';
+import EditCommentForm from './EditCommentForm';
 
 const Comment = ({ comment, post }) => {
   const dispatch = useDispatch();
@@ -22,7 +23,12 @@ const Comment = ({ comment, post }) => {
         <CommentForm post={post} parentId={comment.id} />
       </Toggle>
       {loggedUser?.username === comment.author && (
-        <button onClick={handleDeleteComment}>Delete</button>
+        <div>
+          <button onClick={handleDeleteComment}>Delete</button>
+          <Toggle buttonLabel='Edit'>
+            <EditCommentForm comment={comment} postId={post.id} />
+          </Toggle>
+        </div>
       )}
     </div>
   );

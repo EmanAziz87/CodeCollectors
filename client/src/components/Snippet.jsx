@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import snippetService from '../services/snippets';
 import '../css/snippet.css';
-import { deleteSnippet } from '../reducers/snippetsReducer';
+import { deleteSnippet, initializeSnippets } from '../reducers/snippetsReducer';
+import { Link } from 'react-router-dom';
 
 const Snippet = ({ snip, postsFromHub }) => {
   const [expanded, setExpanded] = useState(false);
 
   const dispatch = useDispatch();
   const loggedUser = useSelector(({ user }) => user);
+
+  useEffect(() => {
+    dispatch(initializeSnippets());
+  }, []);
 
   const expandAndShrink = () => {
     setExpanded(!expanded);
@@ -29,7 +34,14 @@ const Snippet = ({ snip, postsFromHub }) => {
           <code className='language-js'>{snip.content}</code>
         </pre>
         <button onClick={expandAndShrink}>Expand</button>
-        {!postsFromHub && <button onClick={handleDeleteSnippet}>Delete</button>}
+        {!postsFromHub && (
+          <div>
+            <button onClick={handleDeleteSnippet}>Delete</button>
+            <Link to='/snippetEditForm' state={{ snip }}>
+              Edit Snippet
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

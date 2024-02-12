@@ -30,6 +30,13 @@ const createComment = async (postId, commentObject) => {
   return response.data;
 };
 
+const editComment = async (commentId, commentObject) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  await axios.patch(`${baseUrl}/comments/${commentId}`, commentObject, config);
+};
+
 const deleteComment = async (commentId) => {
   const config = {
     headers: { Authorization: token },
@@ -38,4 +45,10 @@ const deleteComment = async (commentId) => {
   await axios.delete(`${baseUrl}/comments/${commentId}`, config);
 };
 
-export default { getComments, createComment, deleteComment, setToken };
+export default {
+  getComments,
+  createComment,
+  deleteComment,
+  editComment,
+  setToken,
+};

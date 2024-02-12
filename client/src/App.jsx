@@ -11,6 +11,7 @@ import { autoReLogin } from './reducers/userReducer';
 import SnippetForm from './components/SnippetForm';
 import Post from './components/Post';
 import EditPostForm from './components/EditPostForm';
+import EditSnippetForm from './components/EditSnippetForm';
 
 function App() {
   const loggedUser = useSelector(({ user }) => user);
@@ -36,6 +37,7 @@ function App() {
       <Routes>
         <Route path='/snippet_form' element={<SnippetForm />} />
         <Route path='/editPostForm' element={<EditPostForm />} />
+        <Route path='/snippetEditForm' element={<EditSnippetForm />} />
         <Route
           path='/profile/:username'
           element={<Profile user={loggedUser} />}

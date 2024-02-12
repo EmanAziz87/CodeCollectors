@@ -30,6 +30,17 @@ export const createSnippet = (snippet) => {
   };
 };
 
+export const editSnippet = (snippetId, snippet) => {
+  return async (dispatch, getState) => {
+    await snippetService.editSnippet(snippetId, snippet);
+    const snippets = getState().snippets;
+    const updatedSnippetsList = snippets.filter(
+      (snip) => snip.id !== snippetId
+    );
+    dispatch(setSnippets(updatedSnippetsList));
+  };
+};
+
 export const deleteSnippet = (snippetId) => {
   return async (dispatch, getState) => {
     await snippetService.deleteSnippet(snippetId);

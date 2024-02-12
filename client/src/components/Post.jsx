@@ -1,11 +1,10 @@
 import CommentForm from './CommentForm';
 import Comments from './Comments';
-import EditPostForm from './EditPostForm';
 import Snippets from './Snippets';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { initializeSnippets } from '../reducers/snippetsReducer';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 const Post = () => {
   const { state } = useLocation();
@@ -21,8 +20,6 @@ const Post = () => {
   const matchingSnippet = snippets.find(
     (snippet) => snippet.id === state.post.snippetId
   );
-
-  console.log(state.post);
 
   return (
     <div>
@@ -45,16 +42,6 @@ const Post = () => {
           >
             Edit Post
           </Link>
-          {/* <EditPostForm
-            prevTitle={state.post.title}
-            prevSnippetTitle={matchingSnippet.title}
-            prevPostContent={state.post.content}
-            prevCode={matchingSnippet.content}
-            snippetId={matchingSnippet.id}
-            post={state.post}
-            hub={state.hub}
-            showEditForm={setReveal}
-          /> */}
         </div>
       )}
       <div>

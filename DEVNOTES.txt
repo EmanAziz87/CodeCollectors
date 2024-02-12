@@ -228,7 +228,7 @@ value.
         - delete a post [DONE];
         - delete comments for post [DONE]
         - edit a post [DONE]
-        - edit a comment [---]
+        - edit a comment [DONE]
         - like a post [---];
         - like comments for post [---]
     User Component
@@ -239,7 +239,7 @@ value.
         - delete snippet [DONE]
         - link to snippets form [DONE]
         - delete account warning: confirm [DONE]
-        - edit snippet [---]
+        - edit snippet [DONE]
     Snippets Form
         - create snippet [DONE]
         - pick language for snippet [---]
