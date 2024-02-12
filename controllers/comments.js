@@ -61,4 +61,19 @@ commentRouter.post('/:postId', async (req, res, next) => {
   }
 });
 
+commentRouter.delete('/:commentId', async (req, res, next) => {
+  const commentId = req.params.commentId;
+
+  if (!req.user) {
+    return res.status(401).send({
+      error: 'Need to authenticate to do that...tokens probably invalid',
+    });
+  }
+
+  try {
+    await Comments.destroy({ where: { id: commentId } });
+    res.status(204).send('deleted comment');
+  } catch (error) {}
+});
+
 module.exports = commentRouter;

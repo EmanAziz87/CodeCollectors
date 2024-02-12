@@ -15,6 +15,11 @@ const Comments = db.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    likes: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+    },
     childrenComments: {
       type: Sequelize.ARRAY(Sequelize.JSON),
       defaultValue: [],
@@ -23,7 +28,7 @@ const Comments = db.define(
   { timestamps: false }
 );
 
-Comments.isHierarchy();
+Comments.isHierarchy({ onDelete: 'CASCADE' });
 
 // db.sync({ alter: true }).then(async () => {
 //   await Comments.sync({ alter: true });

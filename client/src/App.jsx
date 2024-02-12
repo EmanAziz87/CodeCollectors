@@ -10,6 +10,7 @@ import Hub from './components/Hub';
 import { autoReLogin } from './reducers/userReducer';
 import SnippetForm from './components/SnippetForm';
 import Post from './components/Post';
+import EditPostForm from './components/EditPostForm';
 
 function App() {
   const loggedUser = useSelector(({ user }) => user);
@@ -34,6 +35,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path='/snippet_form' element={<SnippetForm />} />
+        <Route path='/editPostForm' element={<EditPostForm />} />
         <Route
           path='/profile/:username'
           element={<Profile user={loggedUser} />}

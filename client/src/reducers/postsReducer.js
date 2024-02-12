@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import postService from '../services/posts';
 import snippetService from '../services/snippets';
-import { addSnippet } from './snippetsReducer';
+import { addSnippet, initializeSnippets } from './snippetsReducer';
 
 const postsSlice = createSlice({
   name: 'posts',
@@ -39,6 +39,31 @@ export const createPost = (newPost, newSnippet, hub) => {
     const createdPost = await postService.createPost(addAuthor);
     dispatch(addSnippet(createdSnippet));
     dispatch(addPost(createdPost));
+  };
+};
+
+export const editPost = (newPost, newSnippet, postId, snippetId, hubId) => {
+  return async (dispatch, getState) => {
+    snippetService.setToken(getState().user);
+    await snippetService.editSnippet(snippetId, newSnippet);
+
+    const snippet = {
+      ...newSnippet,
+      author: getState().user.username,
+      userId: getState().user.id,
+    };
+    const post = {
+      ...newPost,
+      author: getState().user.username,
+      userId: getState().user.id,
+      snippetId,
+      hubId,
+    };
+    await postService.editPost(postId, post);
+    dispatch(addSnippet(snippet));
+    dispatch(addPost(post));
+    dispatch(initializeSnippets());
+    dispatch(initializePosts());
   };
 };
 

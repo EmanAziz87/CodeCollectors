@@ -29,4 +29,24 @@ const createSnippet = async (snippetObject) => {
   return snippet.data;
 };
 
-export default { getAllSnippets, createSnippet, setToken };
+const editSnippet = async (snippetId, snippetObject) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  await axios.patch(`${baseUrl}/snippets/${snippetId}`, snippetObject, config);
+};
+
+const deleteSnippet = async (snippetId) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  await axios.delete(`${baseUrl}/snippets/${snippetId}`, config);
+};
+
+export default {
+  getAllSnippets,
+  createSnippet,
+  deleteSnippet,
+  editSnippet,
+  setToken,
+};

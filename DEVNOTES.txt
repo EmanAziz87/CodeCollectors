@@ -46,8 +46,8 @@ hubs
 | --- | ---- | ----------- | -------- |
 
 posts [---] [change content to description]
-| id  | title | author | content | hubId | userId | snippetId |
-| --- | ----- | ------ | ------- | ----- | ------ | --------- |
+| id  | title | author | content | likes | hubId | userId | snippetId |
+| --- | ----- | ------ | ------- | ----- | ----- | ------ | --------- |
 
 snippets [---] [add new column: description]
 | id  | title| code | userId | 
@@ -176,6 +176,7 @@ value.
     Comments:
         getting comments
             - get all comments of a post [---]
+
         creating comments
             - when logged in create comment [---]
             - error when creating empty comment [---]
@@ -211,6 +212,8 @@ value.
         - subscribe button [DONE]
         - display links to each hub [DONE]
         - unsubscribe button [DONE]
+        - seed all hubs [---]
+        - seed all svg for hubs [---]
     Posts Component
         - link to posts [DONE]
         - display posts in appropriate hub component [DONE]
@@ -223,20 +226,20 @@ value.
         - create comments for post [DONE]
         - comments are nested [DONE]
         - delete a post [DONE];
-        - delete comments for post [---]
+        - delete comments for post [DONE]
+        - edit a post [DONE]
+        - edit a comment [---]
+        - like a post [---];
         - like comments for post [---]
-        - reply to a comment through @username [---]
-        - delete post [---]
     User Component
         - display subscribed hubs [DONE]
         - display snippets [DONE]
-        - display posts [---]
-        - display parent hub for a post [---]
-        - delete post [---]
-        - delete snippet [---]
-        - edit snippet [---]
+        - display posts [DONE]
+        - delete post [DONE]
+        - delete snippet [DONE]
         - link to snippets form [DONE]
-        - delete account warning: confirm [---]
+        - delete account warning: confirm [DONE]
+        - edit snippet [---]
     Snippets Form
         - create snippet [DONE]
         - pick language for snippet [---]

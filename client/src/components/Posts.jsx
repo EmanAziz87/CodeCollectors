@@ -27,7 +27,10 @@ const Posts = ({ hub }) => {
           .filter((post) => post.hubId === hub.id)
           .map((post) => (
             <div key={post.id} className='post-container'>
-              <Link to={`/posts/${post.id}`} state={{ post, hub }}>
+              <Link
+                to={`/posts/${post.id}`}
+                state={{ post, hub, prevPath: `/hubs/${hub.id}` }}
+              >
                 {post.title} by {post.author}
               </Link>
               <br />

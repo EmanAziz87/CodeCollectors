@@ -30,4 +30,12 @@ const createComment = async (postId, commentObject) => {
   return response.data;
 };
 
-export default { getComments, createComment, setToken };
+const deleteComment = async (commentId) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+
+  await axios.delete(`${baseUrl}/comments/${commentId}`, config);
+};
+
+export default { getComments, createComment, deleteComment, setToken };

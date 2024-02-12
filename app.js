@@ -20,7 +20,7 @@ const {
 app.use(express.json());
 app.use(getToken);
 
-app.use('/api/users', usersRouter);
+app.use('/api/users', userExtractor, usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/posts', userExtractor, postsRouter);
 app.use('/api/comments', userExtractor, commentRouter);

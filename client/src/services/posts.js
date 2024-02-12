@@ -26,6 +26,13 @@ const createPost = async (newPost) => {
   return createdPost.data;
 };
 
+const editPost = async (postId, postObject) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  await axios.patch(`${baseUrl}/posts/${postId}`, postObject, config);
+};
+
 const deletePost = async (postId) => {
   const config = {
     headers: { Authorization: token },
@@ -33,4 +40,4 @@ const deletePost = async (postId) => {
   await axios.delete(`${baseUrl}/posts/${postId}`, config);
 };
 
-export default { getPosts, createPost, deletePost, setToken };
+export default { getPosts, createPost, deletePost, editPost, setToken };

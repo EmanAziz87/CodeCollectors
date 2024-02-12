@@ -22,8 +22,8 @@ const Toggle = forwardRef((props, ref) => {
         <button onClick={handleReveal}>{props.buttonLabel}</button>
       </div>
       <div style={show} className='show-details'>
-        <div>{props.children}</div>
         <button onClick={handleReveal}>Cancel</button>
+        <div>{props.children}</div>
       </div>
     </div>
   );

@@ -1,28 +1,70 @@
 import CommentForm from './CommentForm';
 import Comments from './Comments';
+import EditPostForm from './EditPostForm';
 import Snippets from './Snippets';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { initializeSnippets } from '../reducers/snippetsReducer';
+import { useEffect, useState } from 'react';
 
 const Post = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const snippets = useSelector(({ snippets }) => snippets);
+  const loggedUser = useSelector(({ user }) => user);
+
+  useEffect(() => {
+    dispatch(initializeSnippets());
+  }, []);
+
+  const matchingSnippet = snippets.find(
+    (snippet) => snippet.id === state.post.snippetId
+  );
+
+  console.log('uselocation state', state);
 
   return (
     <div>
       <button
-        onClick={() =>
-          navigate(`/hubs/${state.hub.id}`, { state: { hub: state.hub } })
-        }
+        onClick={() => navigate(state.prevPath, { state: { hub: state.hub } })}
       >
         Go Back
       </button>
-      <div>Title: {state.post.title}</div>
-      <div> Author: {state.post.author}</div>
-      <div>{state.post.content}</div>
-      <Snippets post={state.post} postsFromHub={true} />
+      {loggedUser?.username === state.post.author && matchingSnippet && (
+        <div>
+          <Link
+            to='/editPostForm'
+            state={{
+              post: state.post,
+              snippet: matchingSnippet,
+              hub: state.hub,
+            }}
+          >
+            Edit Post
+          </Link>
+          {/* <EditPostForm
+            prevTitle={state.post.title}
+            prevSnippetTitle={matchingSnippet.title}
+            prevPostContent={state.post.content}
+            prevCode={matchingSnippet.content}
+            snippetId={matchingSnippet.id}
+            post={state.post}
+            hub={state.hub}
+            showEditForm={setReveal}
+          /> */}
+        </div>
+      )}
       <div>
-        <CommentForm post={state.post} parentId={null} />
-        <Comments post={state.post} />
+        <div>Title: {state.post.title}</div>
+        <div> Author: {state.post.author}</div>
+        <div>Content: {state.post.content}</div>
+        <Snippets post={state.post} postsFromHub={true} />
+
+        <div>
+          <CommentForm post={state.post} parentId={null} />
+          <Comments post={state.post} />
+        </div>
       </div>
     </div>
   );

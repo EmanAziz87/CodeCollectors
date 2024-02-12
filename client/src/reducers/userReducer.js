@@ -45,4 +45,11 @@ export const autoReLogin = (loggedUser) => {
   };
 };
 
+export const deleteAccount = (loggedUserId) => {
+  return async (dispatch) => {
+    await userService.deleteAccount(loggedUserId);
+    dispatch(removeUser(null));
+  };
+};
+
 export default userSlice.reducer;

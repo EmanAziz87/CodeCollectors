@@ -50,17 +50,14 @@ postsRouter.post('/', async (req, res, next) => {
 });
 
 postsRouter.patch('/:id', async (req, res, next) => {
-  const { content } = req.body;
+  const { title, author, content } = req.body;
   const id = req.params.id;
-
-  if (!content) {
+  
+  if (!(title && author && content)) {
     return res.status(400).send({ error: 'Invalid user input' });
   }
 
-  const post = await Posts.findOne({
-    where: { id },
-    attributes: ['id', 'userId', 'content'],
-  });
+  const post = await Posts.findByPk(id);
 
   if (post.userId !== req.user?.id) {
     return res
@@ -70,6 +67,8 @@ postsRouter.patch('/:id', async (req, res, next) => {
 
   try {
     post.content = content;
+    post.title = title;
+    post.author = author;
     await post.save();
     res.status(204).send('updated post');
   } catch (error) {

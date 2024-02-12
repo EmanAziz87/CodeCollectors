@@ -14,7 +14,6 @@ usersRouter.get('/:id', async (req, res, next) => {
       where: { id },
       attributes: ['id', 'name', 'username', 'subscribedHubs'],
     });
-
     res.send(user);
   } catch (error) {
     next(error);
@@ -41,6 +40,25 @@ usersRouter.post('/', async (req, res, next) => {
   try {
     const createdUser = await Users.create(newUser);
     res.status(201).send(createdUser);
+  } catch (error) {
+    next(error);
+  }
+});
+
+usersRouter.delete('/:id', async (req, res, next) => {
+  const id = req.params.id;
+
+  const user = await Users.findByPk(id);
+
+  if (user.id !== req?.user.id) {
+    return res.status(401).send({
+      error: 'Need to authenticate to do that...tokens probably invalid',
+    });
+  }
+
+  try {
+    await Users.destroy({ where: { id } });
+    res.status(204).end();
   } catch (error) {
     next(error);
   }

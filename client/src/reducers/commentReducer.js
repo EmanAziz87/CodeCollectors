@@ -36,4 +36,11 @@ export const createComment = (postId, comment) => {
   };
 };
 
+export const deleteComment = (commentId) => {
+  return async (dispatch) => {
+    await commentService.deleteComment(commentId);
+    dispatch(initializeComments(commentId));
+  };
+};
+
 export default commentsSlice.reducer;
