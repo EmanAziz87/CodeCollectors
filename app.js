@@ -7,7 +7,9 @@ const postsRouter = require('./controllers/posts');
 const hubsRouter = require('./controllers/hubs');
 const snippetsRouter = require('./controllers/snippets');
 const loginRouter = require('./controllers/login');
+const commentRouter = require('./controllers/comments');
 require('./utils/db');
+require('./models/Comments');
 const {
   unknownEndpoint,
   errorHandler,
@@ -18,9 +20,10 @@ const {
 app.use(express.json());
 app.use(getToken);
 
-app.use('/api/users', usersRouter);
+app.use('/api/users', userExtractor, usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/posts', userExtractor, postsRouter);
+app.use('/api/comments', userExtractor, commentRouter);
 app.use('/api/hubs', userExtractor, hubsRouter);
 app.use('/api/snippets', userExtractor, snippetsRouter);
 

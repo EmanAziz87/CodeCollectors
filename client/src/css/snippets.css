@@ -1,0 +1,7 @@
+.code-block-small {
+  max-height: 100px;
+  overflow-y: scroll;
+}
+
+.code-block-expanded {
+}

@@ -30,6 +30,7 @@ USERS
 HUBS 
 POSTS
 SNIPPETS
+COMMENTS
 
 HUBS have many POSTS
 USERS have many POSTS
@@ -42,17 +43,19 @@ users
 
 hubs
 | id  | name | subscribers | adminHub |
-| --- | ---- | --------- | -------- |
+| --- | ---- | ----------- | -------- |
 
+posts [---] [change content to description]
+| id  | title | author | content | likes | hubId | userId | snippetId |
+| --- | ----- | ------ | ------- | ----- | ----- | ------ | --------- |
 
-posts
-| id  | title | author | content | hubId | userId | snippetId |
-| --- | ----- | ------ | ------- | ----- | ------ | --------- |
+snippets [---] [add new column: description]
+| id  | title| code | userId | 
+| --- | ---- | ---- | ------ |
 
-snippets
-| id  | title | content | userId |
-| --- | ----- | ------- | ------ |
-
+comments 
+| id  | author | content | likes | hierarchyLevel | parentId | postId | userId |
+| --- | ------ | ------- | ----- | -------------- | -------- | ------ | ------ |
 
 --Versioning (semantic): v0.0.0 (major.minor.patch)--
 Versioning will start with v0.0.0. v1.0.0 will represent our 
@@ -117,34 +120,38 @@ value.
 3. TESTING ROUTES - CONDITIONS TO CHECK FOR
     
     Users: 
-        -checking if users can be added [DONE]
-        -error if password or username is too short [DONE]
-        -error if no password or username is provided [---]
-        -deleting user successfully if authenticated as that user [---]
+        getting users
+            - getting all users [---]
+            - getting a specific user [---]
+        adding users
+            -checking if users can be added [DONE]
+            -error if password or username is too short [DONE]
+            -error if no password or username is provided [---]
+            -deleting user successfully if authenticated as that user [---]
 
     Posts:
-        - getting posts
+        getting posts
             - getting all posts [DONE]
             - getting specific post [DONE]
-        -adding posts 
+        adding posts 
             - when logged in you can add posts [DONE]
             - error when your not logged in and add post [DONE]
             - error when you create post with invalid submission info [DONE]
-        -updating posts
+        updating posts
             - when logged in you can update a post thats yours [DONE]
             - error when your not logged in and try to update post [DONE]
             - error when logged in but update submission input is empty [DONE]
             - error when you try to update someone elses post [DONE]
-        -deleteing post
+        deleteing post
             - when logged in you can delete your own posts [DONE]
             - error when you try to delete a post when not logged in [DONE]
             - error when you try to delete someone elses post when logged in [DONE]
 
     Hubs: 
-        -getting hubs
+        getting hubs
             - gets all hubs [DONE]
             - get a specific hub [DONE]
-        -updating Hubs
+        updating Hubs
             - when logged in, can subscribe to a hub [DONE]
             - error when not logged in and subscribe to a hub [DONE]
             - error when subscribing to the same sub twice [DONE]
@@ -165,9 +172,77 @@ value.
             - when logged in can delete snippet [DONE]
             - error deleting snippet when not logged in [DONE]
             - error deleting snippet that is not yours [DONE]
+
+    Comments:
+        getting comments
+            - get all comments of a post [---]
+
+        creating comments
+            - when logged in create comment [---]
+            - error when creating empty comment [---]
+            - error when commenting but not logged in [---]
+        updating comments
+            - when logged in can update comment [---]
+            - error updating comment when not logged in [---]
+            - error updating comment with no content [---]
+            - error updating comment that is not yours [---]
+        deleting snippets
+            - when logged in can delete snippet [---]
+            - error deleting comment when not logged in [---]
+            - error deleting comment that is not yours [---]
     
     Login:
         - logging in with valid credentials and receive valid token [DONE]
+
+4. FRONTEND COMPONENTS 
+
+    Navigation
+        - link to login form [DONE] 
+        - link to register form [DONE] 
+        - link to user profile [DONE]
+        - display whos logged in after log in [DONE]
+        - logout button if logged in [DONE]
+    Login Form
+        - login form hidden when logged in [DONE]
+    Register Form
+        - register form nested within login form [DONE]
+    Hub Component
+        - link to hubs [DONE]
+        - display all hubs [DONE]
+        - subscribe button [DONE]
+        - display links to each hub [DONE]
+        - unsubscribe button [DONE]
+        - seed all hubs [---]
+        - seed all svg for hubs [---]
+    Posts Component
+        - link to posts [DONE]
+        - display posts in appropriate hub component [DONE]
+        - create posts [DONE]
+        - post form is in the hub component [DONE]
+        - post form submits a snippet and a post and associates them [DONE]
+        - post form can be toggled on and off [DONE]
+        - on post submit, hide post form [DONE]
+        - go to specific post [DONE]
+        - create comments for post [DONE]
+        - comments are nested [DONE]
+        - delete a post [DONE];
+        - delete comments for post [DONE]
+        - edit a post [DONE]
+        - edit a comment [DONE]
+        - like a post [---];
+        - like comments for post [---]
+    User Component
+        - display subscribed hubs [DONE]
+        - display snippets [DONE]
+        - display posts [DONE]
+        - delete post [DONE]
+        - delete snippet [DONE]
+        - link to snippets form [DONE]
+        - delete account warning: confirm [DONE]
+        - edit snippet [DONE]
+    Snippets Form
+        - create snippet [DONE]
+        - pick language for snippet [---]
         
 
         

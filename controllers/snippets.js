@@ -33,10 +33,10 @@ snippetsRouter.post('/', async (req, res, next) => {
 });
 
 snippetsRouter.patch('/:id', async (req, res, next) => {
-  const { content } = req.body;
+  const { title, content } = req.body;
   const id = req.params.id;
 
-  if (!content) {
+  if (!(title && content)) {
     return res.status(400).send({ error: 'invalid submission info' });
   }
 
@@ -50,6 +50,7 @@ snippetsRouter.patch('/:id', async (req, res, next) => {
 
   try {
     snippet.content = content;
+    snippet.title = title;
     await snippet.save();
     res.status(204).end();
   } catch (error) {

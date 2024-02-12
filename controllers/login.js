@@ -22,12 +22,18 @@ loginRouter.post('/', async (req, res, next) => {
     username: userMatch.username,
   };
 
-  const token = jwt.sign(userToken, process.env.JWT_SECRET);
+  const token = jwt.sign(userToken, process.env.JWT_SECRET, {
+    expiresIn: 60 * 60,
+  });
 
   try {
-    res
-      .status(200)
-      .send({ token, username: userMatch.username, name: userMatch.name });
+    res.status(200).send({
+      token,
+      username: userMatch.username,
+      name: userMatch.name,
+      subscribedHubs: userMatch.subscribedHubs,
+      id: userMatch.id,
+    });
   } catch (error) {
     next(error);
   }
