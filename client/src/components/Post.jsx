@@ -22,7 +22,7 @@ const Post = () => {
     (snippet) => snippet.id === state.post.snippetId
   );
 
-  console.log('uselocation state', state);
+  console.log(state.post);
 
   return (
     <div>
@@ -39,6 +39,8 @@ const Post = () => {
               post: state.post,
               snippet: matchingSnippet,
               hub: state.hub,
+              prevPath: `/posts/${state.post.id}`,
+              prevPrevPath: state.prevPath,
             }}
           >
             Edit Post

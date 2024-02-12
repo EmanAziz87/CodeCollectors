@@ -5,17 +5,7 @@ import postService from '../services/posts';
 import CodeEditor from './CodeEditor';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const EditPostForm = ({
-  prevTitle,
-  prevSnippetTitle,
-  prevPostContent,
-  prevCode,
-  snippetId,
-  post,
-  hub,
-  showEditForm,
-  didSubmit,
-}) => {
+const EditPostForm = ({}) => {
   const { state } = useLocation();
   const [title, setTitle] = useState(state.post.title);
   const [snippetTitle, setSnippetTitle] = useState(state.snippet.title);
@@ -62,6 +52,20 @@ const EditPostForm = ({
 
   return (
     <div>
+      <button
+        onClick={() =>
+          navigate(state.prevPath, {
+            state: {
+              post: state.post,
+              snippet: state.snippet,
+              hub: state.hub,
+              prevPath: state.prevPrevPath,
+            },
+          })
+        }
+      >
+        Go Back
+      </button>
       <form onSubmit={handleEditPost}>
         <div>
           <div>
@@ -98,11 +102,6 @@ const EditPostForm = ({
         <CodeEditor setCode={setCode} code={code} />
         <button type='submit'>Confirm Edit</button>
       </form>
-      {/* <div>
-        <pre>
-          <code className='language-javascript'>{content}</code>
-        </pre>
-      </div> */}
     </div>
   );
 };
