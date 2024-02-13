@@ -2,8 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { initializeComments } from '../reducers/commentReducer';
 import TopComment from './TopComment';
+import { useLocation } from 'react-router-dom';
 
 const Comments = ({ post }) => {
+  let location = useLocation();
   const dispatch = useDispatch();
   const comments = useSelector(({ comments }) => comments);
 
@@ -12,8 +14,9 @@ const Comments = ({ post }) => {
   }
 
   useEffect(() => {
+    console.log('useEffect ran');
     dispatch(initializeComments(post.id));
-  }, [comments.length]);
+  }, [comments.length, location.state]);
 
   return (
     <div style={{ paddingLeft: 10 }}>

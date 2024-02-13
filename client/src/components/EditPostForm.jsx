@@ -5,7 +5,7 @@ import postService from '../services/posts';
 import CodeEditor from './CodeEditor';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const EditPostForm = ({}) => {
+const EditPostForm = () => {
   const { state } = useLocation();
   const [title, setTitle] = useState(state.post.title);
   const [snippetTitle, setSnippetTitle] = useState(state.snippet.title);

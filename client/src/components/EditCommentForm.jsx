@@ -1,11 +1,14 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import commentService from '../services/comments';
 import { editComment } from '../reducers/commentReducer';
 
-const EditCommentForm = ({ comment, postId }) => {
-  const [content, setContent] = useState(comment.content);
-
+const EditCommentForm = ({
+  comment,
+  postId,
+  setContent,
+  content,
+  resetForms,
+}) => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(({ user }) => user);
 
@@ -13,7 +16,7 @@ const EditCommentForm = ({ comment, postId }) => {
     event.preventDefault();
     commentService.setToken(loggedUser);
     dispatch(editComment(comment.id, { content }, postId));
-    setContent('');
+    resetForms();
   };
 
   return (

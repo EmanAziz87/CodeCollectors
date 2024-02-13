@@ -38,6 +38,7 @@ const Post = () => {
               hub: state.hub,
               prevPath: `/posts/${state.post.id}`,
               prevPrevPath: state.prevPath,
+              prevState: state,
             }}
           >
             Edit Post
