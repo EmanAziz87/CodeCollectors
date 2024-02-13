@@ -7,6 +7,7 @@ import { editSnippet } from '../reducers/snippetsReducer';
 
 const EditSnippetForm = () => {
   const { state } = useLocation();
+  const [language, setLanguage] = useState('Java');
   const [title, setTitle] = useState(state.snip.title);
   const [code, setCode] = useState(state.snip.content);
 
@@ -17,14 +18,15 @@ const EditSnippetForm = () => {
   const handleEditSnippet = (event) => {
     event.preventDefault();
     snippetService.setToken(loggedUser);
-    dispatch(editSnippet(state.snip.id, { title, content: code }));
+    dispatch(
+      editSnippet(state.snip.id, {
+        title,
+        content: code,
+        language,
+      })
+    );
     setTitle('');
     setCode('');
-    // const newEditedSnippet = {
-    //   title,
-    //   content: code,
-    //   userId: loggedUser.id,
-    // };
     navigate(`/profile/${loggedUser.username}`);
   };
 
@@ -45,7 +47,12 @@ const EditSnippetForm = () => {
         </div>
         <div>
           <h3>Code Snippet:</h3>
-          <CodeEditor setCode={setCode} code={code} />
+          <CodeEditor
+            setCode={setCode}
+            code={code}
+            language={language}
+            setLanguage={setLanguage}
+          />
         </div>
         <button type='submit'>Confirm Edit</button>
       </form>

@@ -11,7 +11,7 @@ snippetsRouter.get('/', async (req, res, next) => {
 });
 
 snippetsRouter.post('/', async (req, res, next) => {
-  const { title, content } = req.body;
+  const { title, content, language } = req.body;
 
   if (!req.user) {
     return res.status(401).send({
@@ -19,7 +19,7 @@ snippetsRouter.post('/', async (req, res, next) => {
     });
   }
 
-  if (!(title && content)) {
+  if (!(title && content && language)) {
     return res.status(400).send({ error: 'invalid submission info' });
   }
 
@@ -33,10 +33,10 @@ snippetsRouter.post('/', async (req, res, next) => {
 });
 
 snippetsRouter.patch('/:id', async (req, res, next) => {
-  const { title, content } = req.body;
+  const { title, content, language } = req.body;
   const id = req.params.id;
 
-  if (!(title && content)) {
+  if (!(title && content, language)) {
     return res.status(400).send({ error: 'invalid submission info' });
   }
 
@@ -49,6 +49,7 @@ snippetsRouter.patch('/:id', async (req, res, next) => {
   }
 
   try {
+    snippet.language = language;
     snippet.content = content;
     snippet.title = title;
     await snippet.save();

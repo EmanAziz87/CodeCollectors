@@ -1,5 +1,4 @@
 import 'prismjs/components/prism-java';
-import 'prismjs/components/prism-asciidoc.min.js';
 import 'prismjs/components/prism-bash.min.js';
 import 'prismjs/components/prism-c.min.js';
 import 'prismjs/components/prism-clojure.min.js';
@@ -28,7 +27,6 @@ import 'prismjs/components/prism-rust.min.js';
 import 'prismjs/components/prism-sass.min.js';
 import 'prismjs/components/prism-scala.min.js';
 import 'prismjs/components/prism-swift.min.js';
-import 'prismjs/components/prism-toml.min.js';
 import 'prismjs/components/prism-typescript.min.js';
 import 'prismjs/components/prism-yaml.min.js';
 import 'prismjs/components/prism-jsx.min.js';

@@ -75,7 +75,11 @@ const Post = () => {
         <Snippets post={state.post} postsFromHub={true} />
 
         <div>
-          <CommentForm post={state.post} parentId={null} />
+          <CommentForm
+            post={state.post}
+            parentId={null}
+            resetForms={() => () => console.log('great')}
+          />
           <Comments post={state.post} />
         </div>
       </div>

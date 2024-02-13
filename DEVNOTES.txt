@@ -237,7 +237,7 @@ value.
         - edit a post [DONE]
         - edit a comment [DONE]
         - like a post [DONE]
-        - like comments for post [---]
+        - like comments for post [DONE]
     User Component
         - display subscribed hubs [DONE]
         - display snippets [DONE]
