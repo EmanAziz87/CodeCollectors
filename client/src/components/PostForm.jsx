@@ -5,6 +5,7 @@ import postService from '../services/posts';
 import CodeEditor from './CodeEditor';
 
 const PostForm = ({ hub, postFormRef }) => {
+  const [language, setLanguage] = useState('Java');
   const [title, setTitle] = useState('');
   const [snippetTitle, setSnippetTitle] = useState('');
   const [content, setContent] = useState('');
@@ -20,7 +21,7 @@ const PostForm = ({ hub, postFormRef }) => {
     dispatch(
       createPost(
         { title, content },
-        { title: snippetTitle, content: code },
+        { title: snippetTitle, content: code, language },
         hub
       )
     );
@@ -65,7 +66,12 @@ const PostForm = ({ hub, postFormRef }) => {
           value={snippetTitle}
           onChange={(event) => setSnippetTitle(event.target.value)}
         />
-        <CodeEditor setCode={setCode} code={code} />
+        <CodeEditor
+          setCode={setCode}
+          code={code}
+          language={language}
+          setLanguage={setLanguage}
+        />
         <button type='submit'>Add</button>
       </form>
       {/* <div>

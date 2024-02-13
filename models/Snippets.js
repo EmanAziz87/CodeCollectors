@@ -14,6 +14,10 @@ const Snippets = db.define(
       type: Sequelize.STRING(5000),
       allowNull: false,
     },
+    language: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
   },
   { timestamps: false }
 );

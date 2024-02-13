@@ -5,7 +5,7 @@ import '../css/snippet.css';
 import { deleteSnippet, initializeSnippets } from '../reducers/snippetsReducer';
 import { Link } from 'react-router-dom';
 
-const Snippet = ({ snip, postsFromHub }) => {
+const Snippet = ({ snip, postsFromHub, language, setLanguage }) => {
   const [expanded, setExpanded] = useState(false);
 
   const dispatch = useDispatch();
@@ -30,8 +30,9 @@ const Snippet = ({ snip, postsFromHub }) => {
     <div>
       <h4>{snip.title}</h4>
       <div className='snippet-container'>
+        <div>{snip.language}</div>
         <pre style={expandedCode}>
-          <code className='language-js'>{snip.content}</code>
+          <code className={`language-${snip.language}`}>{snip.content}</code>
         </pre>
         <button onClick={expandAndShrink}>Expand</button>
         {!postsFromHub && (
