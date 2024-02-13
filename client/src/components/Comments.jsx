@@ -12,6 +12,7 @@ const Comments = ({ post }) => {
   }
 
   useEffect(() => {
+    console.log('useEffect ran');
     dispatch(initializeComments(post.id));
   }, [comments.length]);
 

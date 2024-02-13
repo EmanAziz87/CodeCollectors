@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createComment } from '../reducers/commentReducer';
 import commentService from '../services/comments';
 
-const CommentForm = ({ post, parentId }) => {
+const CommentForm = ({ post, parentId, resetForms }) => {
   const [content, setContent] = useState('');
 
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ const CommentForm = ({ post, parentId }) => {
     console.log('POSTID IN COMMENT FORM', post);
     dispatch(createComment(post.id, { content, parentId }));
     setContent('');
+    resetForms();
   };
 
   return (
