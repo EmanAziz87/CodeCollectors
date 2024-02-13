@@ -11,7 +11,7 @@ const Snippets = db.define(
       allowNull: false,
     },
     content: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(5000),
       allowNull: false,
     },
   },
@@ -22,6 +22,9 @@ Snippets.hasOne(Posts, { onDelete: 'CASCADE' });
 Posts.belongsTo(Snippets);
 Users.hasMany(Snippets, { onDelete: 'CASCADE' });
 Snippets.belongsTo(Users);
+
+// Snippets.sync({ alter: true });
+// Posts.sync({ alter: true });
 
 // Snippets.sync({ force: true }).then(async () => {
 //   Snippets.bulkCreate([
