@@ -39,6 +39,7 @@ export const createComment = (postId, comment) => {
 export const editComment = (commentId, comment, postId) => {
   return async (dispatch) => {
     await commentService.editComment(commentId, comment);
+
     dispatch(initializeComments(postId));
   };
 };
