@@ -73,27 +73,32 @@ const Comment = ({ comment, post }) => {
         </div>
       )}
       {loggedUser?.username === comment.author && (
-        <div style={toggleEdit}>
-          <EditCommentForm
-            comment={comment}
-            postId={post.id}
-            setContent={setContent}
-            content={content}
-            resetForms={handleShowComment}
-          />
+        <div>
+          <div style={toggleEdit}>
+            <EditCommentForm
+              comment={comment}
+              postId={post.id}
+              setContent={setContent}
+              content={content}
+              resetForms={handleShowComment}
+            />
+          </div>
+          <button style={toggleEditButton} onClick={handleShowEdit}>
+            {showEdit ? 'Cancel' : 'Edit'}
+          </button>
+          <button style={toggleDeleteButton} onClick={handleDeleteComment}>
+            Delete
+          </button>
         </div>
       )}
-      <div>
-        <button style={toggleEditButton} onClick={handleShowEdit}>
-          {showEdit ? 'Cancel' : 'Edit'}
-        </button>
-        <button style={toggleReplyButton} onClick={handleShowReply}>
-          {showReply ? 'Cancel' : 'Reply'}
-        </button>
-        <button style={toggleDeleteButton} onClick={handleDeleteComment}>
-          Delete
-        </button>
-      </div>
+
+      {loggedUser && (
+        <div>
+          <button style={toggleReplyButton} onClick={handleShowReply}>
+            {showReply ? 'Cancel' : 'Reply'}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

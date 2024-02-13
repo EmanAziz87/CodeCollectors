@@ -8,6 +8,7 @@ const hubsRouter = require('./controllers/hubs');
 const snippetsRouter = require('./controllers/snippets');
 const loginRouter = require('./controllers/login');
 const commentRouter = require('./controllers/comments');
+const likesRouter = require('./controllers/likes');
 require('./utils/db');
 require('./models/Comments');
 const {
@@ -24,6 +25,7 @@ app.use('/api/users', userExtractor, usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/posts', userExtractor, postsRouter);
 app.use('/api/comments', userExtractor, commentRouter);
+app.use('/api/likes', userExtractor, likesRouter);
 app.use('/api/hubs', userExtractor, hubsRouter);
 app.use('/api/snippets', userExtractor, snippetsRouter);
 

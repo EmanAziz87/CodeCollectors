@@ -4,7 +4,7 @@ CodeCollector Development Notes
 HTML
 CSS
 JavaScript
-React (Router, Redux, Framer Motion)
+React (Router, Redux)
 Axios
 
 *** Backend Stack ***
@@ -13,7 +13,6 @@ PostgresSql (RDBMS)
 Sequelize (ORM)
 JWT (Auth)
 Bcrypt (Auth)
-Config (secrets and env management)
 
 *** Tools ***
 Jest 
@@ -50,12 +49,20 @@ posts [---] [change content to description]
 | --- | ----- | ------ | ------- | ----- | ----- | ------ | --------- |
 
 snippets [---] [add new column: description]
-| id  | title| code | userId | 
-| --- | ---- | ---- | ------ |
+| id  | title | code | userId |
+| --- | ----- | ---- | ------ |
 
 comments 
 | id  | author | content | likes | hierarchyLevel | parentId | postId | userId |
 | --- | ------ | ------- | ----- | -------------- | -------- | ------ | ------ |
+
+postLikes
+| id  | postId | userId |
+| --- | ------ | ------ |
+
+commentLikes
+| id  | commentId | userId |
+| --- | --------- | ------ |
 
 --Versioning (semantic): v0.0.0 (major.minor.patch)--
 Versioning will start with v0.0.0. v1.0.0 will represent our 
@@ -229,7 +236,7 @@ value.
         - delete comments for post [DONE]
         - edit a post [DONE]
         - edit a comment [DONE]
-        - like a post [---];
+        - like a post [DONE]
         - like comments for post [---]
     User Component
         - display subscribed hubs [DONE]
