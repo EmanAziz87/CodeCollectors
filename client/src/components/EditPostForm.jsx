@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const EditPostForm = () => {
   const { state } = useLocation();
+  const [language, setLanguage] = useState('Java');
   const [title, setTitle] = useState(state.post.title);
   const [snippetTitle, setSnippetTitle] = useState(state.snippet.title);
   const [content, setContent] = useState(state.post.content);
@@ -16,7 +17,6 @@ const EditPostForm = () => {
 
   const dispatch = useDispatch();
   const loggedUser = useSelector(({ user }) => user);
-  console.log('hub state', code);
 
   const handleEditPost = (event) => {
     event.preventDefault();
@@ -25,7 +25,7 @@ const EditPostForm = () => {
     dispatch(
       editPost(
         { title, content },
-        { title: snippetTitle, content: code },
+        { title: snippetTitle, content: code, language },
         state.post.id,
         state.post.snippetId,
         state.hub.id
@@ -99,7 +99,12 @@ const EditPostForm = () => {
           value={snippetTitle}
           onChange={(event) => setSnippetTitle(event.target.value)}
         />
-        <CodeEditor setCode={setCode} code={code} />
+        <CodeEditor
+          setCode={setCode}
+          code={code}
+          language={language}
+          setLanguage={setLanguage}
+        />
         <button type='submit'>Confirm Edit</button>
       </form>
     </div>
