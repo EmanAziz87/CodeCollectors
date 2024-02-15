@@ -24,7 +24,6 @@ postsRouter.get('/:id', async (req, res, next) => {
 
 postsRouter.post('/', async (req, res, next) => {
   const { title, author, content } = req.body;
-  console.log('----------REQ.BODY', req.body);
 
   if (!(title && author && content)) {
     return res.status(400).send({ error: 'invalid submission info' });
@@ -35,6 +34,8 @@ postsRouter.post('/', async (req, res, next) => {
       error: 'Need to authenticate to do that...tokens probably invalid',
     });
   }
+
+  console.log('REQ BODY', req.body);
 
   try {
     const thisPostsHub = await Hubs.findByPk(req.body.hubId);
@@ -52,7 +53,7 @@ postsRouter.post('/', async (req, res, next) => {
 postsRouter.patch('/:id', async (req, res, next) => {
   const { title, author, content } = req.body;
   const id = req.params.id;
-  
+
   if (!(title && author && content)) {
     return res.status(400).send({ error: 'Invalid user input' });
   }

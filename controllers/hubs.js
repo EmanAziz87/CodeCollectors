@@ -35,18 +35,13 @@ hubsRouter.patch('/:id', async (req, res, next) => {
     (userHub) => userHub === hub.name
   );
 
-  console.log('IF ALREADY SUBBED: ', alreadySubscribed);
+  if (alreadySubscribed) {
+    return res.status(400).send('already subscribed');
+  }
 
   try {
-    if (alreadySubscribed) {
-      hub.subscribers = hub.subscribers - 1;
-      req.user.subscribedHubs = [
-        ...req.user.subscribedHubs.filter((userHub) => userHub !== hub.name),
-      ];
-    } else {
-      hub.subscribers = hub.subscribers + 1;
-      req.user.subscribedHubs = [...req.user.subscribedHubs, hub.name];
-    }
+    hub.subscribers = hub.subscribers + 1;
+    req.user.subscribedHubs = [...req.user.subscribedHubs, hub.name];
     await hub.save();
     await req.user.save();
     res.status(204).send(hub);

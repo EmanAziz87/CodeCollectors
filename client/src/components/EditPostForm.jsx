@@ -42,10 +42,12 @@ const EditPostForm = () => {
     setSnippetTitle('');
     setContent('');
     setCode('');
-    navigate(`/posts/${state.post.id}`, {
+    navigate(state.prevPath, {
       state: {
-        post: { ...newEditedPost, author: loggedUser.username },
+        post: { ...newEditedPost, author: state.post.author },
+        snippet: state.snippet,
         hub: state.hub,
+        prevPath: state.prevPrevPath,
       },
     });
   };
