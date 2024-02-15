@@ -8,13 +8,14 @@ const {
   getAllPosts,
   getAPost,
   posts,
+  getAllHubs,
 } = require('./testHelper');
 
 const api = supertest(app);
 
 describe('When the database has posts', () => {
   beforeEach(async () => {
-    await Posts.truncate();
+    await Posts.truncate({ cascade: true });
     await Posts.bulkCreate(posts);
   });
 
@@ -42,11 +43,12 @@ describe('When the database has posts', () => {
 describe('creating posts in the database', () => {
   beforeEach(async () => {
     await Users.truncate({ cascade: true });
-    await Posts.truncate();
+    await Posts.truncate({ cascade: true });
   });
 
   test('authenticate as a valid user than create a post', async () => {
     const postsAtStart = await getAllPosts();
+    const hubs = await getAllHubs();
 
     const { user, token } = await createUserAndLogin(
       'test',
@@ -54,10 +56,27 @@ describe('creating posts in the database', () => {
       'testpassword'
     );
 
+    const newSnippet = {
+      title: 'test',
+      content: 'test',
+      language: 'Java',
+    };
+
+    const snippetResponse = await api
+      .post('/api/snippets')
+      .set('Authorization', `Bearer ${token}`)
+      .send(newSnippet)
+      .expect(201)
+      .expect('Content-Type', /application\/json/);
+
+    const createdSnippet = snippetResponse.body;
+
     const newPost = {
-      title: 'testtitle',
-      author: 'testauthor',
-      content: 'testauthor',
+      title: 'test',
+      author: 'test',
+      content: 'test',
+      hubId: hubs[0].id,
+      snippetId: createdSnippet.id,
     };
 
     const postCall = await api
@@ -125,7 +144,7 @@ describe('creating posts in the database', () => {
 describe('updating posts in the database', () => {
   beforeEach(async () => {
     await Users.truncate({ cascade: true });
-    await Posts.truncate();
+    await Posts.truncate({ cascade: true });
   });
   test('update a post if you are the creator of the post', async () => {
     const { token } = await createUserAndLogin(
@@ -134,22 +153,22 @@ describe('updating posts in the database', () => {
       'testpassword'
     );
 
-    const newContent = {
-      content: 'updatedcontent',
-    };
+    const newContent = 'updated content';
 
     const createdPost = await creatingPost(token);
+
+    const updateContent = { ...createdPost, content: newContent };
 
     await api
       .patch(`/api/posts/${createdPost.id}`)
       .set('Authorization', `Bearer ${token}`)
-      .send(newContent)
+      .send(updateContent)
       .expect(204);
 
     const updatedPost = await getAPost(createdPost.id);
 
     expect(updatedPost.content).not.toBe(createdPost.content);
-    expect(updatedPost.content).toBe(newContent.content);
+    expect(updatedPost.content).toBe(newContent);
   });
 
   test('throws error if you attempt to update a post when you are not logged in', async () => {
@@ -159,15 +178,15 @@ describe('updating posts in the database', () => {
       'testpassword'
     );
 
-    const newContent = {
-      content: 'updatedcontent',
-    };
+    const newContent = 'updated content';
 
     const createdPost = await creatingPost(token);
 
+    const updatePost = { ...createdPost, content: newContent };
+
     await api
       .patch(`/api/posts/${createdPost.id}`)
-      .send(newContent)
+      .send(updatePost)
       .expect(401);
 
     const notUpdatedPost = await getAPost(createdPost.id);
@@ -212,16 +231,16 @@ describe('updating posts in the database', () => {
       'testpassword2'
     );
 
-    const secondUsersContent = {
-      content: 'updatedcontent',
-    };
+    const secondUsersContent = 'updatedcontent';
 
     const firstUserCreatedPost = await creatingPost(firstUser.token);
+
+    const updatePost = { ...firstUserCreatedPost, content: secondUsersContent };
 
     await api
       .patch(`/api/posts/${firstUserCreatedPost.id}`)
       .set('Authorization', `Bearer ${secondUser.token}`)
-      .send(secondUsersContent)
+      .send(updatePost)
       .expect(401);
 
     const notUpdatedPost = await getAPost(firstUserCreatedPost.id);
@@ -233,7 +252,7 @@ describe('updating posts in the database', () => {
 describe('deleting posts in the database', () => {
   beforeEach(async () => {
     await Users.truncate({ cascade: true });
-    await Posts.truncate();
+    await Posts.truncate({ cascade: true });
   });
 
   test('deleting posts when you are logged in and it is your post', async () => {

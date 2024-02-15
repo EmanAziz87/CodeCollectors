@@ -7,8 +7,6 @@ commentRouter.get('/:postId', async (req, res, next) => {
   const comments = await Comments.findAll({ where: { postId } });
   const commentsFlat = [...comments];
 
-  console.log(comments);
-
   const hierarchize = (parent, list) => {
     const children = list.filter((x) => x.parentId == parent.id);
     children.forEach((child) => hierarchize(child, list));
@@ -21,7 +19,6 @@ commentRouter.get('/:postId', async (req, res, next) => {
 
   try {
     res.send(topLevel);
-    // res.send(commentsFlat);
   } catch (error) {
     next(error);
   }
@@ -55,6 +52,7 @@ commentRouter.post('/:postId', async (req, res, next) => {
       await findParent.addChild(createdComment);
     }
     await parentPost.addComment(createdComment);
+    await req.user.addComment(createdComment);
     res.status(201).send(createdComment);
   } catch (error) {
     next(error);
@@ -69,14 +67,15 @@ commentRouter.patch('/:commentId', async (req, res, next) => {
     return res.status(400).send({ error: 'invalid submission info' });
   }
 
-  if (!req.user) {
+  const comment = await Comments.findByPk(commentId);
+
+  if (comment.userId !== req.user?.id) {
     return res.status(401).send({
-      error: 'Need to authenticate to do that...tokens probably invalid',
+      error: 'You are not authenticated to do that',
     });
   }
 
   try {
-    const comment = await Comments.findByPk(commentId);
     comment.content = content;
     await comment.save();
     res.status(204).send('edited comment');
@@ -88,16 +87,20 @@ commentRouter.patch('/:commentId', async (req, res, next) => {
 commentRouter.delete('/:commentId', async (req, res, next) => {
   const commentId = req.params.commentId;
 
-  if (!req.user) {
+  const comment = await Comments.findByPk(commentId);
+
+  if (comment.userId !== req.user?.id) {
     return res.status(401).send({
-      error: 'Need to authenticate to do that...tokens probably invalid',
+      error: 'You are not authenticated to do that',
     });
   }
 
   try {
     await Comments.destroy({ where: { id: commentId } });
     res.status(204).send('deleted comment');
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = commentRouter;

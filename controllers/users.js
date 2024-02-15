@@ -21,10 +21,10 @@ usersRouter.get('/:id', async (req, res, next) => {
 });
 
 usersRouter.post('/', async (req, res, next) => {
-  const { name, username, password } = req.body;
+  const { name, username, password, subscribedHubs } = req.body;
 
-  if (!(name || username || password)) {
-    return response
+  if (!(name && username && password)) {
+    return res
       .status(400)
       .json({ error: 'Did not provide name, username, or password' });
   }
@@ -35,6 +35,7 @@ usersRouter.post('/', async (req, res, next) => {
     name,
     username,
     password: passwordHash,
+    subscribedHubs,
   };
 
   try {

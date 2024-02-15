@@ -26,7 +26,7 @@ describe('authenticating', () => {
     user = userResponse.body;
   });
 
-  test.only('login with user credentials and receive valid token', async () => {
+  test('login with user credentials and receive valid token', async () => {
     const response = await api
       .post('/api/login')
       .send({ username: newUser.username, password: newUser.password })
