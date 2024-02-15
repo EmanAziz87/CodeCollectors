@@ -128,13 +128,14 @@ value.
     
     Users: 
         getting users
-            - getting all users [---]
-            - getting a specific user [---]
+            - getting all users [DONE]
+            - getting a specific user [DONE]
         adding users
             -checking if users can be added [DONE]
             -error if password or username is too short [DONE]
-            -error if no password or username is provided [---]
-            -deleting user successfully if authenticated as that user [---]
+            -error if no password or username is provided [DONE]
+            -deleting user successfully if authenticated as that user [DONE]
+            -error if attempt to delete a user that isn't yours [DONE]
 
     Posts:
         getting posts
@@ -182,22 +183,21 @@ value.
 
     Comments:
         getting comments
-            - get all comments of a post [---]
-
+            - get all comments of a post [DONE]
         creating comments
-            - when logged in create comment [---]
-            - error when creating empty comment [---]
-            - error when commenting but not logged in [---]
+            - when logged in create comment [DONE]
+            - error when creating empty comment [DONE]
+            - error when commenting but not logged in [DONE]
         updating comments
-            - when logged in can update comment [---]
-            - error updating comment when not logged in [---]
-            - error updating comment with no content [---]
-            - error updating comment that is not yours [---]
+            - when logged in can update comment [DONE]
+            - error updating comment when not logged in [DONE]
+            - error updating comment with no content [DONE]
+            - error updating comment that is not yours [DONE]
         deleting snippets
-            - when logged in can delete snippet [---]
-            - error deleting comment when not logged in [---]
-            - error deleting comment that is not yours [---]
-    
+            - when logged in can delete snippet [DONE]
+            - error deleting comment when not logged in [DONE]
+            - error deleting comment that is not yours [DONE]
+        
     Login:
         - logging in with valid credentials and receive valid token [DONE]
 
@@ -249,7 +249,7 @@ value.
         - edit snippet [DONE]
     Snippets Form
         - create snippet [DONE]
-        - pick language for snippet [---]
+        - pick language for snippet [DONE]
         
 
         

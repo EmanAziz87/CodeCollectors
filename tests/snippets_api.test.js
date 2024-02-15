@@ -76,6 +76,7 @@ describe('creating snippets', () => {
 
     expect(snippetsAtEnd).toHaveLength(snippetsAtStart.length);
   });
+
   test('error when creating a snippet and not authenticated', async () => {
     const snippetsAtStart = await getAllSnippets();
 
@@ -100,34 +101,35 @@ describe('updating snippets', () => {
 
     const snippetsAtStart = await getAllSnippets();
 
-    const updatedContent = {
-      content: 'this was updated for a test',
-    };
+    const updatedContent = 'this was updated for a test';
+
+    const updateSnippet = { ...createdSnippet, content: updatedContent };
 
     await api
       .patch(`/api/snippets/${createdSnippet.id}`)
       .set('Authorization', `Bearer ${token}`)
-      .send(updatedContent)
+      .send(updateSnippet)
       .expect(204);
 
     const updatedSnippet = await getSnippet(createdSnippet.id);
     const snippetsAtEnd = await getAllSnippets();
 
     expect(updatedSnippet.content).not.toBe(createdSnippet.content);
-    expect(updatedSnippet.content).toBe(updatedContent.content);
+    expect(updatedSnippet.content).toBe(updatedContent);
     expect(snippetsAtEnd).toHaveLength(snippetsAtStart.length);
   });
+
   test('error updating snippet when not authenticated', async () => {
     const { token } = await createUserAndLogin();
     const createdSnippet = await creatingSnippet(token);
 
-    const updatedContent = {
-      content: 'this update will fail',
-    };
+    const updatedContent = 'this update will fail';
+
+    const updateSnippet = { ...createdSnippet, content: updatedContent };
 
     await api
       .patch(`/api/snippets/${createdSnippet.id}`)
-      .send(updatedContent)
+      .send(updateSnippet)
       .expect(401);
 
     const notUpdatedSnippet = await getSnippet(createdSnippet.id);
@@ -167,20 +169,20 @@ describe('updating snippets', () => {
 
     const firstUsersSnippet = await creatingSnippet(firstUser.token);
 
-    const updatedContent = {
-      content: 'this was updated for a test',
-    };
+    const updatedContent = 'this is an unauthorized update for a test';
+
+    const updateSnippet = { ...firstUsersSnippet, content: updatedContent };
 
     await api
       .patch(`/api/snippets/${firstUsersSnippet.id}`)
       .set('Authorization', `Bearer ${secondUser.token}`)
-      .send(updatedContent)
+      .send(updateSnippet)
       .expect(401);
 
     const notUpdatedSnippet = await getSnippet(firstUsersSnippet.id);
 
     expect(notUpdatedSnippet.content).toBe(firstUsersSnippet.content);
-    expect(notUpdatedSnippet.content).not.toBe(updatedContent.content);
+    expect(notUpdatedSnippet.content).not.toBe(updatedContent);
   });
 });
 
@@ -190,9 +192,9 @@ describe('deleting snippets', () => {
     await Snippets.truncate({ cascade: true });
     await Snippets.bulkCreate(snippets);
   });
-
   test('when authenticated you can delete a snippet', async () => {
     const { token } = await createUserAndLogin();
+
     const createdSnippet = await creatingSnippet(token);
 
     const snippetsAtStart = await getAllSnippets();

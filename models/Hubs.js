@@ -20,7 +20,7 @@ const Hubs = db.define(
   { timestamps: false }
 );
 
-// Hubs.sync({ force: true }).then(async () => {
+// Hubs.sync({ alter: true }).then(async () => {
 //   Hubs.bulkCreate([
 //     { name: 'JavaScript', subscribers: 484, adminHub: true },
 //     { name: 'C++', subscribers: 326, adminHub: true },

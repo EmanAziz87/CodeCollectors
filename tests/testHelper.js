@@ -4,18 +4,23 @@ const Users = require('../models/Users');
 const Posts = require('../models/Posts');
 const Hubs = require('../models/Hubs');
 const Snippets = require('../models/Snippets');
+const Comments = require('../models/Comments');
+const CommentLikes = require('../models/CommentLikes');
+const PostLikes = require('../models/PostLikes');
 
 const api = supertest(app);
 
 const createUserAndLogin = async (
   name = 'test',
   username = 'testusername',
-  password = 'testpassword'
+  password = 'testpassword',
+  subscribedHubs = ['Java', 'Python']
 ) => {
   const newUser = {
     name,
     username,
     password,
+    subscribedHubs,
   };
 
   const userResponse = await api
@@ -38,10 +43,17 @@ const createUserAndLogin = async (
 };
 
 const creatingPost = async (token) => {
+  const hubs = await getAllHubs();
+
+  const createdSnippet = await creatingSnippet(token);
+  const hub = hubs[0];
+
   const newPost = {
-    title: 'testtitle',
-    author: 'testauthor',
-    content: 'testauthor',
+    title: 'test',
+    author: 'test',
+    content: 'test',
+    snippetId: createdSnippet.id,
+    hubId: hub.id,
   };
 
   const postResponse = await api
@@ -58,13 +70,31 @@ const creatingSnippet = async (token) => {
   const newSnippet = {
     title: 'a cool snippet',
     content: 'this is the snippet',
+    language: 'Java',
   };
+
   const response = await api
     .post('/api/snippets')
     .set('Authorization', `Bearer ${token}`)
     .send(newSnippet)
     .expect('Content-Type', /application\/json/)
     .expect(201);
+
+  return response.body;
+};
+
+const creatingComment = async (token, postId) => {
+  const newComment = {
+    content: 'a test comment',
+    postId,
+  };
+
+  const response = await api
+    .post(`/api/comments/${postId}`)
+    .set('Authorization', `Bearer ${token}`)
+    .send(newComment)
+    .expect(201)
+    .expect('Content-Type', /application\/json/);
 
   return response.body;
 };
@@ -124,22 +154,43 @@ const posts = [
 const oneSnippet = {
   title: 'a cool snippet',
   content: 'this is the snippet',
+  language: 'Java',
 };
 
 const snippets = [
   {
     title: 'a cool snippet',
     content: 'this is the snippet',
+    language: 'Java',
   },
   {
     title: 'another snippet',
     content: 'more snippet content',
+    language: 'Python',
   },
   {
     title: 'last mock snippet title',
     content: 'last mock snippet content',
+    language: 'JavaScript',
   },
 ];
+
+const getAllCommentLikes = async () => {
+  return await CommentLikes.findAll();
+};
+
+const getAllPostLikes = async () => {
+  return await PostLikes.findAll();
+};
+
+const getAllComments = async (postId) => {
+  const comments = await Comments.findAll({ where: { postId } });
+  return comments.map((comment) => comment.toJSON());
+};
+
+const getComment = async (commentId) => {
+  return await Comments.findByPk(commentId);
+};
 
 const getAllSnippets = async () => {
   const snippets = await Snippets.findAll();
@@ -178,9 +229,14 @@ const getUser = async (id) => {
 };
 
 module.exports = {
+  creatingComment,
   createUserAndLogin,
   creatingPost,
   creatingSnippet,
+  getAllCommentLikes,
+  getAllPostLikes,
+  getAllComments,
+  getComment,
   getAllSnippets,
   getSnippet,
   getAllUsers,

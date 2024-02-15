@@ -30,6 +30,7 @@ const Profile = ({ user }) => {
     postService.setToken(loggedUser);
     dispatch(deletePost(postId));
   };
+
   const handleDeleteAccount = () => {
     if (
       window.confirm(
