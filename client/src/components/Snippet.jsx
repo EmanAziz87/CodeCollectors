@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import snippetService from '../services/snippets';
-import '../css/snippet.css';
 import { deleteSnippet, initializeSnippets } from '../reducers/snippetsReducer';
 import { Link } from 'react-router-dom';
 

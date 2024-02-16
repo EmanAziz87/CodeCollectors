@@ -1,10 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { initializeHubs, subscribeToHub } from '../reducers/hubsReducer';
 import hubService from '../services/hubs';
+import Icons from '../icon/index';
+import '../css/allHubs.css';
 
 const AllHubs = () => {
+  const [filter, setFilter] = useState('');
   const dispatch = useDispatch();
   const hubs = useSelector(({ hubs }) => hubs);
   const loggedUser = useSelector(({ user }) => user);
@@ -18,33 +21,60 @@ const AllHubs = () => {
     dispatch(subscribeToHub(hub));
   };
 
-  const style = {
-    paddingBottom: '12px',
-  };
+  const filteredHubs = hubs.filter((hub) => {
+    if (hub.name.toLowerCase().startsWith(filter.toLowerCase())) {
+      return hub;
+    }
+  });
+
+  const hubsToShow = filter ? filteredHubs : hubs;
 
   return (
-    <div>
-      <h2>All Hubs</h2>{' '}
-      <div>
-        {hubs.map((hub) => (
-          <div key={hub.id} style={style}>
+    <div className='all-hubs-parent-container'>
+      <h2 className='hub-container-title'>Discover Hubs</h2>{' '}
+      <div className='all-hubs-container'>
+        {hubsToShow.map((hub) => (
+          <div className='hub-container' key={hub.id}>
             <div>
-              <Link to={`/hubs/${hub.id}`} state={{ hub }}>
-                {hub.name}
-              </Link>{' '}
+              <div>
+                <Link
+                  className='hub-link'
+                  to={`/hubs/${hub.id}`}
+                  state={{ hub }}
+                >
+                  <div className='language-icon-container'>
+                    <img
+                      className='language-icon'
+                      src={Icons[`${hub.name}`]}
+                      alt={`${hub.name} icon`}
+                    />
+                  </div>
+                  <div>
+                    <h3>{hub.name}</h3>
+                  </div>
+                </Link>{' '}
+              </div>
+              {loggedUser && (
+                <button onClick={() => handleSubscribe(hub)}>
+                  {loggedUser.subscribedHubs.find(
+                    (userHub) => userHub === hub.name
+                  )
+                    ? 'Unsubscribe'
+                    : 'Subscribe'}
+                </button>
+              )}
             </div>
-            <div>Subscribers: {hub.subscribers}</div>
-            {loggedUser && (
-              <button onClick={() => handleSubscribe(hub)}>
-                {loggedUser.subscribedHubs.find(
-                  (userHub) => userHub === hub.name
-                )
-                  ? 'Unsubscribe'
-                  : 'Subscribe'}
-              </button>
-            )}
           </div>
         ))}
+      </div>
+      <div className='hub-search-container'>
+        <input
+          id='hub-search-input'
+          type='text'
+          placeholder='Search Hubs'
+          value={filter}
+          onChange={(event) => setFilter(event.target.value)}
+        />
       </div>
     </div>
   );

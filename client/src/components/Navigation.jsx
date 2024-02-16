@@ -1,10 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeUser } from '../reducers/userReducer';
-
-const style = {
-  paddingRight: '5px',
-};
+import '../css/navigation.css';
 
 const Navigation = () => {
   const loggedUser = useSelector(({ user }) => user);
@@ -18,17 +15,18 @@ const Navigation = () => {
   };
 
   return (
-    <div>
-      <Link style={style} to='/hubs'>
+    <div className='navigation-parent-container'>
+      <div>{'<Code Collector />'}</div>
+      <Link className='nav-link' to='/hubs'>
         Hubs
       </Link>
       {!loggedUser && (
-        <Link style={style} to='/login'>
+        <Link className='nav-link' to='/login'>
           Login
         </Link>
       )}
       {loggedUser && (
-        <span style={style}>
+        <span>
           <Link to={`/profile/${loggedUser.username}`}>
             {loggedUser.username}
           </Link>{' '}

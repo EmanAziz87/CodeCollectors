@@ -42,6 +42,6 @@ Comments.belongsTo(Posts);
 Comments.hasMany(CommentLikes, { onDelete: 'CASCADE' });
 CommentLikes.belongsTo(Comments);
 
-// db.sync({ alter: true });
+// db.sync({ force: true });
 
 module.exports = Posts;
