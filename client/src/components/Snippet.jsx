@@ -5,7 +5,7 @@ import '../css/snippet.css';
 import { deleteSnippet, initializeSnippets } from '../reducers/snippetsReducer';
 import { Link } from 'react-router-dom';
 
-const Snippet = ({ snip, postsFromHub, language, setLanguage }) => {
+const Snippet = ({ snip, postsFromHub }) => {
   const [expanded, setExpanded] = useState(false);
 
   const dispatch = useDispatch();
