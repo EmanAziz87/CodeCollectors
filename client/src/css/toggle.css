@@ -1,0 +1,16 @@
+.toggle-button {
+  border: none;
+  background-color: #d65a31;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.toggle-button:hover {
+  background-color: rgb(205, 75, 32);
+}
+
+.toggle-parent-container {
+  margin-top: 12px;
+}

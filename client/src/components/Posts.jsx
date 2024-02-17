@@ -29,9 +29,9 @@ const Posts = ({ hub }) => {
   };
 
   return (
-    <div>
+    <div className='posts-parent-container'>
       <h2>Posts</h2>
-      <div>
+      <div className='posts-container'>
         {posts
           .filter((post) => post.hubId === hub.id)
           .map((post) => (

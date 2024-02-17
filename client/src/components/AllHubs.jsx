@@ -10,16 +10,10 @@ const AllHubs = () => {
   const [filter, setFilter] = useState('');
   const dispatch = useDispatch();
   const hubs = useSelector(({ hubs }) => hubs);
-  const loggedUser = useSelector(({ user }) => user);
 
   useEffect(() => {
     dispatch(initializeHubs());
   }, []);
-
-  const handleSubscribe = (hub) => {
-    hubService.setToken(loggedUser);
-    dispatch(subscribeToHub(hub));
-  };
 
   const filteredHubs = hubs.filter((hub) => {
     if (hub.name.toLowerCase().startsWith(filter.toLowerCase())) {
@@ -54,15 +48,6 @@ const AllHubs = () => {
                   </div>
                 </Link>{' '}
               </div>
-              {loggedUser && (
-                <button onClick={() => handleSubscribe(hub)}>
-                  {loggedUser.subscribedHubs.find(
-                    (userHub) => userHub === hub.name
-                  )
-                    ? 'Unsubscribe'
-                    : 'Subscribe'}
-                </button>
-              )}
             </div>
           </div>
         ))}

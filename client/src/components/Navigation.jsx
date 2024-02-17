@@ -16,22 +16,27 @@ const Navigation = () => {
 
   return (
     <div className='navigation-parent-container'>
-      <div>{'<Code Collector />'}</div>
+      <Link className='nav-logo-link' to='/hubs'>
+        <div className='navigation-logo'>{'<Code Collector />'}</div>
+      </Link>
       <Link className='nav-link' to='/hubs'>
         Hubs
       </Link>
+
       {!loggedUser && (
         <Link className='nav-link' to='/login'>
           Login
         </Link>
       )}
       {loggedUser && (
-        <span>
-          <Link to={`/profile/${loggedUser.username}`}>
-            {loggedUser.username}
-          </Link>{' '}
-          <button onClick={handleLogout}>Logout</button>
-        </span>
+        <div className='profile-logout-container'>
+          <Link className='nav-link' to={`/profile/${loggedUser.username}`}>
+            Profile
+          </Link>
+          <button className='logout-button' onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
       )}
     </div>
   );

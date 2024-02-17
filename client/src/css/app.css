@@ -2,4 +2,14 @@
   background-color: #222831;
   font-family: 'IBM Plex Sans';
   height: 100vh;
+  padding: 80px 50px;
+}
+
+input {
+  width: 380px;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  outline: none;
+  background-color: #393e46;
 }

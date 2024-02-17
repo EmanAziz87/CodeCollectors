@@ -1,17 +1,63 @@
 .navigation-parent-container {
   display: flex;
   height: 50px;
+  width: 100vw;
   background-color: #393e46;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.nav-link {
+.navigation-logo {
   text-decoration: none;
-  padding: 16px;
+  background-color: #393e46;
+  font-weight: 700;
+  font-size: 24px;
+  padding: 10px;
+  max-height: 50px;
+}
+
+.nav-logo-link {
+  text-decoration: none;
+}
+
+/* .hub-link-container {
+  max-height: 50px;
+} */
+
+.nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
   background-color: #d65a31;
   font-weight: 600;
+  padding: 0px 18px;
   font-size: 18px;
+  max-height: 50px;
+  min-height: 50px;
 }
 
 .nav-link:hover {
-  background-color: rgb(174, 59, 20);
+  background-color: rgb(205, 75, 32);
+}
+
+.profile-logout-container {
+  display: flex;
+}
+
+.logout-button {
+  text-decoration: none;
+  background-color: #d65a31;
+  font-weight: 600;
+  padding: 0px 18px;
+  font-size: 18px;
+  max-height: 50px;
+  min-height: 50px;
+  border: none;
+}
+
+.logout-button:hover {
+  background-color: rgb(205, 75, 32);
+  cursor: pointer;
 }

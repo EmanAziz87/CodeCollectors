@@ -18,6 +18,7 @@
   background-color: #393e46;
   border-radius: 6px;
   margin: 16px;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.106);
 }
 
 .hub-container-title {
@@ -53,5 +54,6 @@
   border-radius: 6px;
   padding: 8px;
   outline: none;
-  background-color: #393e46;
+  color: black;
+  background-color: #fafafa;
 }

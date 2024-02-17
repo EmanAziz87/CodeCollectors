@@ -14,7 +14,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (loggedUser) {
-      navigate('/');
+      navigate('/hubs');
     }
   }, [loggedUser]);
 
