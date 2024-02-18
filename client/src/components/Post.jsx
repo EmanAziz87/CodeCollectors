@@ -7,6 +7,7 @@ import { initializeSnippets } from '../reducers/snippetsReducer';
 import { initializePostLikes, likePost } from '../reducers/postLikesReducer';
 import likeService from '../services/likes';
 import { useEffect } from 'react';
+import '../css/post.css';
 
 const Post = () => {
   const { state } = useLocation();
@@ -31,55 +32,69 @@ const Post = () => {
   );
 
   return (
-    <div>
+    <div className='post-parent-container'>
       <button
+        className='back-button'
         onClick={() => navigate(state.prevPath, { state: { hub: state.hub } })}
       >
         Go Back
       </button>
 
-      {loggedUser?.username === state.post.author && matchingSnippet && (
-        <div>
-          <Link
-            to='/editPostForm'
-            state={{
-              post: state.post,
-              snippet: matchingSnippet,
-              hub: state.hub,
-              prevPath: `/posts/${state.post.id}`,
-              prevPrevPath: state.prevPath,
-              prevState: state,
-            }}
-          >
-            Edit Post
-          </Link>
-        </div>
-      )}
-      <div>
-        <div>Title: {state.post.title}</div>
-        <div> Author: {state.post.author}</div>
-        <div>Content: {state.post.content}</div>
-        <div>
-          Likes:{' '}
-          {postLikes.filter((likes) => likes.postId === state.post.id).length}
-          {loggedUser &&
-            !postLikes.find(
-              (likes) =>
-                likes.postId === state.post.id && likes.userId === loggedUser.id
-            ) && (
-              <button onClick={() => handleLikePost(state.post.id)}>
-                Like
-              </button>
-            )}
-        </div>
+      <div className='post-sub-container'>
+        <h2 className='post-title'>{state.post.title}</h2>
+        <div>{state.post.author}</div>
         <Snippets post={state.post} postsFromHub={true} />
-
-        <div>
+        <div className='post-content'>{state.post.content}</div>
+        <div className='post-buttons-container'>
+          {loggedUser?.username === state.post.author && matchingSnippet && (
+            <div>
+              <Link
+                to='/editPostForm'
+                state={{
+                  post: state.post,
+                  snippet: matchingSnippet,
+                  hub: state.hub,
+                  prevPath: `/posts/${state.post.id}`,
+                  prevPrevPath: state.prevPath,
+                  prevState: state,
+                }}
+              >
+                <button className='edit-post-form-button'> Edit</button>
+              </Link>
+            </div>
+          )}
+          <div>
+            {loggedUser &&
+              !postLikes.find(
+                (likes) =>
+                  likes.postId === state.post.id &&
+                  likes.userId === loggedUser.id
+              ) && (
+                <button
+                  className='like-post-button-postpage'
+                  onClick={() => handleLikePost(state.post.id)}
+                >
+                  Like
+                </button>
+              )}{' '}
+            <span className='likes-count'>
+              {
+                postLikes.filter((likes) => likes.postId === state.post.id)
+                  .length
+              }
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className='comment-container'>
+        <div className='comment-form-container'>
           <CommentForm
             post={state.post}
             parentId={null}
             resetForms={() => () => console.log('great')}
           />
+        </div>
+        <div className='allpost-comments-container'>
           <Comments post={state.post} />
         </div>
       </div>

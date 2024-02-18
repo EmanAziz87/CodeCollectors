@@ -28,7 +28,7 @@ const AllHubs = () => {
       <h2 className='hub-container-title'>Discover Hubs</h2>{' '}
       <div className='all-hubs-container'>
         {hubsToShow.map((hub) => (
-          <div className='hub-container' key={hub.id}>
+          <div className='hub-home-container' key={hub.id}>
             <div>
               <div>
                 <Link
@@ -44,7 +44,7 @@ const AllHubs = () => {
                     />
                   </div>
                   <div>
-                    <h3>{hub.name}</h3>
+                    <h3 className='language-icon-text'>{hub.name}</h3>
                   </div>
                 </Link>{' '}
               </div>

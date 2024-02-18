@@ -1,8 +1,19 @@
+body {
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
 .app-container {
   background-color: #222831;
   font-family: 'IBM Plex Sans';
-  height: 100vh;
-  padding: 80px 50px;
+  padding: 0px 50px 0px 50px;
+  min-height: 100vh;
+  overflow-y: scroll;
 }
 
 input {
@@ -11,5 +22,6 @@ input {
   border-radius: 6px;
   padding: 8px;
   outline: none;
-  background-color: #393e46;
+  color: black;
+  background-color: #eeeeee;
 }

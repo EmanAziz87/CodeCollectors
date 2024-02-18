@@ -8,7 +8,7 @@
 }
 
 .all-hubs-parent-container {
-  padding-top: 16px;
+  padding-top: 80px;
 }
 
 .all-hubs-container {
@@ -25,7 +25,7 @@
   text-align: center;
 }
 
-.hub-container {
+.hub-home-container {
   padding: 10px;
 }
 
@@ -45,7 +45,12 @@
 }
 
 .language-icon-container {
+  transition: transform 0.1s ease-in;
   padding: 6px;
+}
+
+.language-icon-container:hover {
+  transform: scale(1.1);
 }
 
 #hub-search-input {

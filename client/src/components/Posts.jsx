@@ -37,32 +37,46 @@ const Posts = ({ hub }) => {
           .map((post) => (
             <div key={post.id} className='post-container'>
               <Link
+                className='post-link'
                 to={`/posts/${post.id}`}
                 state={{ post, hub, prevPath: `/hubs/${hub.id}` }}
               >
-                {post.title} by {post.author}
-              </Link>
-
-              <div>
-                Likes:{' '}
-                {postLikes.filter((likes) => likes.postId === post.id).length}
-              </div>
-
-              <br />
-              {loggedUser?.username === post.author && (
-                <div>
-                  <button onClick={() => handleDeletePost(post.id)}>
-                    Delete
-                  </button>
+                <div className='post-content-container'>
+                  <h2 className='post-title'>{post.title}</h2>
+                  <h4 className='post-author'>{post.author}</h4>
+                  <div>
+                    Likes:{' '}
+                    {
+                      postLikes.filter((likes) => likes.postId === post.id)
+                        .length
+                    }
+                  </div>
                 </div>
-              )}
-              {loggedUser &&
-                !postLikes.find(
-                  (likes) =>
-                    likes.postId === post.id && likes.userId === loggedUser.id
-                ) && (
-                  <button onClick={() => handleLikePost(post.id)}>Like</button>
+              </Link>
+              <div className='post-buttons-hub-container'>
+                {loggedUser &&
+                  !postLikes.find(
+                    (likes) =>
+                      likes.postId === post.id && likes.userId === loggedUser.id
+                  ) && (
+                    <button
+                      className='like-post-button-hub'
+                      onClick={() => handleLikePost(post.id)}
+                    >
+                      Like
+                    </button>
+                  )}
+                {loggedUser?.username === post.author && (
+                  <div>
+                    <button
+                      className='delete-post-button-hub'
+                      onClick={() => handleDeletePost(post.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 )}
+              </div>
             </div>
           ))}
       </div>

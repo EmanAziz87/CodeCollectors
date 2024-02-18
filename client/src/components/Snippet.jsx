@@ -27,13 +27,23 @@ const Snippet = ({ snip, postsFromHub }) => {
 
   return (
     <div>
-      <h4>{snip.title}</h4>
+      <h4>{!postsFromHub && snip.title}</h4>
       <div className='snippet-container'>
-        <div>{snip.language}</div>
-        <pre style={expandedCode}>
-          <code className={`language-${snip.language}`}>{snip.content}</code>
-        </pre>
-        <button onClick={expandAndShrink}>Expand</button>
+        {postsFromHub ? (
+          <pre className='line-numbers'>
+            <code className={`language-${snip.language}`}>{snip.content}</code>
+          </pre>
+        ) : (
+          <div>
+            <pre className='line-numbers' style={expandedCode}>
+              <code className={`language-${snip.language}`}>
+                {snip.content}
+              </code>
+            </pre>
+            <button onClick={expandAndShrink}>Expand</button>
+          </div>
+        )}
+
         {!postsFromHub && (
           <div>
             <button onClick={handleDeleteSnippet}>Delete</button>

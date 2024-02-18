@@ -14,23 +14,31 @@ const Navigation = () => {
     navigate('/hubs');
   };
 
+  const style = {
+    transition: 'background-color 0.1s ease-in',
+  };
+
   return (
     <div className='navigation-parent-container'>
       <Link className='nav-logo-link' to='/hubs'>
         <div className='navigation-logo'>{'<Code Collector />'}</div>
       </Link>
-      <Link className='nav-link' to='/hubs'>
+      <Link style={style} className='nav-link' to='/hubs'>
         Hubs
       </Link>
 
       {!loggedUser && (
-        <Link className='nav-link' to='/login'>
+        <Link style={style} className='nav-link' to='/login'>
           Login
         </Link>
       )}
       {loggedUser && (
         <div className='profile-logout-container'>
-          <Link className='nav-link' to={`/profile/${loggedUser.username}`}>
+          <Link
+            style={style}
+            className='nav-link'
+            to={`/profile/${loggedUser.username}`}
+          >
             Profile
           </Link>
           <button className='logout-button' onClick={handleLogout}>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import '../css/loginForm.css';
 
 import loginService from '../services/login';
 import { addUser } from '../reducers/userReducer';
@@ -34,7 +35,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
+    <div className='login-form-container'>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <div>

@@ -9,6 +9,7 @@ import { deletePost } from '../reducers/postsReducer';
 import postService from '../services/posts';
 import userService from '../services/user';
 import { deleteAccount } from '../reducers/userReducer';
+import '../css/profile.css';
 
 const Profile = ({ user }) => {
   const posts = useSelector(({ posts }) => posts);
@@ -49,7 +50,7 @@ const Profile = ({ user }) => {
   }
 
   return (
-    <div>
+    <div className='profile-parent-container'>
       <h2>{user.username}</h2>
       <div>
         <h3>Your Subscribed Hubs:</h3>

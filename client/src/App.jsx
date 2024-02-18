@@ -35,7 +35,7 @@ function App() {
   return (
     <div className='app-container'>
       <Navigation />
-      <Routes>
+      <Routes className='routes-container'>
         <Route path='/snippet_form' element={<SnippetForm />} />
         <Route path='/editPostForm' element={<EditPostForm />} />
         <Route path='/snippetEditForm' element={<EditSnippetForm />} />

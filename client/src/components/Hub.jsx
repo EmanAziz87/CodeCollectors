@@ -36,12 +36,12 @@ const Hub = () => {
   };
 
   return (
-    <div>
+    <div className='hub-parent-container'>
       {hubs
         .filter((hub) => hub.name === state.hub.name)
         .map((hub) => (
-          <div>
-            <div>
+          <div key={hub.id} className='hub-container'>
+            <div className='language-icon-sub-container'>
               <img
                 className='language-icon'
                 src={Icons[hub.name]}

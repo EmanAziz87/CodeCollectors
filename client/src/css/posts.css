@@ -1,12 +1,69 @@
 .post-container {
-  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  border: 3px solid #393e46;
+  border-radius: 6px;
+  transition: border 0.1s ease-in;
+  margin-bottom: 12px;
+  background-color: #333a44;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.069);
+}
+
+.post-container:hover {
+  border: 3px solid #4e5158;
+  cursor: pointer;
 }
 
 .posts-parent-container {
   margin: 16px 0px;
+  border-top: 3px solid #333a44;
+  padding: 16px;
 }
 
 .posts-container {
-  border: 3px solid #393e46;
-  border-radius: 6px;
+}
+
+.post-link {
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  padding-left: 12px;
+  align-items: center;
+}
+
+.post-author {
+  color: #eeeeee;
+}
+
+.post-buttons-container {
+}
+
+.like-post-button-hub {
+  border: none;
+  background-color: #393e46;
+  padding: 12px 20px;
+  border-top-right-radius: 3px;
+  font-size: 16px;
+  font-weight: 700;
+  width: 92px;
+}
+
+.like-post-button-hub:hover {
+  opacity: 100%;
+  background-color: #d65a31;
+}
+
+.delete-post-button-hub {
+  border: none;
+  background-color: #393e46;
+  padding: 12px 20px;
+  border-bottom-right-radius: 3px;
+  font-size: 16px;
+  font-weight: 700;
+  width: 92px;
+}
+
+.delete-post-button-hub:hover {
+  opacity: 100%;
+  background-color: #595f69;
 }

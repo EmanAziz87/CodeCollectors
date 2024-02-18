@@ -6,6 +6,7 @@ import {
   initializeCommentLikes,
 } from '../reducers/commentLikesReducer';
 import likeService from '../services/likes';
+import '../css/topComment.css';
 
 const TopComment = ({ topLevelComment, post }) => {
   const commentLikes = useSelector(({ commentLikes }) => commentLikes);
@@ -25,19 +26,22 @@ const TopComment = ({ topLevelComment, post }) => {
     <div style={{ paddingLeft: 10, borderLeft: '1px solid grey' }}>
       <Comment comment={topLevelComment} post={post} />
       <div>
-        Likes:{' '}
         {
           commentLikes.filter((likes) => likes.commentId === topLevelComment.id)
             .length
         }
+        &#11014;
         {loggedUser &&
           !commentLikes.find(
             (likes) =>
               likes.commentId === topLevelComment.id &&
               likes.userId === loggedUser.id
           ) && (
-            <button onClick={() => handleLikeComment(topLevelComment.id)}>
-              Like
+            <button
+              className='comment-like-button'
+              onClick={() => handleLikeComment(topLevelComment.id)}
+            >
+              &#11014;
             </button>
           )}
       </div>

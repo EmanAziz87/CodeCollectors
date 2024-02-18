@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createPost } from '../reducers/postsReducer';
 import postService from '../services/posts';
 import CodeEditor from './CodeEditor';
+import '../css/postForm.css';
 
 const PostForm = ({ hub, postFormRef }) => {
   const [language, setLanguage] = useState('Java');
@@ -32,53 +33,51 @@ const PostForm = ({ hub, postFormRef }) => {
   };
 
   return (
-    <div>
+    <div className='post-form-parent-container'>
       <form onSubmit={handleAddPost}>
-        <div>
-          <div>
-            <div>
-              <label htmlFor='post-form-title'>Post Title: </label>
-            </div>
-            <input
-              type='text'
-              id='post-form-title'
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor='post-form-content'>Content: </label>
-          </div>
-          <textarea
-            id='post-form-description'
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
-            rows={5}
-            cols={40}
+        <div className='post-form-title-container'>
+          <label htmlFor='post-form-title' className='post-form-title'>
+            Post Title{' '}
+          </label>
+          <input
+            type='text'
+            id='post-form-title'
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
           />
         </div>
-        <div>
-          <label htmlFor='post-form-snippet-title'>Snippet Title: </label>
+        <div className='post-form-snippet-title-container'>
+          <label
+            htmlFor='post-form-snippet-title'
+            className='post-form-snippet-title'
+          >
+            Snippet Title (Profile Only){' '}
+          </label>
+          <input
+            type='text'
+            id='post-form-snippet-title'
+            value={snippetTitle}
+            onChange={(event) => setSnippetTitle(event.target.value)}
+          />
         </div>
-        <input
-          type='text'
-          id='post-form-snippet-title'
-          value={snippetTitle}
-          onChange={(event) => setSnippetTitle(event.target.value)}
-        />
         <CodeEditor
           setCode={setCode}
           code={code}
           language={language}
           setLanguage={setLanguage}
         />
-        <button type='submit'>Add</button>
+        <div className='post-form-description-container'>
+          <textarea
+            id='post-form-description'
+            value={content}
+            onChange={(event) => setContent(event.target.value)}
+            placeholder='//Explain Your Code'
+          />
+        </div>
+        <button className='submit-post-button' type='submit'>
+          Add
+        </button>
       </form>
-      {/* <div>
-        <pre>
-          <code className='language-javascript'>{content}</code>
-        </pre>
-      </div> */}
     </div>
   );
 };

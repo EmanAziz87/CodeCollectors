@@ -1,3 +1,13 @@
+.hub-parent-container {
+  height: 100%;
+  padding-top: 80px;
+}
+
+.hub-container {
+  height: 100%;
+  overflow-y: scroll;
+}
+
 .hub-icon-container {
   width: 100px;
   height: 100px;
@@ -18,4 +28,9 @@
   background-color: #393e46;
   color: #eeeeee;
   font-size: 16px;
+}
+
+.post-form-container {
+  display: flex;
+  justify-content: center;
 }

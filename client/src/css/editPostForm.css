@@ -1,0 +1,15 @@
+.edit-post-form-parent-container {
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.edit-form-back-button {
+  margin-top: 12px;
+}
+
+.submit-edit-button {
+  width: 150px;
+}

@@ -23,7 +23,10 @@ const Comment = ({ comment, post }) => {
     dispatch(deleteComment(comment.id));
   };
 
-  const handleShowEdit = () => {
+  const handleShowEdit = (buttonText) => {
+    if (buttonText === 'Cancel') {
+      setContent(comment.content);
+    }
     setShowEdit(!showEdit);
     setShowComment(!showComment);
     setShowReply(false);
@@ -58,10 +61,10 @@ const Comment = ({ comment, post }) => {
   const toggleReplyButton = replyButton ? { display: '' } : { display: 'none' };
 
   return (
-    <div>
+    <div className='comment-parent-container'>
       <div style={toggleComment}>
         <h3>{comment.author}</h3>
-        <div>{content}</div>
+        <div className='comment-content'>{content}</div>
       </div>
       {loggedUser && (
         <div style={toggleReply}>
@@ -72,33 +75,38 @@ const Comment = ({ comment, post }) => {
           />
         </div>
       )}
-      {loggedUser?.username === comment.author && (
-        <div>
-          <div style={toggleEdit}>
-            <EditCommentForm
-              comment={comment}
-              postId={post.id}
-              setContent={setContent}
-              content={content}
-              resetForms={handleShowComment}
-            />
+      <div className='comment-buttons-container'>
+        {loggedUser?.username === comment.author && (
+          <div className='edit-delete-comment-container'>
+            <div style={toggleEdit}>
+              <EditCommentForm
+                comment={comment}
+                postId={post.id}
+                setContent={setContent}
+                content={content}
+                oldContent={comment.content}
+                resetForms={handleShowComment}
+              />
+            </div>
+            <button
+              className='edit-comment-button'
+              style={toggleEditButton}
+              onClick={(event) => handleShowEdit(event.target.innerText)}
+            >
+              {showEdit ? 'Cancel' : 'Edit'}
+            </button>
+            <button style={toggleDeleteButton} onClick={handleDeleteComment}>
+              Delete
+            </button>
           </div>
-          <button style={toggleEditButton} onClick={handleShowEdit}>
-            {showEdit ? 'Cancel' : 'Edit'}
-          </button>
-          <button style={toggleDeleteButton} onClick={handleDeleteComment}>
-            Delete
-          </button>
-        </div>
-      )}
+        )}
 
-      {loggedUser && (
-        <div>
+        {loggedUser && (
           <button style={toggleReplyButton} onClick={handleShowReply}>
             {showReply ? 'Cancel' : 'Reply'}
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
