@@ -14,7 +14,7 @@ const setToken = (user) => {
 
 const createUser = async (userObject) => {
   const response = await axios.post(`${baseUrl}/users`, userObject);
-  return response.data;
+  return;
 };
 
 const getUser = async (id) => {

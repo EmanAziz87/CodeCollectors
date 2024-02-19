@@ -23,3 +23,29 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('register', (registerObject) => {
+  cy.contains('Login').click();
+  cy.get('.register-link').click();
+
+  cy.get('#register-name').type(registerObject.name);
+  cy.get('#register-username').type(registerObject.username);
+  cy.get('#register-password').type(registerObject.password);
+  cy.get('.register-button').click();
+
+  cy.contains('Discover Hubs');
+  cy.contains('Profile');
+  cy.contains('Logout');
+});
+
+Cypress.Commands.add('login', (loginObject) => {
+  cy.contains('Login').click();
+  cy.get('#login-username').type(loginObject.username);
+  cy.get('#login-password').type(loginObject.password);
+  cy.get('.login-button').click();
+
+  cy.contains('Hubs');
+  cy.contains('Profile');
+  cy.contains('Logout');
+  cy.contains('Discover Hubs');
+});

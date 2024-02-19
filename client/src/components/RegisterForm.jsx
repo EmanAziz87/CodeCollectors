@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import loginService from '../services/login';
+import userService from '../services/user';
 import { addUser } from '../reducers/userReducer';
 import '../css/registerForm.css';
 import '../css/loginForm.css';
@@ -16,6 +17,7 @@ const RegisterForm = () => {
 
   const handleRegister = async (event) => {
     event.preventDefault();
+    await userService.createUser({ name, username, password });
     const loggedUser = await loginService.login({ username, password });
     dispatch(addUser(loggedUser));
     window.localStorage.setItem(
