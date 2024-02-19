@@ -23,14 +23,23 @@ const TopComment = ({ topLevelComment, post }) => {
   };
 
   return (
-    <div style={{ paddingLeft: 10, borderLeft: '1px solid grey' }}>
+    <div
+      style={{
+        marginBottom: '12px',
+        paddingLeft: 10,
+        borderLeft: '1px solid grey',
+      }}
+    >
       <Comment comment={topLevelComment} post={post} />
-      <div>
-        {
-          commentLikes.filter((likes) => likes.commentId === topLevelComment.id)
-            .length
-        }
-        &#11014;
+      <div className='comment-likes-container'>
+        <span className='likes-count comment-likes-count'>
+          {
+            commentLikes.filter(
+              (likes) => likes.commentId === topLevelComment.id
+            ).length
+          }
+          &#11014;
+        </span>
         {loggedUser &&
           !commentLikes.find(
             (likes) =>
@@ -41,7 +50,7 @@ const TopComment = ({ topLevelComment, post }) => {
               className='comment-like-button'
               onClick={() => handleLikeComment(topLevelComment.id)}
             >
-              &#11014;
+              Like
             </button>
           )}
       </div>

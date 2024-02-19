@@ -34,9 +34,16 @@
   cursor: pointer;
 }
 
+.post-top-content-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .post-buttons-container {
   display: flex;
-  padding: 12px;
+  flex-direction: column;
+  padding: 0px 24px;
+  gap: 12px;
 }
 
 .edit-post-form-button {
@@ -47,7 +54,6 @@
   border-radius: 6px;
   font-size: 16px;
   font-weight: 700;
-  width: 60px;
 }
 
 .edit-post-form-button:hover {
@@ -62,9 +68,8 @@
   padding: 6px 10px;
   border-radius: 6px;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   width: 50px;
-  margin-left: 6px;
   cursor: pointer;
 }
 
@@ -72,8 +77,17 @@
   background-color: #d65a31;
 }
 
+.likes-count-container {
+  margin-top: 6px;
+  display: flex;
+  justify-content: flex-start;
+}
+
 .likes-count {
   font-weight: 700;
+  background-color: #d65a31;
+  padding: 6px;
+  border-radius: 6px;
 }
 
 .comment-container {
@@ -91,4 +105,9 @@
 .allpost-comments-container {
   margin-top: 24px;
   overflow-y: scroll;
+}
+
+.post-edit-like-buttons-container {
+  display: flex;
+  gap: 6px;
 }

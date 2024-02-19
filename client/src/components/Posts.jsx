@@ -59,12 +59,14 @@ const Posts = ({ hub }) => {
                     (likes) =>
                       likes.postId === post.id && likes.userId === loggedUser.id
                   ) && (
-                    <button
-                      className='like-post-button-hub'
-                      onClick={() => handleLikePost(post.id)}
-                    >
-                      Like
-                    </button>
+                    <div>
+                      <button
+                        className='like-post-button-hub'
+                        onClick={() => handleLikePost(post.id)}
+                      >
+                        Like
+                      </button>
+                    </div>
                   )}
                 {loggedUser?.username === post.author && (
                   <div>

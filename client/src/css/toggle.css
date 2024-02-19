@@ -12,6 +12,7 @@
 .toggle-button:hover {
   background-color: #595f69;
   opacity: 100%;
+  cursor: pointer;
 }
 
 .toggle-parent-container {

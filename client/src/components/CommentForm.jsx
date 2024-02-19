@@ -29,10 +29,9 @@ const CommentForm = ({ post, parentId, resetForms }) => {
           id='comment-content'
           value={content}
           onChange={(event) => setContent(event.target.value)}
-          autosize
         ></textarea>
         <div>
-          <button class='add-comment-button' type='submit'>
+          <button className='add-comment-button' type='submit'>
             Add
           </button>
         </div>

@@ -35,35 +35,41 @@
   color: #eeeeee;
 }
 
-.post-buttons-container {
+.post-buttons-hub-container {
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
 }
 
 .like-post-button-hub {
   border: none;
   background-color: #393e46;
   padding: 12px 20px;
-  border-top-right-radius: 3px;
   font-size: 16px;
   font-weight: 700;
   width: 92px;
+  border-radius: 6px;
 }
 
 .like-post-button-hub:hover {
   opacity: 100%;
   background-color: #d65a31;
+  cursor: pointer;
 }
 
 .delete-post-button-hub {
   border: none;
   background-color: #393e46;
   padding: 12px 20px;
-  border-bottom-right-radius: 3px;
   font-size: 16px;
   font-weight: 700;
   width: 92px;
+  border-radius: 6px;
+  margin-left: 12px;
 }
 
 .delete-post-button-hub:hover {
   opacity: 100%;
   background-color: #595f69;
+  cursor: pointer;
 }

@@ -1,3 +1,40 @@
 .login-form-container {
   padding-top: 80px;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form-sub-container {
+  background-color: #222831;
+  padding: 24px;
+  border-radius: 6px;
+  border: 1px solid #363f4d;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.106);
+}
+
+.username-container {
+  margin: 12px 0px;
+}
+
+.password-container {
+  margin-bottom: 12px;
+}
+
+.login-button {
+  text-decoration: none;
+  border: none;
+  background-color: #393e46;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  width: 80px;
+  margin-bottom: 6px;
+}
+
+.login-button:hover {
+  background-color: #d65a31;
+  cursor: pointer;
 }

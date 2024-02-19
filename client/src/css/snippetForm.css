@@ -1,0 +1,42 @@
+.snippet-form-parent-container {
+  padding-top: 80px;
+}
+
+.snippet-form-title-container {
+  margin: 12px 0px;
+}
+
+.save-snippet-button {
+  text-decoration: none;
+  border: none;
+  background-color: #393e46;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  width: 80px;
+  margin: 6px;
+}
+
+.save-snippet-button:hover {
+  background-color: #d65a31;
+  cursor: pointer;
+}
+
+.cancel-snippet-form-button {
+  text-decoration: none;
+  border: none;
+  background-color: #393e46;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  width: 80px;
+  margin: 6px;
+  opacity: 50%;
+}
+
+.cancel-snippet-form-button:hover {
+  opacity: 100%;
+  cursor: pointer;
+}

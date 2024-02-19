@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { initializeHubs, subscribeToHub } from '../reducers/hubsReducer';
-import hubService from '../services/hubs';
+import { initializeHubs } from '../reducers/hubsReducer';
 import Icons from '../icon/index';
 import '../css/allHubs.css';
 
@@ -64,19 +63,5 @@ const AllHubs = () => {
     </div>
   );
 };
-
-/* 
-1. of the user thats logged in
-
-2. look through that users list of subscribed hubs
-
-3. look for whether the a hub in that list matches the name of the hub the unsub 
-  button is linked to
-
-4. return that hub if you found it from the previos step, other wise return undefined
-
-5. evaluate the ternary condition
-
-*/
 
 export default AllHubs;

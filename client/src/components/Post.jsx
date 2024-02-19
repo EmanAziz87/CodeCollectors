@@ -41,13 +41,25 @@ const Post = () => {
       </button>
 
       <div className='post-sub-container'>
-        <h2 className='post-title'>{state.post.title}</h2>
-        <div>{state.post.author}</div>
+        <div className='post-top-content-container'>
+          <h2 className='post-title'>{state.post.title}</h2>
+          <div>{state.post.author}</div>
+          <div className='likes-count-container'>
+            <span className='likes-count'>
+              {
+                postLikes.filter((likes) => likes.postId === state.post.id)
+                  .length
+              }
+              &#11014;
+            </span>
+          </div>
+        </div>
         <Snippets post={state.post} postsFromHub={true} />
-        <div className='post-content'>{state.post.content}</div>
+
         <div className='post-buttons-container'>
-          {loggedUser?.username === state.post.author && matchingSnippet && (
-            <div>
+          <div className='post-content'>{state.post.content}</div>
+          <div className='post-edit-like-buttons-container'>
+            {loggedUser?.username === state.post.author && matchingSnippet && (
               <Link
                 to='/editPostForm'
                 state={{
@@ -61,9 +73,7 @@ const Post = () => {
               >
                 <button className='edit-post-form-button'> Edit</button>
               </Link>
-            </div>
-          )}
-          <div>
+            )}
             {loggedUser &&
               !postLikes.find(
                 (likes) =>
@@ -77,12 +87,6 @@ const Post = () => {
                   Like
                 </button>
               )}{' '}
-            <span className='likes-count'>
-              {
-                postLikes.filter((likes) => likes.postId === state.post.id)
-                  .length
-              }
-            </span>
           </div>
         </div>
       </div>

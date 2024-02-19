@@ -51,7 +51,7 @@ const PostForm = ({ hub, postFormRef }) => {
             htmlFor='post-form-snippet-title'
             className='post-form-snippet-title'
           >
-            Snippet Title (Profile Only){' '}
+            Snippet Title (Visible In Profile){' '}
           </label>
           <input
             type='text'

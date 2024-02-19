@@ -4,7 +4,7 @@
 }
 
 .comment-parent-container {
-  padding: 12px;
+  padding: 12px 12px 6px 12px;
 }
 
 .comment-content {
@@ -29,7 +29,7 @@
   width: 60px;
   cursor: pointer;
   margin-top: 4px;
-  margin-left: 6px;
+  margin-right: 4px;
 }
 
 .comment-buttons-container button:hover {

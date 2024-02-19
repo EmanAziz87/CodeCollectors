@@ -36,31 +36,39 @@ const LoginForm = () => {
 
   return (
     <div className='login-form-container'>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
+      <div className='login-form-sub-container'>
+        <h2>Login</h2>
+        <form onSubmit={handleLogin}>
+          <div className='username-container'>
+            <div>
+              <label htmlFor='login-username'>Username</label>
+            </div>
+            <input
+              type='text'
+              id='login-username'
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
+          </div>
+          <div className='password-container'>
+            <div>
+              <label htmlFor='login-password'> Password</label>
+            </div>
+            <input
+              type='password'
+              id='login-password'
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </div>
+          <button className='login-button' type='submit'>
+            Login
+          </button>
+        </form>
         <div>
-          <label htmlFor='login-username'>Username: </label>
-          <input
-            type='text'
-            id='login-username'
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
+          <div>Don't have an account? Register Here!</div>
+          <Link to='/register'>Register</Link>
         </div>
-        <div>
-          <label htmlFor='login-password'> Password: </label>
-          <input
-            type='password'
-            id='login-password'
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </div>
-        <button type='submit'>Login</button>
-      </form>
-      <div>
-        <div>Don't have an account? Register Here!</div>
-        <Link to='/register'>Register</Link>
       </div>
     </div>
   );
