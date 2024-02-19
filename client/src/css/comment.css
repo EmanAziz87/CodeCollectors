@@ -2,3 +2,36 @@
   padding-left: 10px;
   border-left: 2px solid rgb(95, 95, 95);
 }
+
+.comment-parent-container {
+  padding: 12px 12px 6px 12px;
+}
+
+.comment-content {
+  padding: 12px;
+  width: 50%;
+  background-color: #393e46;
+  border-radius: 6px;
+}
+
+.comment-buttons-container {
+  display: flex;
+}
+
+.comment-buttons-container button {
+  text-decoration: none;
+  border: none;
+  background-color: #393e46;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  width: 60px;
+  cursor: pointer;
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.comment-buttons-container button:hover {
+  background-color: #d65a31;
+}

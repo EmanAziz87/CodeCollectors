@@ -12,7 +12,6 @@ const hubsSlice = createSlice({
     alreadySubbed(state, action) {
       return state;
     },
-    unSub(state, action) {},
   },
 });
 
@@ -39,6 +38,8 @@ export const subscribeToHub = (passedHub) => {
           ? hub
           : { ...hub, subscribers: passedHub.subscribers - 1 }
       );
+
+      console.log(passedHub.subscribers);
 
       console.log('NEWHUBSTATE', newHubState);
 

@@ -1,0 +1,113 @@
+.post-parent-container {
+  padding-top: 80px;
+  height: 100vh;
+}
+
+.post-sub-container {
+  margin-top: 16px;
+  background-color: #31353c;
+  padding: 12px;
+}
+
+.post-content {
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: #393e46;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.back-button {
+  border: none;
+  background-color: #393e46;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  opacity: 50%;
+}
+
+.back-button:hover {
+  background-color: #595f69;
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.post-top-content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-buttons-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 24px;
+  gap: 12px;
+}
+
+.edit-post-form-button {
+  text-decoration: none;
+  border: none;
+  background-color: #393e46;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.edit-post-form-button:hover {
+  background-color: #d65a31;
+  cursor: pointer;
+}
+
+.like-post-button-postpage {
+  text-decoration: none;
+  border: none;
+  background-color: #393e46;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 50px;
+  cursor: pointer;
+}
+
+.like-post-button-postpage:hover {
+  background-color: #d65a31;
+}
+
+.likes-count-container {
+  margin-top: 6px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.likes-count {
+  font-weight: 700;
+  background-color: #d65a31;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.comment-container {
+  margin-top: 12px;
+  width: 100%;
+  padding: 16px;
+}
+
+.comment-form-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.allpost-comments-container {
+  margin-top: 24px;
+  overflow-y: scroll;
+}
+
+.post-edit-like-buttons-container {
+  display: flex;
+  gap: 6px;
+}

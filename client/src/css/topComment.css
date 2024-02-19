@@ -1,0 +1,29 @@
+.comment-likes-container {
+  margin-left: 12px;
+  display: flex;
+}
+
+.comment-like-button {
+  text-decoration: none;
+  border: none;
+  background-color: #393e46;
+  padding: 7px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.comment-like-button:hover {
+  background-color: #d65a31;
+  color: black;
+}
+
+.comment-likes-count {
+  color: rgb(212, 214, 231);
+}
+
+.comment-and-likes-container {
+  display: flex;
+}

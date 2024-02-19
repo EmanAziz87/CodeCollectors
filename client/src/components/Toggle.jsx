@@ -1,4 +1,5 @@
 import { forwardRef, useState, useImperativeHandle } from 'react';
+import '../css/toggle.css';
 
 const Toggle = forwardRef((props, ref) => {
   const [reveal, setReveal] = useState(false);
@@ -17,13 +18,19 @@ const Toggle = forwardRef((props, ref) => {
   });
 
   return (
-    <div>
+    <div className='toggle-parent-container'>
       <div style={hide} className='hidden-details'>
-        <button onClick={handleReveal}>{props.buttonLabel}</button>
+        <button className='toggle-button' onClick={handleReveal}>
+          {props.buttonLabel}
+        </button>
       </div>
       <div style={show} className='show-details'>
-        <button onClick={handleReveal}>Cancel</button>
         <div>{props.children}</div>
+        <div className='exit-toggle-button-container'>
+          <button className='toggle-button' onClick={handleReveal}>
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );
