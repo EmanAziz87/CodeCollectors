@@ -8,6 +8,7 @@ const EditCommentForm = ({
   setContent,
   content,
   resetForms,
+  oldContent,
 }) => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(({ user }) => user);
@@ -32,7 +33,9 @@ const EditCommentForm = ({
           cols='30'
           rows='10'
         ></textarea>
-        <button type='submit'>Add</button>
+        <div>
+          <button type='submit'>Add</button>
+        </div>
       </form>
     </div>
   );

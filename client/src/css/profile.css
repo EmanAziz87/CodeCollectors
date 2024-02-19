@@ -1,0 +1,92 @@
+.profile-parent-container {
+  padding-top: 80px;
+  height: 100vh;
+}
+
+.profile-subscribed-hubs-container {
+  display: flex;
+  background-color: #393e46;
+  width: 400px;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.profile-hub-logo-container {
+  padding: 12px;
+}
+
+.profile-title {
+  margin-bottom: 12px;
+}
+
+.snippet-form-button {
+  border: none;
+  background-color: #393e46;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 12px;
+}
+
+.snippet-form-button:hover {
+  background-color: #d65a31;
+  cursor: pointer;
+}
+
+.post-link-container {
+  width: 100%;
+}
+
+.delete-post-button-container {
+}
+
+.delete-post-button {
+  border: none;
+  background-color: #393e46;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 12px;
+  opacity: 50%;
+}
+
+.delete-post-button:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.snippet-form-container {
+  margin-top: 12px;
+}
+
+.posts-profile-container {
+  border: 3px solid #595f69;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.snippets-profile-container {
+  border: 3px solid #595f69;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.delete-account-container {
+  margin: 12px;
+}
+
+.delete-account-button {
+  margin: 24px;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-weight: 700;
+  background-color: rgb(180, 2, 2);
+}
+
+.delete-account-button:hover {
+  background-color: rgb(232, 0, 0);
+}

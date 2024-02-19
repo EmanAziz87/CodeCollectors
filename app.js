@@ -19,6 +19,7 @@ const {
 } = require('./utils/middleware');
 
 app.use(express.json());
+app.use(express.static('dist'));
 app.use(getToken);
 
 app.use('/api/users', userExtractor, usersRouter);

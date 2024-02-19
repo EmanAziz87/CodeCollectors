@@ -1,1 +1,28 @@
+.snippet-profile-container {
+  border-top: solid 3px #2b3d5a54;
+}
 
+.snippet-container {
+  margin: 12px 24px;
+}
+
+.snippet-buttons-container {
+  display: flex;
+}
+
+.snippet-buttons-container button {
+  text-decoration: none;
+  border: none;
+  background-color: #393e46;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  width: 80px;
+  margin: 4px;
+}
+
+.snippet-buttons-container button:hover {
+  background-color: #d65a31;
+  cursor: pointer;
+}

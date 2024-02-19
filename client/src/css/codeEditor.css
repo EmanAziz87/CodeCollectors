@@ -1,0 +1,17 @@
+#languages {
+  color: black;
+  background-color: #eeeeee;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.language-select-options {
+  color: black;
+  background-color: #eeeeee;
+  border: none;
+  font-weight: 600;
+}

@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import CodeEditor from './CodeEditor';
 import snippetService from '../services/snippets';
 import { createSnippet } from '../reducers/snippetsReducer';
 import { useNavigate } from 'react-router-dom';
+import '../css/snippetForm.css';
 
 const SnippetForm = () => {
   const [title, setTitle] = useState('');
@@ -26,12 +28,12 @@ const SnippetForm = () => {
   };
 
   return (
-    <div>
+    <div className='snippet-form-parent-container'>
       <h2>Create Your Snippet</h2>
       <form onSubmit={handleAddSnippet}>
-        <div>
+        <div className='snippet-form-title-container'>
           <div>
-            <label htmlFor='snippet-title-form'>Snippet Title:</label>
+            <label htmlFor='snippet-title-form'>Snippet Title</label>
           </div>
           <input
             type='text'
@@ -41,7 +43,6 @@ const SnippetForm = () => {
           />
         </div>
         <div>
-          <h3>Code Snippet:</h3>
           <CodeEditor
             setCode={setCode}
             code={code}
@@ -49,7 +50,12 @@ const SnippetForm = () => {
             setLanguage={setLanguage}
           />
         </div>
-        <button type='submit'>Save</button>
+        <button className='save-snippet-button' type='submit'>
+          Save
+        </button>
+        <Link to={`/profile/${loggedUser.username}`}>
+          <button className='cancel-snippet-form-button'>Cancel</button>
+        </Link>
       </form>
     </div>
   );

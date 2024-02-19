@@ -12,6 +12,7 @@ import SnippetForm from './components/SnippetForm';
 import Post from './components/Post';
 import EditPostForm from './components/EditPostForm';
 import EditSnippetForm from './components/EditSnippetForm';
+import './css/app.css';
 
 function App() {
   const loggedUser = useSelector(({ user }) => user);
@@ -32,9 +33,9 @@ function App() {
 
   console.log('CURRENT LOGGED IN USER:', loggedUser);
   return (
-    <div>
+    <div className='app-container'>
       <Navigation />
-      <Routes>
+      <Routes className='routes-container'>
         <Route path='/snippet_form' element={<SnippetForm />} />
         <Route path='/editPostForm' element={<EditPostForm />} />
         <Route path='/snippetEditForm' element={<EditSnippetForm />} />

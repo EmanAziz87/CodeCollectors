@@ -4,6 +4,8 @@ import CodeEditor from './CodeEditor';
 import snippetService from '../services/snippets';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { editSnippet } from '../reducers/snippetsReducer';
+import '../css/editSnippetForm.css';
+import '../css/snippetForm.css';
 
 const EditSnippetForm = () => {
   const { state } = useLocation();
@@ -31,12 +33,12 @@ const EditSnippetForm = () => {
   };
 
   return (
-    <div>
-      <h2>Edit Create Your Snippet</h2>
+    <div className='snippet-form-parent-container'>
+      <h2>Edit Snippet</h2>
       <form onSubmit={handleEditSnippet}>
-        <div>
+        <div className='snippet-form-title-container'>
           <div>
-            <label htmlFor='snippet-title-form'>Snippet Title:</label>
+            <label htmlFor='snippet-title-form'>Snippet Title</label>
           </div>
           <input
             type='text'
@@ -46,7 +48,6 @@ const EditSnippetForm = () => {
           />
         </div>
         <div>
-          <h3>Code Snippet:</h3>
           <CodeEditor
             setCode={setCode}
             code={code}
@@ -54,11 +55,16 @@ const EditSnippetForm = () => {
             setLanguage={setLanguage}
           />
         </div>
-        <button type='submit'>Confirm Edit</button>
+        <button className='save-snippet-button' type='submit'>
+          Confirm
+        </button>
+        <button
+          className='cancel-snippet-form-button'
+          onClick={() => navigate(`/profile/${loggedUser.username}`)}
+        >
+          Cancel
+        </button>
       </form>
-      <button onClick={() => navigate(`/profile/${loggedUser.username}`)}>
-        Cancel
-      </button>
     </div>
   );
 };

@@ -4,6 +4,8 @@ import { editPost } from '../reducers/postsReducer';
 import postService from '../services/posts';
 import CodeEditor from './CodeEditor';
 import { useLocation, useNavigate } from 'react-router-dom';
+import '../css/postForm.css';
+import '../css/editPostForm.css';
 
 const EditPostForm = () => {
   const { state } = useLocation();
@@ -53,8 +55,56 @@ const EditPostForm = () => {
   };
 
   return (
-    <div>
+    <div className='edit-post-form-parent-container'>
+      <div className='post-form-parent-container'>
+        <form onSubmit={handleEditPost}>
+          <div className='post-form-title-container'>
+            <div>
+              <label htmlFor='post-form-title'>Post Title: </label>
+            </div>
+            <input
+              type='text'
+              id='post-form-title'
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+            />
+          </div>
+          <div className='post-form-snippet-title-container'>
+            <div>
+              <label htmlFor='post-form-snippet-title'>Snippet Title: </label>
+            </div>
+            <input
+              type='text'
+              id='post-form-snippet-title'
+              value={snippetTitle}
+              onChange={(event) => setSnippetTitle(event.target.value)}
+            />
+          </div>
+          <CodeEditor
+            setCode={setCode}
+            code={code}
+            language={language}
+            setLanguage={setLanguage}
+          />
+          <div className='post-form-description-container'>
+            <textarea
+              id='post-form-description'
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
+              rows={5}
+              cols={40}
+            />
+          </div>
+          <button
+            className='submit-post-button submit-edit-button'
+            type='submit'
+          >
+            Confirm Edit
+          </button>
+        </form>
+      </div>
       <button
+        className='back-button edit-form-back-button'
         onClick={() =>
           navigate(state.prevPath, {
             state: {
@@ -66,49 +116,8 @@ const EditPostForm = () => {
           })
         }
       >
-        Go Back
+        Cancel
       </button>
-      <form onSubmit={handleEditPost}>
-        <div>
-          <div>
-            <div>
-              <label htmlFor='post-form-title'>Post Title: </label>
-            </div>
-            <input
-              type='text'
-              id='post-form-title'
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor='post-form-content'>Content: </label>
-          </div>
-          <textarea
-            id='post-form-description'
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
-            rows={5}
-            cols={40}
-          />
-        </div>
-        <div>
-          <label htmlFor='post-form-snippet-title'>Snippet Title: </label>
-        </div>
-        <input
-          type='text'
-          id='post-form-snippet-title'
-          value={snippetTitle}
-          onChange={(event) => setSnippetTitle(event.target.value)}
-        />
-        <CodeEditor
-          setCode={setCode}
-          code={code}
-          language={language}
-          setLanguage={setLanguage}
-        />
-        <button type='submit'>Confirm Edit</button>
-      </form>
     </div>
   );
 };

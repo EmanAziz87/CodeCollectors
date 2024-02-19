@@ -1,6 +1,7 @@
 import Editor from 'react-simple-code-editor';
 import Prism from 'prismjs';
 import '../prism/languageImports';
+import '../css/codeEditor.css';
 
 const CodeEditor = ({ setCode, code, language, setLanguage }) => {
   if (!language) {
@@ -54,7 +55,7 @@ const CodeEditor = ({ setCode, code, language, setLanguage }) => {
   };
 
   return (
-    <div>
+    <div className='code-editor-parent-container'>
       <select
         id='languages'
         name='selectedLanguage'
@@ -62,25 +63,30 @@ const CodeEditor = ({ setCode, code, language, setLanguage }) => {
         onChange={(event) => setLanguage(event.target.value)}
       >
         {languages.map((lang) => (
-          <option key={lang} value={lang}>
+          <option className='language-select-options' key={lang} value={lang}>
             {langFormat(lang)}
           </option>
         ))}
       </select>
-      <Editor
-        value={code}
-        onValueChange={(code) => setCode(code)}
-        padding={10}
-        highlight={(code) =>
-          Prism.highlight(code, Prism.languages[language.toLowerCase()])
-        }
-        style={{
-          fontFamily: '"Fira code", "Fira Mono", monospace',
-          fontSize: 12,
-          backgroundColor: 'rgb(39,40,34)',
-          color: 'white',
-        }}
-      />
+      <div className='code-editor-container'>
+        <Editor
+          value={code}
+          onValueChange={(code) => setCode(code)}
+          padding={10}
+          highlight={(code) =>
+            Prism.highlight(code, Prism.languages[language.toLowerCase()])
+          }
+          placeholder='//Type Some Code Here'
+          style={{
+            fontFamily: '"Fira code", "Fira Mono", monospace',
+            fontSize: 12,
+            backgroundColor: 'rgb(39,40,34)',
+            width: '100%',
+            height: '150px',
+            borderRadius: '6px',
+          }}
+        />
+      </div>
     </div>
   );
 };
