@@ -31,7 +31,7 @@ jobs:
         with:
           working-directory: ./client
           command: npm run test:e2e
-          start: npm run dev
+          start: npm run start-prod
           wait-on: http://localhost:3000
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' }}
