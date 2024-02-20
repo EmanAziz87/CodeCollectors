@@ -25,13 +25,12 @@ jobs:
       - name: Run Tests
         run: npm run deploy:test
       - name: Build for Prod
-        run: npm run dev
+        run: npm run build:ui
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
-          working-directory: ./client
           command: npm run test:e2e
-          start: npm run start-prod
+          start: npm run start
           wait-on: http://localhost:3000
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' }}

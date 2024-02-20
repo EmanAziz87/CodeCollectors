@@ -9,6 +9,7 @@
     "test": "NODE_ENV=test jest --verbose --runInBand",
     "deploy:test": "NODE_ENV=production jest --runInBand",
     "start:test": "NODE_ENV=test node index.js",
+    "test:e2e": "cd ./client && cypress run",
     "build:ui": "rm -rf dist && cd ./client && npm run build && cp -r dist ../",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
   },
