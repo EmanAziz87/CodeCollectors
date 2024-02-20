@@ -84,7 +84,7 @@ describe('updating hubs in the database', () => {
     );
   });
 
-  test('cannot subscribe again if already subscribed', async () => {
+  test('if already subscribed, unsubscribe', async () => {
     const { user, token } = await createUserAndLogin(
       'test',
       'testusername',
@@ -104,20 +104,20 @@ describe('updating hubs in the database', () => {
     await api
       .patch(`/api/hubs/${hubPreSubIncrease.id}`)
       .set('Authorization', `Bearer ${token}`)
-      .expect(400);
+      .expect(204);
 
     const hubPostSubIncrease = await getHub(hubPreSubIncrease.id);
     const userPostSubscribe = await getUser(user.id);
 
     expect(userPostSubscribe.subscribedHubs).toHaveLength(
-      userPreSubscribe.subscribedHubs.length + 1
+      userPreSubscribe.subscribedHubs.length
     );
 
-    expect(userPostSubscribe.subscribedHubs).toContain(hubPostSubIncrease.name);
-
-    expect(hubPostSubIncrease.subscribers).toBe(
-      hubPreSubIncrease.subscribers + 1
+    expect(userPostSubscribe.subscribedHubs).not.toContain(
+      hubPostSubIncrease.name
     );
+
+    expect(hubPostSubIncrease.subscribers).toBe(hubPreSubIncrease.subscribers);
   });
   test('cannot subscribe to a hub if your not logged in', async () => {
     const allHubs = await getAllHubs();
