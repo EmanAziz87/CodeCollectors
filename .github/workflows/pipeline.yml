@@ -8,8 +8,6 @@ on:
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-latest
-    env:
-      DB_EXTERNAL_URL: ${{ secrets.DB_EXTERNAL_URL }}
     steps:
       - uses: actions/checkout@v4
 
