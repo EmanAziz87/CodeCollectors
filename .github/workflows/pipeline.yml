@@ -9,7 +9,7 @@ jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-latest
     env:
-      DB_EXTERNAL_URL: postgres://ccdatabase_wyhe_user:Howdoyoudo87!@dpg-cmumjff109ks73b63l5g-a.ohio-postgres.render.com/ccdatabase_wyhe
+      DB_EXTERNAL_URL: ${{ secrets.DB_EXTERNAL_URL }}
     steps:
       - uses: actions/checkout@v4
 
