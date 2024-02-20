@@ -28,13 +28,16 @@ const EditCommentForm = ({
         </div>
         <textarea
           id='comment-content'
+          className='edit-comment-content'
           value={content}
           onChange={(event) => setContent(event.target.value)}
           cols='30'
           rows='10'
         ></textarea>
         <div>
-          <button type='submit'>Add</button>
+          <button className='update-comment-submit-button' type='submit'>
+            Add
+          </button>
         </div>
       </form>
     </div>
