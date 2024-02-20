@@ -25,7 +25,7 @@ jobs:
       - name: Run Tests
         run: npm run deploy:test
       - name: Build for Prod
-        run: npm run build:ui
+        run: npm run dev
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
