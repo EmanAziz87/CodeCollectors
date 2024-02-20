@@ -3,6 +3,6 @@
 echo "Build script"
 
 npm install
-npm run build
+npm run build:ui
 
-npm run dev
+npm run start
