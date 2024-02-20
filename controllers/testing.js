@@ -3,6 +3,7 @@ const Users = require('../models/Users');
 const Posts = require('../models/Posts');
 const Snippets = require('../models/Snippets');
 const Comments = require('../models/Comments');
+const Hubs = require('../models/Hubs');
 
 testingRouter.post('/reset', (req, res) => {
   Users.truncate({ cascade: true });

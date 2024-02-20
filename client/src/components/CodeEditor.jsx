@@ -70,6 +70,7 @@ const CodeEditor = ({ setCode, code, language, setLanguage }) => {
       </select>
       <div className='code-editor-container'>
         <Editor
+          className='code-editor'
           value={code}
           onValueChange={(code) => setCode(code)}
           padding={10}

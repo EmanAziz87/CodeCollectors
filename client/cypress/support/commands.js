@@ -49,3 +49,27 @@ Cypress.Commands.add('login', (loginObject) => {
   cy.contains('Logout');
   cy.contains('Discover Hubs');
 });
+
+Cypress.Commands.add('goToHub', () => {
+  cy.get('#hub-search-input').type('javascript');
+  cy.get('.language-icon').click();
+  cy.contains('JavaScript');
+  cy.contains('Subscribers');
+  cy.contains('Create Post');
+  cy.contains('Posts');
+});
+
+Cypress.Commands.add('createPost', () => {
+  cy.contains('Create Post').click();
+
+  cy.get('#post-form-title').type('An Incredible Post');
+  cy.get('#post-form-snippet-title').type('This is visible in your profile');
+  cy.get('select').select('JavaScript');
+  cy.get('.code-editor').type('console.log("hello from cypress")');
+  cy.get('#post-form-description').type('the above code is incredible');
+  cy.get('.submit-post-button').click();
+
+  cy.contains('An Incredible Post');
+  cy.contains('Like');
+  cy.contains('Delete');
+});
