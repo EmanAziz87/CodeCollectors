@@ -20,7 +20,7 @@ jobs:
         run: npm install
         working-directory: ./client
       - name: Run Tests
-        run: npm test
+        run: npm run deploy:test
       - name: Build for Prod
         run: npm run build:ui
       - name: e2e tests
