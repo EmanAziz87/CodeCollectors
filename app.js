@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const usersRouter = require('./controllers/users');
 const postsRouter = require('./controllers/posts');
@@ -20,6 +21,7 @@ const {
 } = require('./utils/middleware');
 
 app.use(express.json());
+app.use(cors());
 app.use(express.static('dist'));
 app.use(getToken);
 
