@@ -29,8 +29,9 @@ jobs:
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
+          working-directory: ./client
           command: npm run test:e2e
-          start: npm run start
+          start: npm run start-server
           wait-on: http://localhost:3000
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' }}
