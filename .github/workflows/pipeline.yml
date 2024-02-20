@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DB_EXTERNAL_URL: ${{ secrets.DB_EXTERNAL_URL }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
     steps:
       - uses: actions/checkout@v4
 
