@@ -67,7 +67,9 @@ const LoginForm = () => {
         </form>
         <div>
           <div>Don't have an account? Register Here!</div>
-          <Link to='/register'>Register</Link>
+          <Link to='/register' className='register-link'>
+            Register
+          </Link>
         </div>
       </div>
     </div>

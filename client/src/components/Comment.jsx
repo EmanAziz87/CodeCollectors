@@ -102,7 +102,11 @@ const Comment = ({ comment, post }) => {
         )}
 
         {loggedUser && (
-          <button style={toggleReplyButton} onClick={handleShowReply}>
+          <button
+            className='comment-reply-button'
+            style={toggleReplyButton}
+            onClick={handleShowReply}
+          >
             {showReply ? 'Cancel' : 'Reply'}
           </button>
         )}
