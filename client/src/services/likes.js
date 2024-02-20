@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = 'api/likes';
+const baseUrl = 'http://localhost:5173/api';
 
 let token;
 
