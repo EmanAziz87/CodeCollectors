@@ -10,8 +10,7 @@
     "deploy:test": "jest --runInBand",
     "cypress:open": "cypress open",
     "test:e2e": "cypress run",
-    "build:ui": "rm -rf dist && cd ./client && npm run build && cp -r dist ../",
-    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
+    "build:ui": "rm -rf dist && cd ./client && npm run build"
   },
   "keywords": [],
   "author": "",
