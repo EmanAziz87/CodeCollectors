@@ -4,7 +4,7 @@
   "description": "Store your favorite or most useful code snippets for personal use or to share them with others through interactions with other users!",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node index.js --host",
+    "start": "node index.js --host",
     "dev": "NODE_ENV=development nodemon index.js",
     "test": "NODE_ENV=test jest --verbose --runInBand",
     "deploy:test": "NODE_ENV=production jest --runInBand",
