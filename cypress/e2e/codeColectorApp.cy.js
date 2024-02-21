@@ -88,7 +88,7 @@ describe('Code Collector App', function () {
       });
     });
 
-    it.only('creating a snippet in profile, editing it, then deleting it', function () {
+    it('creating a snippet in profile, editing it, then deleting it', function () {
       cy.contains('Profile').click();
       cy.contains('Add Snippet').click();
 

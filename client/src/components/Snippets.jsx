@@ -12,7 +12,7 @@ const Snippets = ({ post, postsFromHub }) => {
 
   useEffect(() => {
     dispatch(initializeSnippets());
-  }, []);
+  }, [snippets.length]);
 
   useEffect(() => {
     Prism.highlightAll();
