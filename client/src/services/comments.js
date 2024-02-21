@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:5173/api';
+const baseUrl = '/api/comments';
 
 let token;
 
@@ -14,7 +14,7 @@ const setToken = (user) => {
 };
 
 const getComments = async (postId) => {
-  const response = await axios.get(`${baseUrl}/comments/${postId}`);
+  const response = await axios.get(`${baseUrl}/${postId}`);
   return response.data;
 };
 
@@ -23,7 +23,7 @@ const createComment = async (postId, commentObject) => {
     headers: { Authorization: token },
   };
   const response = await axios.post(
-    `${baseUrl}/comments/${postId}`,
+    `${baseUrl}/${postId}`,
     commentObject,
     config
   );
@@ -34,7 +34,7 @@ const editComment = async (commentId, commentObject) => {
   const config = {
     headers: { Authorization: token },
   };
-  await axios.patch(`${baseUrl}/comments/${commentId}`, commentObject, config);
+  await axios.patch(`${baseUrl}/${commentId}`, commentObject, config);
 };
 
 const deleteComment = async (commentId) => {
@@ -42,7 +42,7 @@ const deleteComment = async (commentId) => {
     headers: { Authorization: token },
   };
 
-  await axios.delete(`${baseUrl}/comments/${commentId}`, config);
+  await axios.delete(`${baseUrl}/${commentId}`, config);
 };
 
 export default {

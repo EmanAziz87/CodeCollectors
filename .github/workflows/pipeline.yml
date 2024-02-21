@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches: [main]
-    types: [opened, synchronize]
+  # pull_request:
+  #   branches: [main]
+  #   types: [opened, synchronize]
 
 jobs:
   simple_deployment_pipeline:
@@ -28,12 +28,12 @@ jobs:
       - name: Run Tests
         run: npm run deploy:test
       - name: e2e tests
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v5
         with:
           working-directory: ./client
           build: npm run build-client
+          command: npm run test:e2e
           start: npm run start-server
-          browser: chrome
           wait-on: http://localhost:3000
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' }}

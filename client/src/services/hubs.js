@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:5173/api';
+const baseUrl = '/api/hubs';
 
 let token;
 
@@ -14,7 +14,7 @@ const setToken = (user) => {
 };
 
 const getHubs = async () => {
-  const allHubs = await axios.get(`${baseUrl}/hubs`);
+  const allHubs = await axios.get(`${baseUrl}`);
   return allHubs.data;
 };
 
@@ -22,7 +22,7 @@ const subscribeToHub = async (id, subsIncreased) => {
   const config = {
     headers: { Authorization: token },
   };
-  await axios.patch(`${baseUrl}/hubs/${id}`, subsIncreased, config);
+  await axios.patch(`${baseUrl}/${id}`, subsIncreased, config);
 };
 
 export default { getHubs, subscribeToHub, setToken };
