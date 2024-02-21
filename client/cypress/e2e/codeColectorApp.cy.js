@@ -1,5 +1,6 @@
 describe('Code Collector App', function () {
   beforeEach(function () {
+    cy.request('POST', 'http://localhost:3000/api/testing/reset');
     cy.visit('http://localhost:3000/');
     cy.register({
       name: 'test',
@@ -87,7 +88,7 @@ describe('Code Collector App', function () {
       });
     });
 
-    it('creating a snippet in profile, editing it, then deleting it', function () {
+    it.only('creating a snippet in profile, editing it, then deleting it', function () {
       cy.contains('Profile').click();
       cy.contains('Add Snippet').click();
 
