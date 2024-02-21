@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
 const usersRouter = require('./controllers/users');
 const postsRouter = require('./controllers/posts');
 const hubsRouter = require('./controllers/hubs');

@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:5173/api';
+const baseUrl = '/api/snippets';
 
 let token;
 
@@ -13,7 +13,7 @@ const setToken = (user) => {
 };
 
 const getAllSnippets = async () => {
-  const response = await axios.get(`${baseUrl}/snippets`);
+  const response = await axios.get(`${baseUrl}`);
   return response.data;
 };
 
@@ -21,11 +21,7 @@ const createSnippet = async (snippetObject) => {
   const config = {
     headers: { Authorization: token },
   };
-  const snippet = await axios.post(
-    `${baseUrl}/snippets`,
-    snippetObject,
-    config
-  );
+  const snippet = await axios.post(`${baseUrl}`, snippetObject, config);
   return snippet.data;
 };
 
@@ -33,14 +29,14 @@ const editSnippet = async (snippetId, snippetObject) => {
   const config = {
     headers: { Authorization: token },
   };
-  await axios.patch(`${baseUrl}/snippets/${snippetId}`, snippetObject, config);
+  await axios.patch(`${baseUrl}/${snippetId}`, snippetObject, config);
 };
 
 const deleteSnippet = async (snippetId) => {
   const config = {
     headers: { Authorization: token },
   };
-  await axios.delete(`${baseUrl}/snippets/${snippetId}`, config);
+  await axios.delete(`${baseUrl}/${snippetId}`, config);
 };
 
 export default {

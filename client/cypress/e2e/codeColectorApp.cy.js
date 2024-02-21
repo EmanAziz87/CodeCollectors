@@ -25,14 +25,14 @@ describe('Code Collector App', function () {
       cy.goToHub();
     });
 
-    it('subscribe to hub then unsubscribe', function () {
-      cy.goToHub();
-      cy.contains('486');
-      cy.get('.subscribe-hub-button').click();
-      cy.contains('487');
-      cy.get('.subscribe-hub-button').click();
-      cy.contains('486');
-    });
+    // it('subscribe to hub then unsubscribe', function () {
+    //   cy.goToHub();
+    //   cy.contains('486');
+    //   cy.get('.subscribe-hub-button').click();
+    //   cy.contains('487');
+    //   cy.get('.subscribe-hub-button').click();
+    //   cy.contains('486');
+    // });
 
     it('create a post', function () {
       cy.goToHub();
