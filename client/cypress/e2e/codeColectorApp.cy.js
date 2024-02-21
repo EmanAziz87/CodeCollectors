@@ -1,6 +1,6 @@
 describe('Code Collector App', function () {
   beforeEach(function () {
-    cy.request('POST', 'http://localhost:5173/api/testing/reset');
+    cy.request('POST', 'http://localhost:3000/api/testing/reset');
     cy.visit('http://localhost:5173/');
     cy.register({
       name: 'test',
