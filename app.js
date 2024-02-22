@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-
+const cors = require('cors');
 const usersRouter = require('./controllers/users');
 const postsRouter = require('./controllers/posts');
 const hubsRouter = require('./controllers/hubs');
@@ -20,6 +20,7 @@ const {
 } = require('./utils/middleware');
 
 app.use(express.json());
+app.use(cors());
 app.use(express.static('dist'));
 app.use(getToken);
 
@@ -30,11 +31,7 @@ app.use('/api/comments', userExtractor, commentRouter);
 app.use('/api/likes', userExtractor, likesRouter);
 app.use('/api/hubs', userExtractor, hubsRouter);
 app.use('/api/snippets', userExtractor, snippetsRouter);
-
-if (process.env.NODE_ENV === 'test') {
-  const testingRouter = require('./controllers/testing');
-  app.use('/api/testing', testingRouter);
-}
+app.use('/api/testing', testingRouter);
 
 app.use(unknownEndpoint);
 app.use(errorHandler);

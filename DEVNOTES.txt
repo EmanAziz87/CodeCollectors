@@ -16,7 +16,6 @@ Bcrypt (Auth)
 
 *** Tools ***
 Jest 
-React Testing Library (Frontend Tests)
 Cypress (e2e testing)
 Render (Deployment Service)
 Github Actions (CI/CD pipeline)
@@ -32,9 +31,21 @@ SNIPPETS
 COMMENTS
 
 HUBS have many POSTS
+
 USERS have many POSTS
 USERS have many SNIPPETS
+USERS have many COMMENTS
+USERS have many COMMENTLIKES
+USERS have many POSTLIKES
+
 POSTS have one SNIPPETS
+POSTS have many COMMENTS
+POSTS have many POSTLIKES
+
+SNIPPETS have one POSTS
+
+COMMENTS have many COMMENTLIKES
+
 
 users
 | id  | username | name | password | subscribedHubs |
@@ -63,195 +74,6 @@ postLikes
 commentLikes
 | id  | commentId | userId |
 | --- | --------- | ------ |
-
---Versioning (semantic): v0.0.0 (major.minor.patch)--
-Versioning will start with v0.0.0. v1.0.0 will represent our 
-deployed application with minimal yet fully functional features.
-
-Version Jumps will be implemented through our simple Deployment
-pipeline that will be created early in development. Our pipeline
-will only update versions upon an approved merge of a pull request
-to the main branch. A condition will be implemented within the 
-pipeline so that version jump wont apply if the #skip tag is
-in our commit message. By default version bumps increment the patch
-value. 
-
-
-[DEVELOPMENT STEPS (WILL ADD TO AND CHANGE MOVING FORWARD)]
-
-1. INITIALIZE PROJECT STRUCTURE
-
-    --root directory will serve as our backend while our client folder
-    will serve as our frontend. 
-    
-    --github actions folders/files will be created early on as well in 
-    order to implement the foundations of our development pipeline.
-        -only for tagging releases in the beginning
-
-    --our routes are handled in 4 controllers (hubs, posts, snippets, users)
-
-    --Database must be connected conditionally depending on the NODE_ENV
-    value (for either development/production vs testing)
-
-2. ROUTES
-    Routes, their api endpoints, and their functionality:
-
-    Users: 
-        GET - /api/users - to grab all users [DONE]
-        POST - /api/users - to create new user [DONE]
-        DELETE - /api/users - to delete a user [---] 
-
-    Login:
-        POST - /api/login - to authenticate user and assign priviledges
-                through jwt [DONE]
-
-    Hubs:
-        GET - /api/hubs - to grab all hubs [DONE]
-        POST - /api/hubs - to create a new hub [---] 
-        PATCH - /api/hubs/:id - to update existing hub (subscriber increase) [DONE]
-
-    Posts (Belongs To Users):
-        GET - /api/posts - to grab all posts [DONE]
-        GET - /api/posts/:id - to grab a specific post [DONE]
-        POST - /api/posts - to create a new post [DONE]
-        PATCH - /api/posts/:id - to update content of post [DONE]
-        DELETE - /api/posts/:id - to delete a post [DONE]
-
-    Snippets (Belongs To Users & Posts):
-        GET - /api/snippets/ - to grab all snippets [DONE]
-        POST - /api/snippets/ - to create a snippet [DONE]
-        PUT - /api/snippets/:id - to edit a snippet content [DONE]
-        DELETE - /api/snippets/:userId/:id - to delete a user snippet [DONE]
-
-
-3. TESTING ROUTES - CONDITIONS TO CHECK FOR
-    
-    Users: 
-        getting users
-            - getting all users [DONE]
-            - getting a specific user [DONE]
-        adding users
-            -checking if users can be added [DONE]
-            -error if password or username is too short [DONE]
-            -error if no password or username is provided [DONE]
-            -deleting user successfully if authenticated as that user [DONE]
-            -error if attempt to delete a user that isn't yours [DONE]
-
-    Posts:
-        getting posts
-            - getting all posts [DONE]
-            - getting specific post [DONE]
-        adding posts 
-            - when logged in you can add posts [DONE]
-            - error when your not logged in and add post [DONE]
-            - error when you create post with invalid submission info [DONE]
-        updating posts
-            - when logged in you can update a post thats yours [DONE]
-            - error when your not logged in and try to update post [DONE]
-            - error when logged in but update submission input is empty [DONE]
-            - error when you try to update someone elses post [DONE]
-        deleteing post
-            - when logged in you can delete your own posts [DONE]
-            - error when you try to delete a post when not logged in [DONE]
-            - error when you try to delete someone elses post when logged in [DONE]
-
-    Hubs: 
-        getting hubs
-            - gets all hubs [DONE]
-            - get a specific hub [DONE]
-        updating Hubs
-            - when logged in, can subscribe to a hub [DONE]
-            - error when not logged in and subscribe to a hub [DONE]
-            - error when subscribing to the same sub twice [DONE]
-    
-    Snippets:
-        getting snippets
-            - get all snippets [DONE]
-        creating snippets
-            - when logged in create snippet [DONE]
-            - error when creating empty snippet [DONE]
-            - error when creating snippet and not logged in [DONE]
-        updating snippets   
-            - when logged in can update snippet [DONE]
-            - error updating snippet when not logged in [DONE]
-            - error updating snippet with not content [DONE]
-            - error updating snippet that is not yours [DONE]
-        deleting snippets
-            - when logged in can delete snippet [DONE]
-            - error deleting snippet when not logged in [DONE]
-            - error deleting snippet that is not yours [DONE]
-
-    Comments:
-        getting comments
-            - get all comments of a post [DONE]
-        creating comments
-            - when logged in create comment [DONE]
-            - error when creating empty comment [DONE]
-            - error when commenting but not logged in [DONE]
-        updating comments
-            - when logged in can update comment [DONE]
-            - error updating comment when not logged in [DONE]
-            - error updating comment with no content [DONE]
-            - error updating comment that is not yours [DONE]
-        deleting snippets
-            - when logged in can delete snippet [DONE]
-            - error deleting comment when not logged in [DONE]
-            - error deleting comment that is not yours [DONE]
-        
-    Login:
-        - logging in with valid credentials and receive valid token [DONE]
-
-4. FRONTEND COMPONENTS 
-
-    Navigation
-        - link to login form [DONE] 
-        - link to register form [DONE] 
-        - link to user profile [DONE]
-        - display whos logged in after log in [DONE]
-        - logout button if logged in [DONE]
-    Login Form
-        - login form hidden when logged in [DONE]
-    Register Form
-        - register form nested within login form [DONE]
-    Hub Component
-        - link to hubs [DONE]
-        - display all hubs [DONE]
-        - subscribe button [DONE]
-        - display links to each hub [DONE]
-        - unsubscribe button [DONE]
-        - seed all hubs [---]
-        - seed all svg for hubs [---]
-    Posts Component
-        - link to posts [DONE]
-        - display posts in appropriate hub component [DONE]
-        - create posts [DONE]
-        - post form is in the hub component [DONE]
-        - post form submits a snippet and a post and associates them [DONE]
-        - post form can be toggled on and off [DONE]
-        - on post submit, hide post form [DONE]
-        - go to specific post [DONE]
-        - create comments for post [DONE]
-        - comments are nested [DONE]
-        - delete a post [DONE];
-        - delete comments for post [DONE]
-        - edit a post [DONE]
-        - edit a comment [DONE]
-        - like a post [DONE]
-        - like comments for post [DONE]
-    User Component
-        - display subscribed hubs [DONE]
-        - display snippets [DONE]
-        - display posts [DONE]
-        - delete post [DONE]
-        - delete snippet [DONE]
-        - link to snippets form [DONE]
-        - delete account warning: confirm [DONE]
-        - edit snippet [DONE]
-    Snippets Form
-        - create snippet [DONE]
-        - pick language for snippet [DONE]
-        
-
         
                 
     

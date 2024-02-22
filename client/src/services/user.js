@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:5173/api';
+const baseUrl = '/api/users';
 
 let token;
 
@@ -13,12 +13,12 @@ const setToken = (user) => {
 };
 
 const createUser = async (userObject) => {
-  const response = await axios.post(`${baseUrl}/users`, userObject);
+  const response = await axios.post(`${baseUrl}`, userObject);
   return;
 };
 
 const getUser = async (id) => {
-  const response = await axios.get(`${baseUrl}/users/${id}`);
+  const response = await axios.get(`${baseUrl}/${id}`);
   return response.data;
 };
 
@@ -27,7 +27,7 @@ const deleteAccount = async (userId) => {
     headers: { Authorization: token },
   };
 
-  await axios.delete(`${baseUrl}/users/${userId}`, config);
+  await axios.delete(`${baseUrl}/${userId}`, config);
 };
 
 export default { createUser, getUser, deleteAccount, setToken };

@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:5173/api';
+const baseUrl = '/api/posts';
 
 let token;
 
@@ -14,7 +14,7 @@ const setToken = (user) => {
 };
 
 const getPosts = async () => {
-  const allPosts = await axios.get(`${baseUrl}/posts`);
+  const allPosts = await axios.get(`${baseUrl}`);
   return allPosts.data;
 };
 
@@ -22,7 +22,7 @@ const createPost = async (newPost) => {
   const config = {
     headers: { Authorization: token },
   };
-  const createdPost = await axios.post(`${baseUrl}/posts`, newPost, config);
+  const createdPost = await axios.post(`${baseUrl}`, newPost, config);
   return createdPost.data;
 };
 
@@ -30,14 +30,14 @@ const editPost = async (postId, postObject) => {
   const config = {
     headers: { Authorization: token },
   };
-  await axios.patch(`${baseUrl}/posts/${postId}`, postObject, config);
+  await axios.patch(`${baseUrl}/${postId}`, postObject, config);
 };
 
 const deletePost = async (postId) => {
   const config = {
     headers: { Authorization: token },
   };
-  await axios.delete(`${baseUrl}/posts/${postId}`, config);
+  await axios.delete(`${baseUrl}/${postId}`, config);
 };
 
 export default { getPosts, createPost, deletePost, editPost, setToken };
