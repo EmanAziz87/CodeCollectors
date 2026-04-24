@@ -8,7 +8,7 @@ const db =
 (async function () {
   try {
     await db.authenticate();
-    await db.sync({ alter: true });
+    await db.sync({ force: true });
     const Hubs = require("../models/Hubs");
     await Hubs.sync({ alter: true }).then(async () => {
       Hubs.bulkCreate([
