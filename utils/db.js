@@ -11,7 +11,7 @@ const db =
       await db.authenticate();
       await db.sync({ alter: true });
       const Hubs = require("../models/Hubs");
-      await Hubs.sync({ alter: true }).then(async () => {
+      await Hubs.sync({ force: true }).then(async () => {
         Hubs.bulkCreate([
           { name: "JavaScript", subscribers: 484, adminHub: true },
           { name: "Cpp", subscribers: 326, adminHub: true },
