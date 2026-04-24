@@ -1,8 +1,11 @@
 const Sequelize = require("sequelize");
 
-const db = new Sequelize("cctestdb", "postgres", "myPassword", {
-  dialect: "postgres",
-});
+const db =
+  process.env.NODE_ENV === "PROD"
+    ? new Sequelize(process.env.DB_CONNECTION_STRING)
+    : new Sequelize("cctestdb", "postgres", "myPassword", {
+        dialect: "postgres",
+      });
 
 (async function () {
   try {
