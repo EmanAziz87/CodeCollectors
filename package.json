@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js --host",
-    "dev": "NODE_ENV=development nodemon index.js",
-    "test": "NODE_ENV=test jest --verbose --runInBand",
-    "deploy:test": "NODE_ENV=production jest --runInBand",
-    "test:all": "NODE_ENV=TEST npm run test && NODE_ENV=TEST npm run test:e2e",
+    "dev": "NODE_ENV=DEV nodemon index.js",
+    "test": "NODE_ENV=TEST jest --verbose --runInBand --detectOpenHandles",
+    "deploy:test": "NODE_ENV=PROD jest --runInBand",
+    "test:all": "npm run test && npm run test:e2e",
     "cypress:open": "cypress open",
-    "test:e2e": "cypress run",
+    "test:e2e": "NODE_ENV=TEST cypress run",
     "build:ui": "rm -rf dist && cd ./client && npm install && npm run build"
   },
   "keywords": [],
@@ -34,5 +34,8 @@
     "nodemon": "^3.1.14",
     "sequelize-cli": "^6.6.5",
     "supertest": "^6.3.4"
+  },
+  "jest": {
+    "globalSetup": "./tests/setup.js"
   }
 }
