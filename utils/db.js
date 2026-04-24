@@ -3,14 +3,12 @@ const Sequelize = require("sequelize");
 const db =
   process.env.NODE_ENV === "PROD"
     ? new Sequelize(process.env.DB_CONNECTION_STRING)
-    : new Sequelize("cctestdb", "postgres", "myPassword", {
-        dialect: "postgres",
-      });
+    : new Sequelize(process.env.DB_TEST_CONNECTION_STRING);
 
 (async function () {
   try {
     await db.authenticate();
-    await db.sync({ force: true });
+    await db.sync({ alter: true });
     const Hubs = require("../models/Hubs");
     await Hubs.sync({ alter: true }).then(async () => {
       Hubs.bulkCreate([

@@ -8,6 +8,7 @@
     "dev": "NODE_ENV=development nodemon index.js",
     "test": "NODE_ENV=test jest --verbose --runInBand",
     "deploy:test": "NODE_ENV=production jest --runInBand",
+    "test:all": "NODE_ENV=TEST npm run test && NODE_ENV=TEST npm run test:e2e",
     "cypress:open": "cypress open",
     "test:e2e": "cypress run",
     "build:ui": "rm -rf dist && cd ./client && npm install && npm run build"
